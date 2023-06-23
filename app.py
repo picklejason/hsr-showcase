@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request
 import requests
-from maps import mapped, substats, main_stats
 
 app = Flask(__name__)
 # app.config["TEMPLATES_AUTO_RELOAD"] = True
