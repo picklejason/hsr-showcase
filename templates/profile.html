@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Star Rail</title>
+    <style>
+      @font-face {
+        font-family: "DIN";
+        src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
+      }
+
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: "DIN";
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .bg-image {
+        background-image: url("/static/bg.jpg");
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .profile {
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+        color: white;
+        border: 3px solid #f1f1f1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 50%;
+        padding: 20px;
+        text-align: center;
+        text-shadow: 2px 2px black;
+      }
+
+      .profile img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .character {
+        width: 24%;
+        float: left;
+        margin: 3px 3px;
+        justify-content: center;
+        position: relative;
+        transition: border-color 0.3s ease;
+      }
+
+      .character:hover {
+        border: 2px solid gold;
+      }
+
+      .description {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding-top: 5px;
+        color: #fff;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .nickname,
+      .name {
+        margin: 0;
+        font-size: 36px;
+      }
+
+      .info,
+      .lvl {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .icon img {
+        border: black 2px solid;
+        border-radius: 4rem;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-image"></div>
+
+    <div class="profile">
+      <div class="icon">
+        <img src="{{asset_url + data.player.icon}}" alt="profile picture" />
+      </div>
+      <div class="nickname">{{data.player.name}}</div>
+      <div class="info">
+        <div class="trailblaze-level">
+          <div class="heading">Trailblaze Level</div>
+          <div class="value">{{data.player.level}}</div>
+        </div>
+        <div class="world-level">
+          <div class="heading">Equilibrium Level</div>
+          <div class="value">{{data.PlayerSpaceInfo.PassAreaProgress}}</data></div>
+        </div>
+      </div>
+      <hr>
+      {% set count = namespace(value=0) %}
+      {% for character in data.characters %}
+      <a href="{{ url_for('character', chara=count.value) }}">
+        <div class="character">
+          <img src="{{asset_url + character.preview}}" alt="{{character.name}}" />
+          <div class="description">
+            <div class="name">{{character.name}}</div>
+            <div class="lvl">Lv. {{character.level}}</div>
+          </div>
+        </div>
+      </a>
+      {% set count.value = count.value + 1 %}
+      {% endfor %}
+    </div>
+  </body>
+</html>

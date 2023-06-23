@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Star Rail</title>
+
+    <style>
+      @font-face {
+        font-family: "DIN";
+        src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
+      }
+
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "DIN";
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .bg-image {
+        background-image: url("/static/bg.jpg");
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .team {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      .team img {
+        width: 64px;
+        height: 64px;
+      }
+
+      .profile {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 95%;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      .left {
+        width: 25%;
+        font-size: 1.35em;
+      }
+
+      .middle {
+        width: 35%;
+        margin: 15px;
+        font-size: 1.35em;
+      }
+
+      .right {
+        width: 40%;
+        font-size: 1.1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .character-portrait img {
+        max-width: 600px;
+        height: auto;
+      }
+
+      .nickname,
+      .name {
+        font-size: 2em;
+      }
+
+      .info,
+      .lvl {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .icon img {
+        border: black 2px solid;
+        border-radius: 4rem;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 1rem;
+      }
+
+      .relics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+        width: 100%;
+      }
+
+      .relic {
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        margin: 2px;
+        border-radius: 1rem;
+        padding: 10px;
+      }
+
+      .relic-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .relic-icon img {
+        width: 6em;
+      }
+
+      .relic-set {
+        width: 50%;
+      }
+
+      .stats {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-stat-line {
+        font-size: 1.2em;
+      }
+
+      .main-stat-line,
+      .substat-line {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px;
+      }
+
+      .main-stat-line img,
+      .substat-line img {
+        height: 1.3em;
+        width: auto;
+      }
+
+      .main-stat-name,
+      .substat-name {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main-stat-line {
+        color: gold;
+      }
+
+      .char-stats {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .char-stats img {
+        height: 1.3em;
+        width: auto;
+      }
+
+      .stat-line {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1px;
+      }
+
+      .stat-name {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .row,
+      .path {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .row img {
+        height: 2.5em;
+        width: auto;
+      }
+
+      .badge {
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 2rem;
+        border: 1px solid white;
+        margin-top: 5px;
+      }
+
+      .skills {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+
+      .skills img {
+        width: 50px;
+      }
+
+      .element-icon {
+        height: 2em;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-image"></div>
+    <div class="team">
+      <a href="{{ url_for('profile', uid=uid) }}">
+        <img src="{{asset_url}}/icon/sign/TeamIcon.png" alt="Team Icon" />
+      </a>
+    </div>
+    <div class="profile">
+      <div class="details">
+        <div class="left">
+          <div class="char">
+            <div class="row">
+              <div class="name">{{data[chara].name}}</div>
+              <img
+                src="{{asset_url + data[chara].element_icon}}"
+                alt="{{data[chara].element.name}}"
+                class="element-icon"
+              />
+            </div>
+            <div class="row">
+              <div class="path">
+                <img
+                  src="{{asset_url + data[chara].path_icon}}"
+                  alt="Path"
+                />{{data[chara].path}}
+              </div>
+            </div>
+            <div class="eidolon">Eidolon {{data[chara].rank}}</div>
+            <div class="lvl">Lv. {{data[chara].level}}</div>
+          </div>
+          <div class="char-stats">
+            {% for stat in data[chara].property %}
+            <div class="stat-line">
+              <div class="stat-name">
+                <img src="{{asset_url + stat.icon}}" alt="{{stat.name}}" />
+                {{stat.name}}
+              </div>
+              {% if stat.addition is none %}
+              <div class="stat-value">{{stat.base}}</div>
+              {% else %}
+              <div class="stat-value">
+                {{stat.base|int + stat.addition|int}}
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+          <hr />
+          <div class="lightcone">
+            Lightcone
+            <hr />
+            <img
+              src="{{asset_url}}image/light_cone_preview/{{data[chara].light_cone.icon.split('/')[-1]}}"
+              alt="Lightcone"
+            />
+            <div class="lightcone-name">{{data[chara].light_cone.name}}</div>
+            <div class="lightcone-level">
+              Lv. {{data[chara].light_cone.level}}
+            </div>
+            <div class="lightcone-rank">
+              Superimposition {{data[chara].light_cone.rank}}
+            </div>
+          </div>
+        </div>
+        <div class="middle">
+          <div class="character-portrait">
+            <img
+              src="{{asset_url + data[chara].portrait}}"
+              alt="{{data[chara].name}}"
+            />
+          </div>
+          <hr />
+          Skills
+          <hr />
+          <div class="skills">
+            {% for skill in data[chara].skill %}
+            <div class="skill">
+              <img src="{{asset_url + skill.icon}}" alt="{{skill.name}}" />
+              <div class="skill-level">{{skill.level}}</div>
+              <div class="skill-type">{{skill.type}}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="right">
+          <div class="relics">
+            {% for relic in data[chara].relic.values() %}
+            <div class="relic">
+              <div class="relic-icon">
+                <img src="{{asset_url + relic.icon}}" alt="{{relic.name}}" />
+                <div class="rarity">
+                  <img
+                    src="{{asset_url}}icon/deco/Star{{relic.rarity}}.png"
+                    alt="{{relic.rarity}}"
+                  />
+                </div>
+                <div class="relic-lvl badge">+{{relic.level}}</div>
+              </div>
+              <div class="stats">
+                <div class="main-stat-line">
+                  <div class="main-stat-name">
+                    <img
+                      src="{{asset_url + relic.main_property.icon}}"
+                      alt="{{relic.main_property.name}}"
+                      class="stat-icon"
+                    />{{relic.main_property.name}}
+                  </div>
+                  <div class="main-stat-value">
+                    {{relic.main_property.value}}
+                  </div>
+                </div>
+
+                {% for substat in relic.sub_property %}
+                <div class="substat-line">
+                  <div class="substat-name">
+                    <img
+                      src="{{asset_url + substat.icon}}"
+                      alt="{{substat.name}}"
+                      class="stat-icon"
+                    />{{substat.name}}
+                  </div>
+                  <div class="substat-value">{{substat.value}}</div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="relic-set">
+            <hr />
+            Relic Set
+            <hr />
+            {% for set in data[chara].relic_set %}
+            <div class="set">
+              <div class="row">
+                <div class="set-name">{{set.name}}</div>
+                <div class="set-desc">{{set.desc}}</div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
