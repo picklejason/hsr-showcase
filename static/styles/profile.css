@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "DIN";
+  src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "DIN";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.bg-image {
+  background-image: url("/static/bg.jpg");
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile {
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  text-shadow: 2px 2px black;
+}
+
+.profile img {
+  max-width: 100%;
+  height: auto;
+}
+
+.character {
+  width: 24%;
+  float: left;
+  margin: 3px 3px;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.character:hover {
+  border: 2px solid gold;
+}
+
+.description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5px;
+  color: #fff;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.nickname,
+.name {
+  margin: 0;
+  font-size: 36px;
+}
+
+.info,
+.lvl {
+  margin: 0;
+  font-size: 24px;
+}
+
+.icon img {
+  border: black 2px solid;
+  border-radius: 4rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem;
+}
