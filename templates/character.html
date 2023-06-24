@@ -128,7 +128,7 @@
             <div class="grid grid-cols-2 grid-rows-3 gap-2">
               {% for relic in data[chara].relic.values() %}
               <div class="rounded-lg relative flex items-center space-x-4 p-2" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center text-center">
                   <img src="{{asset_url + relic.icon}}" alt="{{relic.name}}" class="w-32 h-auto" />
 
                   <img
@@ -136,7 +136,7 @@
                     alt="{{relic.rarity}}"
                     class="w-24 h-auto"
                   />
-                  <span class="badge text-gray-300 badge-outline bg-gray-900 w-1/2">+{{relic.level}}</span>
+                  <span class="badge text-gray-300 badge-outline bg-gray-900 w-1/2 rounded">+{{relic.level}}</span>
                 </div>
                 <div class="w-full">
                   <div class="flex flex-row justify-between items-center text-yellow-400">
