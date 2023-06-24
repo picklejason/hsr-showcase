@@ -36,12 +36,14 @@ def profile():
 @app.route("/character")
 def character():
     uid = d.a["player"]["uid"]
+    name = d.a["player"]["name"]
     data = d.a["characters"]
     chara = int(request.args.get("chara"))
 
     return render_template(
         "character.html",
         uid=uid,
+        name=name,
         data=data,
         chara=chara,
         asset_url=asset_url,

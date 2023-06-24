@@ -118,12 +118,13 @@
               {% endfor %}
             </div>
             
-            <div class="w-1/2">
+            <div class="flex flex-col w-1/2 space-y-4">
               <hr />
-              <span class="text-lg">UID {{uid}}</span>
+              <span class="text-xl">{{name}}</span>
+              <span class="text-xl">UID {{uid}}</span>
             </div>
           </div>          
-          <div class="flex flex-col justify-center items-center w-3/11 space-y-2">
+          <div class="flex flex-col justify-center items-center w-1/4 space-y-2">
             <div class="grid grid-cols-2 grid-rows-3 gap-2">
               {% for relic in data[chara].relic.values() %}
               <div class="rounded-lg relative flex items-center space-x-4 p-2" style="background-color: rgba(0, 0, 0, 0.3)">
