@@ -26,7 +26,11 @@ def profile():
     data = res.json()
     d.a = data
 
-    return render_template("profile.html", data=data, asset_url=asset_url)
+    url2 = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
+    res2 = requests.get(url2)
+    data2 = res2.json()
+
+    return render_template("profile.html", data=data, data2=data2, asset_url=asset_url)
 
 
 @app.route("/character")
