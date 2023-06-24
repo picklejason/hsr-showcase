@@ -9,7 +9,6 @@ html {
   margin: 0;
   padding: 0;
   font-family: "DIN";
-  overflow: auto;
 }
 
 * {
@@ -276,7 +275,21 @@ html {
 }
 
 @media only screen and (max-width: 1200px) {
+  .bg-image {
+    max-height: 200vh;
+    height: 200%
+  }
+  
   .details {
     flex-wrap: wrap;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
   }
+
+  .left, .right, .middle {
+    width: 100%;
+  }
+
 }
