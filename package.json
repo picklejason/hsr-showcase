@@ -1,0 +1,21 @@
+{
+  "name": "starrail",
+  "version": "1.0.0",
+  "description": "",
+    "scripts": {
+    "tw-build": "npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/picklejason/starrail.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/picklejason/starrail/issues"
+  },
+  "homepage": "https://github.com/picklejason/starrail#readme"
+}

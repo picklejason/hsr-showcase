@@ -5,41 +5,53 @@
     <title>Star Rail</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles/profile.css') }}"
+      href="{{url_for('static',filename='dist/css/output.css')}}"
     />
   </head>
-  <body>
-    <div class="bg-image"></div>
-
-    <div class="profile">
-      <div class="icon">
-        <img src="{{asset_url + data.player.icon}}" alt="profile picture" />
-      </div>
-      <div class="nickname">{{data.player.name}}</div>
-      <div class="info">
-        <div class="trailblaze-level">
-          <div class="heading">Trailblaze Level</div>
-          <div class="value">{{data.player.level}}</div>
-        </div>
-        <div class="world-level">
-          <div class="heading">Equilibrium Level</div>
-          <div class="value">{{data2.player.world_level}}</data></div>
-        </div>
-      </div>
-      <hr>
-      {% set count = namespace(value=0) %}
-      {% for character in data.characters %}
-      <a href="{{ url_for('character', chara=count.value) }}">
-        <div class="character">
-          <img src="{{asset_url + character.preview}}" alt="{{character.name}}" />
-          <div class="description">
-            <div class="name">{{character.name}}</div>
-            <div class="lvl">Lv. {{character.level}}</div>
+  <body
+    class="bg-cover bg-center bg-no-repeat bg-fixed text-white"
+    style="background-image: url('/static/bg.jpg'); backdrop-filter: blur(8px)"
+  >
+    <div class="h-screen flex items-center justify-center text-center">
+      <div class="flex flex-col items-center space-y-2">
+        <img
+          src="{{asset_url + data.player.icon}}"
+          alt="profile picture"
+          class="w-32 h-32"
+        />
+        <span class="text-4xl">{{data.player.name}}</span>
+        <div class="flex flex-row justify-evenly items-center w-full">
+          <div class="flex flex-col">
+            <span class="text-2xl">Trailblaze Level</span>
+            <span class="text-2xl">{{data.player.level}}</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl">Equilibrium Level</span>
+            <span class="text-2xl">{{data2.player.world_level}}</span>
           </div>
         </div>
-      </a>
-      {% set count.value = count.value + 1 %}
-      {% endfor %}
+        <hr />
+        <div class="flex space-x-3 transition ease-in-out delay-150">
+          {% set count = namespace(value=0) %} {% for character in
+          data.characters %}
+          <a href="{{ url_for('character', chara=count.value) }}" class="text-">
+            <div>
+              <img
+                src="{{asset_url + character.preview}}"
+                alt="{{character.name}}"
+                class="w-64 h-auto min-w-64"
+              />
+              <div
+                class="flex flex-col text-center bg-black bg-opacity-50 w-full"
+              >
+                <span class="truncate text-4xl">{{character.name}}</span>
+                <span class="text-lg">Lv. {{character.level}}</span>
+              </div>
+            </div>
+          </a>
+          {% set count.value = count.value + 1 %} {% endfor %}
+        </div>
+      </div>
     </div>
   </body>
 </html>

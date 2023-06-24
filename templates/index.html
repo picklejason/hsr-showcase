@@ -5,17 +5,27 @@
     <title>Star Rail</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles/index.css') }}"
+      href="{{url_for('static',filename='dist/css/output.css')}}"
     />
   </head>
-  <body>
-    <div class="bg-image"></div>
-
-    <div class="profile">
-      <h1>Trailblazer Profile</h1>
-      <form method="get" action="/profile" class="form">
-        <input type="text" name="uid" placeholder="Enter UID" />
-        <input type="submit" value="Search" class="search-btn" />
+  <body
+    class="bg-cover bg-center bg-no-repeat bg-fixed"
+    style="background-image: url('/static/bg.jpg'); backdrop-filter: blur(8px)"
+  >
+    <div class="h-screen flex flex-col items-center justify-center text-center">
+      <span class="text-6xl text-white">Trailblazer Profile</span>
+      <form method="get" action="/profile" class="flex flex-col p-6 gap-2">
+        <input
+          type="text"
+          name="uid"
+          placeholder="Enter UID"
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+        />
+        <input
+          type="submit"
+          value="Search"
+          class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+        />
       </form>
     </div>
   </body>

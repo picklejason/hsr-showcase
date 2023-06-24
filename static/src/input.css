@@ -1,0 +1,13 @@
+@tailwind base;
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DIN";
+  src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
+}  
