@@ -82,10 +82,11 @@
               src="{{asset_url + data[chara].portrait}}"
               alt="{{data[chara].name}}"
             />
+            <hr />
+            Skills
+            <hr />
           </div>
-          <hr />
-          Skills
-          <hr />
+
           <div class="skills">
             {% for skill in data[chara].skill %}
             <div class="skill">
@@ -94,6 +95,13 @@
               <div class="skill-type">{{skill.type}}</div>
             </div>
             {% endfor %}
+          </div>
+
+          <div class="uid">
+            <hr />
+            UID
+            <hr />
+            {{uid}}
           </div>
         </div>
         <div class="right">

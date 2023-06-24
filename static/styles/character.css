@@ -9,6 +9,7 @@ html {
   margin: 0;
   padding: 0;
   font-family: "DIN";
+  overflow: auto;
 }
 
 * {
@@ -29,6 +30,7 @@ html {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 3;
 }
 
 .team img {
@@ -41,6 +43,7 @@ html {
   bottom: 0;
   right: 0;
   cursor: pointer;
+  z-index: 3;
 }
 
 .save img {
@@ -55,10 +58,9 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  width: 95%;
+  width: 100%;
   text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -67,17 +69,26 @@ html {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  width: 95%;
+  margin: auto;
 }
 
 .left {
   width: 25%;
   font-size: 1.3em;
+  margin: 1rem;
 }
 
 .middle {
   width: 35%;
   margin: 15px;
   font-size: 1.3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+
 }
 
 .right {
@@ -87,11 +98,17 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1rem;
 }
 
 .character-portrait img {
   max-width: 600px;
   height: auto;
+}
+
+.uid {
+  width: 60%;
+  font-size: 0.75em;
 }
 
 .name {
@@ -256,4 +273,10 @@ html {
 .element-icon {
   height: 2em;
   width: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .details {
+    flex-wrap: wrap;
+  }
 }
