@@ -36,6 +36,18 @@ html {
   height: 64px;
 }
 
+.save {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.save img {
+  width: 64px;
+  height: 64px;
+}
+
 .profile {
   color: white;
   position: absolute;
@@ -44,10 +56,10 @@ html {
   transform: translate(-50%, -50%);
   z-index: 2;
   width: 95%;
-  padding: 20px;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .details {
@@ -59,13 +71,13 @@ html {
 
 .left {
   width: 25%;
-  font-size: 1.35em;
+  font-size: 1.3em;
 }
 
 .middle {
   width: 35%;
   margin: 15px;
-  font-size: 1.35em;
+  font-size: 1.3em;
 }
 
 .right {
@@ -82,7 +94,6 @@ html {
   height: auto;
 }
 
-.nickname,
 .name {
   font-size: 2em;
 }
@@ -98,12 +109,12 @@ html {
   border-radius: 4rem;
 }
 
-.info {
+.lightcone {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 1rem;
+  flex-wrap: wrap;
 }
 
 .relics {
@@ -232,6 +243,14 @@ html {
 
 .skills img {
   width: 50px;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
 }
 
 .element-icon {

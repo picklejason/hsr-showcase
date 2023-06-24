@@ -7,6 +7,8 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/character.css') }}"
     />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   </head>
   <body>
     <div class="bg-image"></div>
@@ -56,19 +58,21 @@
             {% endfor %}
           </div>
           <hr />
+          Lightcone
+          <hr />
           <div class="lightcone">
-            Lightcone
-            <hr />
-            <img
-              src="{{asset_url}}image/light_cone_preview/{{data[chara].light_cone.icon.split('/')[-1]}}"
-              alt="Lightcone"
-            />
             <div class="lightcone-name">{{data[chara].light_cone.name}}</div>
-            <div class="lightcone-level">
-              Lv. {{data[chara].light_cone.level}}
+            <div class="lightcone-img">
+              <img
+                src="{{asset_url}}image/light_cone_preview/{{data[chara].light_cone.icon.split('/')[-1]}}"
+                alt="Lightcone"
+              />
             </div>
             <div class="lightcone-rank">
               Superimposition {{data[chara].light_cone.rank}}
+            </div>
+            <div class="lightcone-level">
+              Lv. {{data[chara].light_cone.level}}
             </div>
           </div>
         </div>
@@ -153,5 +157,23 @@
         </div>
       </div>
     </div>
+    <div class="save">
+      <img
+        src="{{asset_url}}icon/sign/SettingsImageIcon.png"
+        alt="save-icon"
+        onclick="save()"
+      />
+    </div>
+    <script>
+      function save() {
+        html2canvas(document.querySelector("body"), {
+          useCORS: true,
+        }).then((canvas) => {
+          canvas.toBlob(function (blob) {
+            window.saveAs(blob, "showcase.png");
+          });
+        });
+      }
+    </script>
   </body>
 </html>
