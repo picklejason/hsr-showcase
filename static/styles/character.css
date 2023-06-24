@@ -82,7 +82,7 @@ html {
 
 .right {
   width: 40%;
-  font-size: 1.1em;
+  font-size: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,7 +157,7 @@ html {
 }
 
 .main-stat-line {
-  font-size: 1.2em;
+  font-size: 1.15em;
 }
 
 .main-stat-line,
