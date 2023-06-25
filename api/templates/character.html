@@ -17,7 +17,7 @@
   > 
     <div class="flex absolute top-0 right-0">
       <div class="cursor-pointer w-16 h-16">
-        <a href="{{ url_for('profile', uid=uid) }}">
+        <a href="javascript:history.back()">
           <img src="{{asset_url}}/icon/sign/TeamIcon.png" alt="Team Icon" />
         </a>
       </div>
@@ -31,8 +31,9 @@
       </div>
     </div>
     
+    <div class="container">
     <div class="flex h-screen">
-      <div class="flex flex-row justify-center w-full flex-wrap">
+      <div class="flex flex-row justify-center w-full">
         <div class="flex flex-col justify-center w-1/5">
           <div class="flex items-center justify-between">
             <span class="text-4xl">{{data[chara].name}}</span>
@@ -191,6 +192,8 @@
         </div>
       </div>
     </div>
+
+  
     <script>
       function save() {
         html2canvas(document.querySelector("body"), {
@@ -203,5 +206,6 @@
       }
     </script>
   </div>
+
   </body>
 </html>
