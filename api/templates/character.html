@@ -3,18 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Star Rail</title>
-    <link
-      rel="stylesheet"
-      href="\static\dist\css\output.css"
-    />
+    <link rel="stylesheet" href="\static\dist\css\output.css" />
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
   </head>
   <body
-    class="bg-cover bg-center bg-no-repeat bg-fixed text-white "
+    class="bg-cover bg-center bg-no-repeat bg-fixed text-white"
     style="background-image: url('/static/bg.jpg'); backdrop-filter: blur(8px)"
-  > 
+  >
     <div class="flex absolute top-0 right-0">
       <div class="cursor-pointer w-16 h-16">
         <a href="javascript:history.back()">
@@ -30,66 +26,64 @@
         />
       </div>
     </div>
-    
+
     <div class="container">
-    <div class="flex h-screen">
-      <div class="flex flex-row justify-center w-full">
-        <div class="flex flex-col justify-center w-1/5">
-          <div class="flex items-center justify-between">
-            <span class="text-4xl">{{data[chara].name}}</span>
-            <img
-              src="{{asset_url + data[chara].element_icon}}"
-              alt="{{data[chara].element.name}}"
-              class="w-12 h-12"
-            />
-          </div>
-          <div class="flex items-center space-x-2">
-            <img
-              src="{{asset_url + data[chara].path_icon}}"
-              alt="Path"
-              class="w-12 h-12"
-            />
-            <span class="text-xl">{{data[chara].path}}</span>
-          </div>
-          <div class="flex flex-col text-center">
-            <span class="text-xl">Eidolon {{data[chara].rank}}</span>
-            <span class="text-2xl">Lv. {{data[chara].level}}</span>
-          </div>
-          <div class="flex flex-col text-lg">
-            {% for stat in data[chara].property %}
-            <div class="flex justify-between">
-              <div class="flex items-center gap-2">
-                <img
-                  src="{{asset_url + stat.icon}}"
-                  alt="{{stat.name}}"
-                  class="w-8 h-8"
-                />
-                
-                <span>{{stat.name}} </span>
+      <div class="flex h-screen">
+        <div class="flex flex-row justify-center w-full">
+          <div class="flex flex-col justify-center w-1/5">
+            <div class="flex items-center justify-between">
+              <span class="text-4xl">{{data[chara].name}}</span>
+              <img
+                src="{{asset_url + data[chara].element_icon}}"
+                alt="{{data[chara].element.name}}"
+                class="w-12 h-12"
+              />
+            </div>
+            <div class="flex items-center space-x-2">
+              <img
+                src="{{asset_url + data[chara].path_icon}}"
+                alt="Path"
+                class="w-12 h-12"
+              />
+              <span class="text-xl">{{data[chara].path}}</span>
+            </div>
+            <div class="flex flex-col text-center">
+              <span class="text-xl">Eidolon {{data[chara].rank}}</span>
+              <span class="text-2xl">Lv. {{data[chara].level}}</span>
+            </div>
+            <div class="flex flex-col text-lg">
+              {% for stat in data[chara].property %}
+              <div class="flex justify-between">
+                <div class="flex items-center gap-2">
+                  <img
+                    src="{{asset_url + stat.icon}}"
+                    alt="{{stat.name}}"
+                    class="w-8 h-8"
+                  />
+
+                  <span>{{stat.name}} </span>
+                </div>
+                {% if stat.addition is none %}
+                <span class="text-gray-300">{{stat.base}}</span>
+                {% else %}
+                <span class="text-gray-300">
+                  {{stat.base|int + stat.addition|int}}
+                </span>
+                {% endif %}
               </div>
-              {% if stat.addition is none %}
-              <span class="text-gray-300">{{stat.base}}</span>
-              {% else %}
-              <span class="text-gray-300">
-                {{stat.base|int + stat.addition|int}}
-              </span>
-              {% endif %}
-              
+              {% endfor %}
+              <div class="text-center">
+                <hr />
+                <span class="text-2xl">Lightcone</span>
+                <hr />
+              </div>
             </div>
-            {% endfor %}
-            <div class="text-center">
-              <hr /> 
-              <span class="text-2xl">Lightcone</span>
-              <hr />
-            </div>
-          </div>
             <div class="flex flex-col items-center">
-              
               <span class="text-xl">{{data[chara].light_cone.name}}</span>
-                <img
-                  src="{{asset_url}}image/light_cone_preview/{{data[chara].light_cone.icon.split('/')[-1]}}"
-                  alt="Lightcone"
-                />
+              <img
+                src="{{asset_url}}image/light_cone_preview/{{data[chara].light_cone.icon.split('/')[-1]}}"
+                alt="Lightcone"
+              />
               <span class="text-lg">
                 Superimposition {{data[chara].light_cone.rank}}
               </span>
@@ -98,7 +92,9 @@
               </span>
             </div>
           </div>
-        <div class="flex flex-col justify-center items-center text-center w-1/3">
+          <div
+            class="flex flex-col justify-center items-center text-center w-1/3"
+          >
             <img
               src="{{asset_url + data[chara].portrait}}"
               alt="{{data[chara].name}}"
@@ -112,48 +108,66 @@
             <div class="flex items-center">
               {% for skill in data[chara].skill %}
               <div class="flex flex-col items-center m-1">
-                <img src="{{asset_url + skill.icon}}" alt="{{skill.name}}" class="w-12 h-12" />
+                <img
+                  src="{{asset_url + skill.icon}}"
+                  alt="{{skill.name}}"
+                  class="w-12 h-12"
+                />
                 <span class="text-lg">Lv. {{skill.level}}</span>
                 <span class="text-lg">{{skill.type}}</span>
               </div>
               {% endfor %}
             </div>
-            
+
             <div class="flex flex-col w-1/2 space-y-4">
               <hr />
               <span class="text-xl">{{name}}</span>
               <span class="text-xl">UID {{uid}}</span>
             </div>
-          </div>          
-          <div class="flex flex-col justify-center items-center w-1/4 space-y-2">
+          </div>
+          <div
+            class="flex flex-col justify-center items-center w-1/4 space-y-2"
+          >
             <div class="grid grid-cols-2 grid-rows-3 gap-2">
               {% for relic in data[chara].relic.values() %}
-              <div class="rounded-lg relative flex items-center space-x-4 p-2" style="background-color: rgba(0, 0, 0, 0.3)">
+              <div
+                class="rounded-lg relative flex items-center space-x-4 p-2"
+                style="background-color: rgba(0, 0, 0, 0.3)"
+              >
                 <div class="flex flex-col items-center text-center">
-                  <img src="{{asset_url + relic.icon}}" alt="{{relic.name}}" class="w-32 h-auto" />
+                  <img
+                    src="{{asset_url + relic.icon}}"
+                    alt="{{relic.name}}"
+                    class="w-32 h-auto"
+                  />
 
                   <img
                     src="{{asset_url}}icon/deco/Star{{relic.rarity}}.png"
                     alt="{{relic.rarity}}"
                     class="w-24 h-auto"
                   />
-                  <span class="badge text-gray-300 badge-outline bg-gray-900 w-1/2 rounded">+{{relic.level}}</span>
+                  <span
+                    class="badge text-gray-300 badge-outline bg-gray-900 w-1/2 rounded"
+                    >+{{relic.level}}</span
+                  >
                 </div>
                 <div class="w-full">
-                  <div class="flex flex-row justify-between items-center text-yellow-400">
-                    <div class="flex items-center ">
+                  <div
+                    class="flex flex-row justify-between items-center text-yellow-400"
+                  >
+                    <div class="flex items-center">
                       <img
                         src="{{asset_url + relic.main_property.icon}}"
                         alt="{{relic.main_property.name}}"
                         class="w-10 h-10"
                       />
-                      
-                      <span class="text-right text-lg">{{relic.main_property.name}}</span>
+
+                      <span class="text-right text-lg"
+                        >{{relic.main_property.name}}</span
+                      >
                     </div>
 
-                    <span>
-                      {{relic.main_property.value}}
-                    </span>
+                    <span> {{relic.main_property.value}} </span>
                   </div>
                   <div class="flex flex-col">
                     <div class="flex flex-col">
@@ -166,7 +180,6 @@
                             class="w-8 h-8"
                           />
                           <span>{{substat.name}}</span>
-                          
                         </div>
                         <span class="text-right">{{substat.value}}</span>
                       </div>
@@ -184,7 +197,9 @@
               {% for set in data[chara].relic_set %}
               <div class="flex justify-between px-2">
                 <span class="font-medium text-left">{{set.name}}</span>
-                <span class="text-gray-300 font-medium text-right">{{set.desc}}</span>
+                <span class="text-gray-300 font-medium text-right"
+                  >{{set.desc}}</span
+                >
               </div>
               {% endfor %}
             </div>
@@ -192,8 +207,6 @@
         </div>
       </div>
     </div>
-
-  
     <script>
       function save() {
         html2canvas(document.querySelector("body"), {
@@ -205,7 +218,5 @@
         });
       }
     </script>
-  </div>
-
   </body>
 </html>
