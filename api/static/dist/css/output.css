@@ -920,7 +920,7 @@ img {
   src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
 }
 
-.bg {
+.BG {
   background-image: url('../../bg.png');
   background-size: cover;
   background-position: center;
