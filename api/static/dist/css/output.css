@@ -526,10 +526,6 @@ img {
   --tw-backdrop-sepia:  ;
 }
 
-.static {
-  position: static;
-}
-
 .absolute {
   position: absolute;
 }
@@ -925,7 +921,7 @@ img {
 }
 
 .bg {
-  background-image: url('/static/bg.png');
+  background-image: url('../../bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
