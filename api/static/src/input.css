@@ -11,3 +11,14 @@
   font-family: "DIN";
   src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
 }  
+
+.bg {
+  background-image: url('/static/bg.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-blur {
+  filter: blur(4px);
+}

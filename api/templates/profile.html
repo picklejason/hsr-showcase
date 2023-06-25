@@ -5,18 +5,15 @@
     <title>Star Rail</title>
     <link rel="stylesheet" href="\static\dist\css\output.css" />
   </head>
-  <body
-    class="bg-cover bg-center bg-no-repeat bg-fixed text-white"
-    style="background-image: url('/static/bg.jpg'); backdrop-filter: blur(8px)"
-  >
+  <body class="bg text-white" style="backdrop-filter: blur(8px)">
     <div class="h-screen flex items-center justify-center text-center">
       <div class="flex flex-col items-center space-y-2">
         <img
-          src="{{asset_url + data.player.icon}}"
+          src="{{asset_url + data.player.avatar.icon}}"
           alt="profile picture"
           class="w-32 h-32"
         />
-        <span class="text-4xl">{{data.player.name}}</span>
+        <span class="text-4xl">{{data.player.nickname}}</span>
         <div class="flex flex-row justify-evenly items-center w-full">
           <div class="flex flex-col">
             <span class="text-2xl">Trailblaze Level</span>
@@ -24,7 +21,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-2xl">Equilibrium Level</span>
-            <span class="text-2xl">{{data2.player.world_level}}</span>
+            <span class="text-2xl">{{data.player.world_level}}</span>
           </div>
         </div>
         <hr />

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
     "scripts": {
-    "tw-build": "npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css"
+    "tw-build": "npx tailwindcss -i ./api/static/src/input.css -o ./api/static/dist/css/output.css"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.2"
