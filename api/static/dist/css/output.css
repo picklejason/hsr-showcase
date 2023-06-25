@@ -650,18 +650,6 @@ img {
   width: 100%;
 }
 
-.w-\[41\%\] {
-  width: 41%;
-}
-
-.w-\[42\%\] {
-  width: 42%;
-}
-
-.w-\[43\%\] {
-  width: 43%;
-}
-
 .min-w-0 {
   min-width: 0px;
 }
@@ -941,10 +929,6 @@ img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.bg-blur {
-  filter: blur(4px);
 }
 
 .hover\:bg-purple-400:hover {

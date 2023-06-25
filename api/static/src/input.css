@@ -18,7 +18,3 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
-.bg-blur {
-  filter: blur(4px);
-}
