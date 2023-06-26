@@ -2,7 +2,7 @@
   "name": "starrail",
   "version": "1.0.0",
   "description": "",
-    "scripts": {
+  "scripts": {
     "tw-build": "npx tailwindcss -i ./api/static/src/input.css -o ./api/static/dist/css/output.css"
   },
   "devDependencies": {
