@@ -1,16 +1,15 @@
 from flask import Flask, render_template, request
+from flask_caching import Cache
+
 import requests
+import os
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config["CACHE_TYPE"] = "SimpleCache"
 asset_url = "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/"
-
-
-class DataStore:
-    a = None
-
-
-d = DataStore()
+cache = Cache(app)
 
 
 @app.route("/")
@@ -24,20 +23,20 @@ def profile():
     url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
     res = requests.get(url)
     data = res.json()
-    d.a = data
+    cache.set("data", data)
 
     url2 = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en&version=v1"
     res2 = requests.get(url2)
     data2 = res2.json()
-    d.b = data2
+    cache.set("data2", data2)
 
     return render_template("profile.html", data=data, asset_url=asset_url)
 
 
 @app.route("/character")
 def character():
-    data = d.a
-    data2 = d.b
+    data = cache.get("data")
+    data2 = cache.get("data2")
     chara = int(request.args.get("chara"))
 
     return render_template(
