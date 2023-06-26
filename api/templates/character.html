@@ -8,27 +8,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
   </head>
-  <body>
-    <div class="flex absolute top-0 right-0 z-10">
-      <div class="cursor-pointer w-16 h-16">
-        <a href="javascript:history.back()">
-          <img src="{{asset_url}}/icon/sign/TeamIcon.png" alt="Team Icon" />
-        </a>
-      </div>
-      <div class="cursor-pointer w-16 h-16">
-        <img
-          src="{{asset_url}}icon/sign/SettingsImageIcon.png"
-          alt="Save Icon"
-          onclick="save()"
-        />
-      </div>
-    </div>
-    <div class="min-h-screen bg-gray-800 text-white">
-      <div class="h-auto flex justify-center items-center">
-        <div class="overflow-x-auto">
-          <div class="flex flex-col justify-center h-screen">
+  <body class="bg-gray-800">
+    <div class="min-h-screen text-white">
+      <div class="h-auto flex justify-center items-center min-h-screen">
+        <div class="flex overflow-auto">
+          <div class="flex flex-col justify-center m-5 gap-5 min-w-fit">
+            {% set count = namespace(value=0) %} {% for character in
+            data.characters %}
+            <a
+              href="{{ url_for('character', uid=data.player.uid, chara=count.value) }}"
+            >
+              <img
+                src="{{asset_url + character.icon}}"
+                alt="{{character.name}}"
+                class="w-24 h-24 rounded-full hover:brightness-105"
+              />
+            </a>
+            {% set count.value = count.value + 1 %} {% endfor %}
+          </div>
+          <div class="flex flex-col justify-center font-semibold gap-2">
             <div
-              class="flex BG w-[1600px] justify-center p-6 rounded-lg font-semibold"
+              class="flex BG w-[1600px] justify-center p-6 rounded-lg"
               id="showcase"
             >
               <div class="flex flex-col justify-center w-1/4">
@@ -218,11 +218,35 @@
                 </div>
               </div>
             </div>
+            <div class="flex justify-center gap-6">
+              <div
+                class="flex cursor-pointer rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+              >
+                <a href="{{ url_for('profile', uid=data.player.uid) }}">
+                  <img
+                    src="{{asset_url}}/icon/sign/SettingsAccount.png"
+                    alt="Profile Icon"
+                    class="w-6 h-6"
+                  />
+                  <span> Profile </span>
+                </a>
+              </div>
+              <div
+                class="flex cursor-pointer items-center space-x-1 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                onclick="save()"
+              >
+                <img
+                  src="{{asset_url}}icon/sign/SettingsImageIcon.png"
+                  alt="Save Icon"
+                  class="w-6 h-6"
+                />
+                <span> Save Image </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <script>
       function save() {
         html2canvas(document.querySelector("#showcase"), {
