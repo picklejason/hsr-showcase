@@ -550,50 +550,21 @@ img {
   margin: 0.25rem;
 }
 
-.m-2 {
-  margin: 0.5rem;
-}
-
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.mx-3 {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.mx-10 {
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.my-2 {
-  margin-top: 0.5rem;
+.mb-2 {
   margin-bottom: 0.5rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .mt-2 {
   margin-top: 0.5rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .flex {
@@ -632,20 +603,12 @@ img {
   height: 100vh;
 }
 
-.h-14 {
-  height: 3.5rem;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
 
 .w-1\/2 {
   width: 50%;
-}
-
-.w-1\/3 {
-  width: 33.333333%;
 }
 
 .w-1\/4 {
@@ -664,8 +627,16 @@ img {
   width: 4rem;
 }
 
+.w-2\/5 {
+  width: 40%;
+}
+
 .w-24 {
   width: 6rem;
+}
+
+.w-3\/5 {
+  width: 60%;
 }
 
 .w-32 {
@@ -674,10 +645,6 @@ img {
 
 .w-48 {
   width: 12rem;
-}
-
-.w-5\/12 {
-  width: 41.666667%;
 }
 
 .w-64 {
@@ -692,24 +659,12 @@ img {
   width: 1600px;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-3\/5 {
-  width: 60%;
-}
-
-.w-14 {
-  width: 3.5rem;
-}
-
 .w-\[35\%\] {
   width: 35%;
 }
 
-.w-2\/5 {
-  width: 40%;
+.w-full {
+  width: 100%;
 }
 
 .min-w-0 {
@@ -760,11 +715,6 @@ img {
 
 .gap-2 {
   gap: 0.5rem;
-}
-
-.gap-x-2 {
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
 }
 
 .gap-x-1 {
@@ -876,14 +826,6 @@ img {
   padding: 1.5rem;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -930,6 +872,11 @@ img {
   line-height: 1;
 }
 
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -940,17 +887,8 @@ img {
   line-height: 1.75rem;
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
 .font-bold {
   font-weight: 700;
-}
-
-.font-medium {
-  font-weight: 500;
 }
 
 .font-semibold {
