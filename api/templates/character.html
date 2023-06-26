@@ -164,17 +164,22 @@
                     </div>
                     <div class="w-full">
                       <div
-                        class="flex flex-row justify-between items-center text-yellow-400"
+                        class="flex flex-row justify-between items-center text-yellow-500"
                       >
                         <div class="flex items-center">
                           <img
                             src="{{asset_url + relic.main_affix.icon}}"
                             alt="{{relic.main_affix.name}}"
-                            class="w-10 h-10"
+                            class="w-8 h-8"
+                            style="
+                              filter: brightness(0) saturate(100%) invert(86%)
+                                sepia(11%) saturate(6895%) hue-rotate(329deg)
+                                brightness(97%) contrast(94%);
+                            "
                           />
-                          <span class="text-left text-lg pr-2"
-                            >{{relic.main_affix.name}}</span
-                          >
+                          <span class="text-left pr-2">
+                            {{relic.main_affix.name}}
+                          </span>
                         </div>
 
                         <span class="text-right text-lg">
