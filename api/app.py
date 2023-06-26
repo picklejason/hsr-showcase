@@ -12,7 +12,7 @@ cache = Cache(
     app,
     config={
         "CACHE_TYPE": "SimpleCache",
-        "CACHE_DEFAULT_TIMEOUT": 300,
+        "CACHE_DEFAULT_TIMEOUT": 600,
         "CACHE_THRESHOLD": 1000,
     },
 )
