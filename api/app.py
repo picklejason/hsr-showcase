@@ -20,7 +20,7 @@ cache = Cache(
 
 @app.route("/")
 def index():
-    return render_template("index.html", message="")
+    return render_template("index.html")
 
 
 @app.route("/profile", methods=["GET"])
@@ -60,8 +60,8 @@ def character():
 
 @app.errorhandler(500)
 def internal_error(error):
-    message = "Something went wrong. Please try again."
-    return render_template("index.html", message=message)
+    msg = "Something went wrong. Please try again."
+    return render_template("index.html", msg=msg)
 
 
 if __name__ == "__main__":
