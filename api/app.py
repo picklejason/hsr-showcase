@@ -23,21 +23,23 @@ def profile():
     url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
     res = requests.get(url)
     data = res.json()
-    cache.set("data", data)
+    uid = data["player"]["uid"]
+    cache.set("data_" + uid, data)
 
     url2 = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en&version=v1"
     res2 = requests.get(url2)
     data2 = res2.json()
-    cache.set("data2", data2)
+    cache.set("data2_" + uid, data2)
 
     return render_template("profile.html", data=data, asset_url=asset_url)
 
 
 @app.route("/character")
 def character():
-    data = cache.get("data")
-    data2 = cache.get("data2")
+    uid = request.args.get("uid")
     chara = int(request.args.get("chara"))
+    data = cache.get("data_" + uid)
+    data2 = cache.get("data2_" + uid)
 
     return render_template(
         "character.html",

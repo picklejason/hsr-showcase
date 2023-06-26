@@ -28,7 +28,9 @@
         <div class="flex space-x-3 transition ease-in-out delay-150">
           {% set count = namespace(value=0) %} {% for character in
           data.characters %}
-          <a href="{{ url_for('character', chara=count.value) }}" class="text-">
+          <a
+            href="{{ url_for('character', uid=data.player.uid, chara=count.value) }}"
+          >
             <div>
               <img
                 src="{{asset_url + character.preview}}"
