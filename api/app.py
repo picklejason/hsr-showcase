@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["CACHE_TYPE"] = "SimpleCache"
-app.config["CACHE_DEFAULT_TIMEOUT"] = 0
+app.config["CACHE_DEFAULT_TIMEOUT"] = 300
 asset_url = "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/"
 cache = Cache(app)
 
@@ -19,6 +19,7 @@ def index():
 
 
 @app.route("/profile", methods=["GET"])
+@cache.cached(query_string=True)
 def profile():
     uid = request.args.get("uid")
     url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
@@ -36,6 +37,7 @@ def profile():
 
 
 @app.route("/character")
+@cache.cached(query_string=True)
 def character():
     uid = request.args.get("uid")
     chara = int(request.args.get("chara"))
