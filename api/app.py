@@ -58,5 +58,11 @@ def character():
     )
 
 
+@app.errorhandler(500)
+def internal_error(error):
+    message = "Something went wrong. Please try again."
+    return render_template("index.html", message=message)
+
+
 if __name__ == "__main__":
     app.run()
