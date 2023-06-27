@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from flask_caching import Cache
-
 import requests
 import os
 
@@ -27,15 +26,9 @@ def index():
 @cache.cached(query_string=True)
 def profile():
     uid = request.args.get("uid")
-    url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
-    res = requests.get(url)
-    data = res.json()
-    uid = data["player"]["uid"]
+    data = get_data(uid)
     cache.set("data_" + uid, data)
-
-    url2 = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en&version=v1"
-    res2 = requests.get(url2)
-    data2 = res2.json()
+    data2 = get_data2(uid)
     cache.set("data2_" + uid, data2)
 
     return render_template("profile.html", data=data, asset_url=asset_url)
@@ -46,8 +39,18 @@ def profile():
 def character():
     uid = request.args.get("uid")
     chara = int(request.args.get("chara"))
-    data = cache.get("data_" + uid)
-    data2 = cache.get("data2_" + uid)
+
+    if cache.has("data_" + uid):
+        data = cache.get("data_" + uid)
+    else:
+        data = get_data(uid)
+        cache.set("data_" + uid, data)
+
+    if cache.has("data2_" + uid):
+        data2 = cache.get("data2_" + uid)
+    else:
+        data2 = get_data2(uid)
+        cache.set("data2_" + uid, data2)
 
     return render_template(
         "character.html",
@@ -62,6 +65,20 @@ def character():
 def internal_error(error):
     msg = "Something went wrong. Please try again."
     return render_template("error.html", msg=msg)
+
+
+def get_data(uid):
+    url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
+    res = requests.get(url)
+    data = res.json()
+    return data
+
+
+def get_data2(uid):
+    url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en&version=v1"
+    res = requests.get(url)
+    data = res.json()
+    return data
 
 
 if __name__ == "__main__":
