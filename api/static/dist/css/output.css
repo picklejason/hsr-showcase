@@ -587,6 +587,10 @@ img {
   height: 2rem;
 }
 
+.h-\[900px\] {
+  height: 900px;
+}
+
 .h-auto {
   height: auto;
 }
