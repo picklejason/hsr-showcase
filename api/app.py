@@ -19,7 +19,7 @@ cache = Cache(
 
 @app.route("/")
 def index():
-    return render_template("index.html", asset_url=asset_url)
+    return render_template("index.html")
 
 
 @app.route("/profile", methods=["GET"])
