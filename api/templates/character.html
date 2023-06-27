@@ -74,11 +74,9 @@
                       <span>{{stat.name}} </span>
                     </div>
                     {% if stat.addition is none %}
-                    <span class="text-gray-300">{{stat.base}}</span>
+                    <span>{{stat.base}}</span>
                     {% else %}
-                    <span class="text-gray-300">
-                      {{stat.base|int + stat.addition|int}}
-                    </span>
+                    <span>{{stat.base|int + stat.addition|int}}</span>
                     {% endif %}
                   </div>
                   {% endfor %}
