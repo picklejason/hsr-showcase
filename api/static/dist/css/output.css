@@ -898,6 +898,10 @@ img {
   padding-right: 0.5rem;
 }
 
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -940,6 +944,11 @@ img {
   line-height: 1.75rem;
 }
 
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -955,6 +964,11 @@ img {
 
 .leading-tight {
   line-height: 1.25;
+}
+
+.text-\[\#dcc491\] {
+  --tw-text-opacity: 1;
+  color: rgb(220 196 145 / var(--tw-text-opacity));
 }
 
 .text-gray-300 {
