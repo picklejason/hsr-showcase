@@ -232,6 +232,18 @@
               <div
                 class="flex cursor-pointer rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
               >
+                <a href="{{ url_for('index') }}">
+                  <img
+                    src="{{asset_url}}/icon/sign/ReplacementIcon.png"
+                    alt="Change UID Icon"
+                    class="w-6 h-6"
+                  />
+                  <span> Change UID </span>
+                </a>
+              </div>
+              <div
+                class="flex cursor-pointer rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+              >
                 <a href="{{ url_for('profile', uid=data.player.uid) }}">
                   <img
                     src="{{asset_url}}/icon/sign/SettingsAccount.png"
