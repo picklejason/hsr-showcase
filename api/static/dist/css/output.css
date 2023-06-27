@@ -898,12 +898,13 @@ img {
   padding-bottom: 0.5rem;
 }
 
-.pr-2 {
-  padding-right: 0.5rem;
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
-.pt-5 {
-  padding-top: 1.25rem;
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .text-left {
