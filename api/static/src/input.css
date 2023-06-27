@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "DIN";
-  src: url("{{ url_for('static', filename='fonts/DIN Medium.ttf') }}");
+  src: url("../../fonts/DIN.ttf");
 }  
 
 .BG {
