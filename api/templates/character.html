@@ -62,7 +62,7 @@
                   </span>
                 </div>
                 <div class="flex flex-col text-lg">
-                  {% for stat in data2.characters[chara].property %}
+                  {% for stat in data.characters[chara].property %}
                   <div class="flex justify-between">
                     <div class="flex items-center gap-2">
                       <img
@@ -73,11 +73,7 @@
 
                       <span>{{stat.name}} </span>
                     </div>
-                    {% if stat.addition is none %}
-                    <span>{{stat.base}}</span>
-                    {% else %}
-                    <span>{{stat.base|int + stat.addition|int}}</span>
-                    {% endif %}
+                    <span>{{stat.display}}</span>
                   </div>
                   {% endfor %}
                   <div class="text-center mt-2">
@@ -118,7 +114,8 @@
                   <hr />
                 </div>
                 <div class="flex items-center gap-x-1 mt-4">
-                  {% for skill in data2.characters[chara].skill %}
+                  {% for skill in data.characters[chara].skills %} {% if
+                  skill.type_text|length %}
                   <div class="flex flex-col items-center m-1">
                     <img
                       src="{{asset_url + skill.icon}}"
@@ -126,9 +123,9 @@
                       class="w-16 h-16"
                     />
                     <span class="text-base">Lv. {{skill.level}}</span>
-                    <span class="text-base">{{skill.type}}</span>
+                    <span class="text-base">{{skill.type_text}}</span>
                   </div>
-                  {% endfor %}
+                  {% endif %} {% endfor %}
                 </div>
                 <div class="flex flex-col w-3/5 space-y-1 my-4">
                   <hr class="p-4" />
@@ -212,10 +209,10 @@
                   <hr />
                   <span class="text-2xl">Relic Set</span>
                   <hr />
-                  {% for set in data2.characters[chara].relic_set %}
+                  {% for set in data.characters[chara].relic_sets %}
                   <div class="flex justify-between px-2 mt-2">
                     <span class="text-left">{{set.name}}</span>
-                    <span class="text-right">{{set.desc}}</span>
+                    <span class="text-right">{{set.num}}</span>
                   </div>
                   {% endfor %}
                 </div>

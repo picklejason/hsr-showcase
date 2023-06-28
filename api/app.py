@@ -27,9 +27,7 @@ def index():
 def profile():
     uid = request.args.get("uid")
     data = get_data(uid)
-    cache.set("data_" + uid, data)
-    data2 = get_data2(uid)
-    cache.set("data2_" + uid, data2)
+    cache.set(uid, data)
 
     return render_template("profile.html", data=data, asset_url=asset_url)
 
@@ -40,22 +38,15 @@ def character():
     uid = request.args.get("uid")
     chara = int(request.args.get("chara"))
 
-    if cache.has("data_" + uid):
-        data = cache.get("data_" + uid)
+    if cache.has(uid):
+        data = cache.get(uid)
     else:
         data = get_data(uid)
-        cache.set("data_" + uid, data)
-
-    if cache.has("data2_" + uid):
-        data2 = cache.get("data2_" + uid)
-    else:
-        data2 = get_data2(uid)
-        cache.set("data2_" + uid, data2)
+        cache.set(uid, data)
 
     return render_template(
         "character.html",
         data=data,
-        data2=data2,
         chara=chara,
         asset_url=asset_url,
     )
@@ -71,13 +62,48 @@ def get_data(uid):
     url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en"
     res = requests.get(url)
     data = res.json()
-    return data
+    for character in data["characters"]:
+        properties = []
+        for attr in character["attributes"]:
+            for add in character["additions"]:
+                if attr["name"] == add["name"]:
+                    d = {}
+                    d["name"] = attr["name"]
+                    if add["percent"]:
+                        d[
+                            "display"
+                        ] = f'{(float(attr["display"].strip("%"))) + float(add["display"].strip("%"))}%'
+                    else:
+                        d["display"] = int(float(attr["display"])) + int(
+                            float(add["display"])
+                        )
+                    d["icon"] = add["icon"]
+                    properties.append(d)
 
+            if attr["name"] not in d["name"]:
+                d = {}
+                d["name"] = attr["name"]
+                d["display"] = attr["display"]
+                d["icon"] = add["icon"]
+                properties.append(d)
 
-def get_data2(uid):
-    url = f"https://api.mihomo.me/sr_info_parsed/{uid}?lang=en&version=v1"
-    res = requests.get(url)
-    data = res.json()
+        for add in character["additions"]:
+            if add["name"] not in ["ATK", "HP", "DEF", "SPD", "CRIT DMG", "CRIT Rate"]:
+                d = {}
+                d["name"] = add["name"]
+                d["display"] = add["display"]
+                d["icon"] = add["icon"]
+                properties.append(d)
+
+        for i in range(len(character["relic_sets"]) - 1):
+            if (
+                character["relic_sets"][i]["name"]
+                == character["relic_sets"][i + 1]["name"]
+            ):
+                del character["relic_sets"][i]
+                break
+
+        character.update({"property": properties})
     return data
 
 
