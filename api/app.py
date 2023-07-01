@@ -18,6 +18,7 @@ cache = Cache(
 
 
 @app.route("/")
+@cache.cached(query_string=True)
 def index():
     return render_template("index.html")
 
@@ -53,6 +54,7 @@ def character():
 
 
 @app.errorhandler(500)
+@cache.cached(query_string=True)
 def internal_error(error):
     msg = "Something went wrong. Please try again."
     return render_template("error.html", msg=msg)
