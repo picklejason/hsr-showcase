@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Character showcase card for Honkai: Star Rail" />
+    <meta
+      name="description"
+      content="Character showcase card for Honkai: Star Rail"
+    />
     <title>HSR Showcase | Character</title>
     <link rel="stylesheet" href="../static/dist/css/output.css" />
     <link rel="icon" type="image/ico" href="static/favicon.ico" />
@@ -55,7 +58,7 @@
                   >
                 </div>
                 <div class="flex flex-col text-center">
-                  <span class="text-xl">
+                  <span class="text-xl text-[#dcc491]">
                     Eidolon {{data.characters[chara].rank}}
                   </span>
                   <span class="text-2xl">
@@ -81,18 +84,17 @@
                   <div class="text-center mt-2">
                     <hr />
                     <span class="text-2xl">Light Cone</span>
-                    <hr />
                   </div>
                 </div>
                 <div class="flex flex-col items-center mt-2">
-                  <span class="text-xl">
-                    {{data.characters[chara].light_cone.name}}
-                  </span>
                   <img
                     src="{{asset_url + data.characters[chara].light_cone.preview}}"
                     alt="Lightcone"
                     class="w-48 h-auto"
                   />
+                  <span class="text-xl">
+                    {{data.characters[chara].light_cone.name}}
+                  </span>
                   <span class="text-lg text-[#dcc491]">
                     Superimposition {{data.characters[chara].light_cone.rank}}
                   </span>
@@ -110,12 +112,10 @@
                   alt="{{data.characters[chara].name}}"
                   class="h-auto min-w-0 mb-2"
                 />
-                <div class="w-3/5">
-                  <hr />
+                <div class="mt-2">
                   <span class="text-2xl">Skills</span>
-                  <hr />
                 </div>
-                <div class="flex items-center gap-x-1 mt-4">
+                <div class="flex items-center gap-x-1 mt-3">
                   {% for skill in data.characters[chara].skills %} {% if
                   skill.type_text|length %}
                   <div class="flex flex-col items-center m-1">
@@ -124,15 +124,19 @@
                       alt="{{skill.name}}"
                       class="w-16 h-16"
                     />
-                    <span class="text-base">Lv. {{skill.level}}</span>
+                    <span class="text-base text-[#dcc491]"
+                      >Lv. {{skill.level}}</span
+                    >
                     <span class="text-base">{{skill.type_text}}</span>
                   </div>
                   {% endif %} {% endfor %}
                 </div>
-                <div class="flex flex-col w-3/5 space-y-1 my-4">
-                  <hr class="p-4" />
+                <div
+                  class="flex flex-col justify-center h-full w-3/5 space-y-3 my-4"
+                >
+                  <hr />
                   <span class="text-2xl">{{data.player.nickname}}</span>
-                  <span class="text-lg">UID {{data.player.uid}}</span>
+                  <span class="text-xl">UID {{data.player.uid}}</span>
                 </div>
               </div>
               <div
@@ -208,21 +212,21 @@
                   {% endfor %}
                 </div>
                 <div class="flex flex-col text-center w-1/2">
-                  <hr />
-                  <span class="text-2xl">Relic Set</span>
-                  <hr />
+                  <span class="text-2xl mt-2">Relic Set</span>
                   {% for set in data.characters[chara].relic_sets %}
-                  <div class="flex justify-between px-2 mt-2">
-                    <span class="text-left">{{set.name}}</span>
-                    <span class="text-right">{{set.num}}</span>
+                  <div class="flex justify-between mt-2">
+                    <span class="text-lg text-left">{{set.name}}</span>
+                    <span class="text-lg text-right">{{set.num}}</span>
                   </div>
                   {% endfor %}
                 </div>
-                <hr class="w-1/2" />
-                <div class="flex flex-col text-center items-center gap-3 py-3">
-                  <span class="text-base">
-                    Made on hsr-showcase.vercel.app
-                  </span>
+                <div
+                  class="flex flex-col justify-center h-full text-center gap-3"
+                >
+                  <hr class="w-full" />
+                  <span class="text-lg text-[#dcc491]"
+                    >Made on hsr-showcase.vercel.app</span
+                  >
                   <span class="text-sm">Powered by mihomo.me</span>
                 </div>
               </div>

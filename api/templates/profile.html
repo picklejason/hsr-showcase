@@ -10,7 +10,7 @@
     <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body class="bg-gray-800">
-    <div class="min-h-screen text-white">
+    <div class="min-h-screen text-white h-auto">
       <div class="h-auto flex justify-center items-center min-h-screen">
         <div class="overflow-x-auto">
           <div class="flex justify-center items-center font-semibold">
@@ -44,13 +44,13 @@
                     <img
                       src="{{asset_url + character.preview}}"
                       alt="{{character.name}}"
-                      class="w-40 h-auto min-w-0"
+                      class="w-40 h-auto"
                     />
                     <div
                       class="flex flex-col text-center bg-black bg-opacity-50 w-full p-4 rounded-b-xl"
                     >
-                      <span class="text-xl">{{character.name}}</span>
-                      <span class="text-lg">Lv. {{character.level}}</span>
+                      <span class="text-sm md:text-xl">{{character.name}}</span>
+                      <span class="text-xs">Lv. {{character.level}}</span>
                     </div>
                   </div>
                 </a>
