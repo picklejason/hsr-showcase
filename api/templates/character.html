@@ -58,7 +58,7 @@
                   >
                 </div>
                 <div class="flex flex-col text-center">
-                  <span class="text-xl text-[#dcc491]">
+                  <span class="text-xl">
                     Eidolon {{data.characters[chara].rank}}
                   </span>
                   <span class="text-2xl">
@@ -124,9 +124,7 @@
                       alt="{{skill.name}}"
                       class="w-16 h-16"
                     />
-                    <span class="text-base text-[#dcc491]">
-                      Lv. {{skill.level}}
-                    </span>
+                    <span class="text-base"> Lv. {{skill.level}} </span>
                     <span class="text-base">{{skill.type_text}}</span>
                   </div>
                   {% endif %} {% endfor %}
