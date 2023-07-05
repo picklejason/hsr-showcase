@@ -47,6 +47,7 @@
                     class="w-12 h-12"
                   />
                 </div>
+
                 <div class="flex items-center space-x-2">
                   <img
                     src="{{asset_url + data.characters[chara].path.icon}}"
@@ -57,6 +58,11 @@
                     >{{data.characters[chara].path.name}}</span
                   >
                 </div>
+                <img
+                  src="{{asset_url}}icon/deco/Star{{data.characters[chara].rarity}}.png"
+                  alt="{{data.characters[chara].rarity}}"
+                  class="w-32 h-auto"
+                />
                 <div class="flex flex-col text-center">
                   <span class="text-xl">
                     Eidolon {{data.characters[chara].rank}}
