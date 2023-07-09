@@ -1031,7 +1031,7 @@ img {
 }
 
 @font-face {
-  font-family: "DIN";
+  font-family: "DIN", sans-serif;
 
   src: url("../../fonts/DIN.ttf");
 }
