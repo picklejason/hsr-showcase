@@ -6,7 +6,6 @@ import Image from "next/image";
 import CharacterCard from "./CharacterCard";
 import html2canvas from "html2canvas";
 import { saveAs } from 'file-saver';
-import { toPng } from 'html-to-image';
 
 const Profile = () => {
   const ref = useRef(null)
@@ -15,17 +14,6 @@ const Profile = () => {
     if (ref.current === null) {
       return
     }
-
-    // toPng(ref.current, { cacheBust: true, })
-    //   .then((dataUrl) => {
-    //     const link = document.createElement('a')
-    //     link.download = 'my-image-name.png'
-    //     link.href = dataUrl
-    //     link.click()
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
 
     html2canvas(ref.current, {
       useCORS: true,
@@ -55,7 +43,7 @@ const Profile = () => {
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   return ( 
     <div className="min-h-screen font-sans font-semibold">  
