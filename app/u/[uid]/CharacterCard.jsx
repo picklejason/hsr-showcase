@@ -19,7 +19,7 @@ const CharacterCard = ({ character }) => {
         <div className="w-1/11 ml-2">
           <div className="flex flex-col">
             {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
-              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 ring-1 ring-neutral-100 ring-offset-1">
                 <img
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
@@ -30,16 +30,15 @@ const CharacterCard = ({ character }) => {
           </div>
           <div className="flex flex-col">
             {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
-              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 ring-1 ring-neutral-400 ring-offset-1">
                 <img 
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
                   className="w-12 h-auto"
                 />
-                <div className="flex justify-center items-center absolute bg-neutral rounded-full bg-neutral-800/70 w-full h-full">
+                <div className="flex justify-center items-center absolute rounded-full bg-neutral-800/70 w-full h-full">
                   <AiFillLock className="w-6 h-6"/>
                 </div>
-
               </div>
             ))}
           </div>
