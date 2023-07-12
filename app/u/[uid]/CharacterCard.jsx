@@ -27,8 +27,8 @@ const CharacterCard = ({ character }) => {
                 <Image 
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
-                  width={58}
-                  height={58}
+                  width={52}
+                  height={52}
                 />
               </div>
             ))}
@@ -39,8 +39,8 @@ const CharacterCard = ({ character }) => {
               <Image 
                 src={asset_url + rank_icon}
                 alt="Rank Icon"
-                width={58}
-                height={58}
+                width={52}
+                height={52}
               />
               <div className="flex justify-center items-center absolute bg-neutral rounded-full bg-neutral-800/70 w-full h-full">
                 <AiFillLock className="w-6 h-6"/>
@@ -185,7 +185,7 @@ const CharacterCard = ({ character }) => {
                       width={36}
                       height={36}
                 />
-                <span className="text-xl text-[#f1a23c]">{relic.main_affix.display}</span>
+                <span className="text-lg text-[#f1a23c]">{relic.main_affix.display}</span>
                 <span className="text-xs black-blur px-1 rounded">+{relic.level}</span>
               </div>
               <div
