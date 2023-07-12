@@ -189,7 +189,7 @@ const CharacterCard = ({ character }) => {
                 <span className="text-xs black-blur px-1 rounded">+{relic.level}</span>
               </div>
               <div
-                class="
+                className="
                   inline-block 
                   h-[80px] 
                   min-h-[1em] 
