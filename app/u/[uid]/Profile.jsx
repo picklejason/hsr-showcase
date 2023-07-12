@@ -6,6 +6,8 @@ import Image from "next/image";
 import CharacterCard from "./CharacterCard";
 import html2canvas from "html2canvas";
 import { saveAs } from 'file-saver';
+import { toast } from "react-toastify";
+import Loading from "./loading";
 
 const Profile = () => {
   const ref = useRef(null)
@@ -38,13 +40,29 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`/api/u/${uid}`, { next: { revalidate: 180 } });
-      const data = await res.json();
-      setData(data);
-    };
-
+      try {
+        const res = await fetch(`/api/u/${uid}`, { next: { revalidate: 180 } });
+        if (res.ok) {
+          const data = await res.json();
+          setData(data);
+        } else {
+          toast.error('UID not found!', {
+            toastId: 'error-uid-not-found',
+            });
+          setTimeout(() => {
+            router.push('/');
+          }, 2000);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };;
     fetchData();
   }, []);
+
+  if (!data) {
+    return <Loading />;
+  }
 
   return ( 
     <div className="min-h-screen font-sans font-semibold">  
