@@ -130,7 +130,7 @@ const Profile = () => {
                   alt="Character Preview"
                   width={96}
                   height={96}
-                  className="rounded-full cursor-pointer"
+                  className="rounded-full cursor-pointer hover:brightness-110 active:ring-2 ring-neutral-400"
                   onClick={() => setCharacter(data?.characters[index])}
                   key={character.id}
                   />
