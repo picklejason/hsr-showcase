@@ -76,6 +76,5 @@ export async function GET(req, { params }) {
 
     character.property = properties;
   }
-  // console.log(data);
   return NextResponse.json(data);
 }

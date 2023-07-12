@@ -54,7 +54,6 @@ const Profile = () => {
             <div className="flex flex-col text-white justify-center items-center w-[600px] h-auto gap-4">
               <Image src={asset_url + data?.player.avatar.icon} width={120} height={120} alt="Avatar Icon" />
               <span className="text-3xl">{data?.player.nickname}</span>
-
               <div className="flex flex-row justify-evenly w-full text-center">
                 <div className="flex flex-col">
                     <span className="text-2xl text-neutral-400">Trailblaze Level</span>
@@ -155,7 +154,6 @@ const Profile = () => {
                   </>
                 )
               }
-            
           </div>
         </div>
       </div>
