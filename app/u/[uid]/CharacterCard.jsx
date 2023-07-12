@@ -50,7 +50,7 @@ const CharacterCard = ({ character }) => {
           </div>
         </div>
         <div className="w-1/3 h-full flex flex-col justify-evenly">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <div className="flex flex-row justify-between items-center">
                 <span className="text-5xl">{character?.name}</span>
                 <Image 
@@ -70,6 +70,14 @@ const CharacterCard = ({ character }) => {
                   />
                   <span className="text-xl">{character?.path.name}</span>
             </div>
+            <div>
+              <Image 
+                src={asset_url + "icon/deco/Star" + character?.rarity + ".png"}
+                alt="Relic Rarity Icon"
+                width={106}
+                height={21}
+              />
+            </div>
 
             <div>
               <span className="text-2xl">Lv. {character?.level} </span>
@@ -85,8 +93,8 @@ const CharacterCard = ({ character }) => {
               height={155}
             />
             <div className="flex flex-col text-center gap-2">
-              <span className="text-lg">{character?.light_cone.name}</span>
-              <span className="text-lg text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
+              <span className="text-xl">{character?.light_cone.name}</span>
+              <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
               <div>
                 <span className="text-lg">Lv. {character?.light_cone.level} </span>
                 / 
