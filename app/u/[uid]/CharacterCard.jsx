@@ -2,7 +2,7 @@
 
 import { AiFillLock } from "react-icons/ai";
 
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, uid }) => {
   const asset_url = "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/"
   return (
     <div className="w-[1600px] h-[600px] rounded-xl BG overflow-hidden">
@@ -131,6 +131,9 @@ const CharacterCard = ({ character }) => {
                   <div className=""><span className="black-blur py-0.5 px-1.5 rounded w-5 text-center">{relic_set.num}</span></div>
                 </div>
               ))}
+          </div>
+          <div className="">
+            <span>UID {uid}</span>
           </div>
         </div>
         <div className="w-1/3">

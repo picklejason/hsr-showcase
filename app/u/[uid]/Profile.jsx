@@ -141,7 +141,7 @@ const Profile = () => {
                 character && (
                   <> 
                     <div className="showcase" ref={ref} >
-                      <CharacterCard character={character}/>  
+                      <CharacterCard character={character} uid={uid}/>  
                     </div>
                     <div className="
                         flex
