@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import { AiFillLock } from "react-icons/ai";
 
 const CharacterCard = ({ character }) => {
@@ -8,14 +7,11 @@ const CharacterCard = ({ character }) => {
   return (
     <div className="w-[1600px] h-[600px] rounded-xl BG overflow-hidden">
       <div className="flex flex-row text-white items-center">
-
-        <div className="w-1/4 z-0 relative">
-          <Image 
-                src={asset_url + character?.portrait} 
-                alt="Character Preview"
-                width={2048}
-                height={2048}
-                className="scale-[2.2]"
+        <div className="w-1/4 z-0 items-center">
+          <img 
+            src={asset_url + character?.portrait} 
+            alt="Character Preview"
+            className="scale-[2.2]"
           />
         </div>
 
@@ -24,11 +20,10 @@ const CharacterCard = ({ character }) => {
           <div className="flex flex-col">
             {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
               <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600">
-                <Image 
+                <img
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
-                  width={52}
-                  height={52}
+                  className="w-12 h-auto"
                 />
               </div>
             ))}
@@ -36,15 +31,15 @@ const CharacterCard = ({ character }) => {
           <div className="flex flex-col">
             {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
               <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600">
-              <Image 
-                src={asset_url + rank_icon}
-                alt="Rank Icon"
-                width={52}
-                height={52}
-              />
-              <div className="flex justify-center items-center absolute bg-neutral rounded-full bg-neutral-800/70 w-full h-full">
-                <AiFillLock className="w-6 h-6"/>
-              </div>
+                <img 
+                  src={asset_url + rank_icon}
+                  alt="Rank Icon"
+                  className="w-12 h-auto"
+                />
+                <div className="flex justify-center items-center absolute bg-neutral rounded-full bg-neutral-800/70 w-full h-full">
+                  <AiFillLock className="w-6 h-6"/>
+                </div>
+
               </div>
             ))}
           </div>
@@ -53,32 +48,28 @@ const CharacterCard = ({ character }) => {
           <div className="flex flex-col gap-1">
             <div className="flex flex-row justify-between items-center">
                 <span className="text-5xl">{character?.name}</span>
-                <Image 
+                <img 
                   src={asset_url + character?.element.icon}
                   alt="Element Icon"
-                  width={56}
-                  height={56}
+                  className="w-12 h-auto"
                 />
             </div>
                 
             <div className="flex flex-row gap-2 items-center">
-                  <Image 
-                    src={asset_url + character?.path.icon}
-                    alt="Path Icon"
-                    width={32}
-                    height={32}
-                  />
-                  <span className="text-xl">{character?.path.name}</span>
+              <img 
+                src={asset_url + character?.path.icon}
+                alt="Path Icon"
+                className="w-8 h-auto"
+              />
+              <span className="text-xl">{character?.path.name}</span>
             </div>
             <div>
-              <Image 
+              <img 
                 src={asset_url + "icon/deco/Star" + character?.rarity + ".png"}
-                alt="Relic Rarity Icon"
-                width={106}
-                height={21}
+                alt="Character Rarity Icon"
+                className="w-24 h-auto"
               />
             </div>
-
             <div>
               <span className="text-2xl">Lv. {character?.level} </span>
               /
@@ -86,12 +77,18 @@ const CharacterCard = ({ character }) => {
             </div>
           </div>
           <div className="flex flex-row justify-center items-center">
-            <Image
-              src={asset_url + character?.light_cone.preview}
-              alt="Light Cone Preview"
-              width={132}
-              height={155}
-            />
+            <div className="flex flex-col items-center">
+              <img 
+                src={asset_url + character?.light_cone.preview}
+                alt="Light Cone Preview"
+                className="w-32 h-auto"
+              />
+              <img 
+                src={asset_url + "icon/deco/Star" + character?.light_cone.rarity + ".png"}
+                alt="Light Cone Rarity Icon"
+                className="w-24 h-auto relative bottom-7"
+              />
+            </div>
             <div className="flex flex-col text-center gap-2">
               <span className="text-xl">{character?.light_cone.name}</span>
               <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
@@ -100,15 +97,13 @@ const CharacterCard = ({ character }) => {
                 / 
                 <span className="text-neutral-400"> {character?.light_cone.promotion * 10 + 20}</span>
               </div>
-              
               <div className="flex flex-row justify-evenly">
               {character?.light_cone.attributes.map((attribute) => (
                 <div key={attribute.id} className="flex flex-col items-center black-blur p-1 rounded-lg w-1/5 ">
-                  <Image
+                  <img 
                     src={asset_url + attribute.icon}
                     alt="Attribute Icon"
-                    width={24}
-                    height={24}
+                    className="w-6 h-auto"
                   />
                   <span>{attribute.display}</span>
                 </div>
@@ -119,16 +114,14 @@ const CharacterCard = ({ character }) => {
           <div className="flex flex-row justify-evenly">
             {character?.skills.slice(0, 4).map((skill) => (
                 <div key={skill.id} className="flex flex-col items-center ">
-                  <Image
+                  <img 
                     src={asset_url + skill.icon}
                     alt="Skill Icon"
-                    width={48}
-                    height={48}
+                    className="w-12 h-auto"
                   />
                   <span>Lv. {skill.level}</span>
                   <span>{skill.type_text}</span>
                 </div>
-              
             ))}
           </div>
           <hr />
@@ -146,11 +139,10 @@ const CharacterCard = ({ character }) => {
             {character?.property.map((stat) => (
               <div key={stat.id} className="flex flex-row justify-between">
                 <div className="flex flex-row items-center">
-                <Image
+                <img 
                   src={asset_url + stat.icon}
                   alt="Stat Icon"
-                  width={36}
-                  height={36}
+                  className="w-9 h-auto"
                 />
                 <span>{stat.name}</span>
                 </div>
@@ -164,26 +156,22 @@ const CharacterCard = ({ character }) => {
           {character?.relics.map((relic) => (
             <div key={relic.id} className="flex flex-row rounded-s-lg relative items-center space-x-4 p-2 black-blur">
               <div className="flex">
-                <Image
+                <img 
                   src={asset_url + relic.icon}
                   alt="Relic Icon"
-                  width={70}
-                  height={70}
+                  className="w-20 h-auto"
                 />
-                <Image 
+                <img 
                   src={asset_url + "icon/deco/Star" + relic.rarity + ".png"}
                   alt="Relic Rarity Icon"
-                  width={72}
-                  height={14}
-                  className="absolute bottom-2"
+                  className="w-20 h-auto absolute bottom-2"
                 />
               </div>
               <div className="flex flex-col justify-center items-center w-1/6">
-                <Image 
-                      src={asset_url + relic.main_affix.icon}
-                      alt="Main Affix Icon"
-                      width={36}
-                      height={36}
+                <img 
+                  src={asset_url + relic.main_affix.icon}
+                  alt="Main Affix Icon"
+                  className="w-9 h-auto"
                 />
                 <span className="text-lg text-[#f1a23c]">{relic.main_affix.display}</span>
                 <span className="text-xs black-blur px-1 rounded">+{relic.level}</span>
@@ -202,13 +190,11 @@ const CharacterCard = ({ character }) => {
               <div className="grid grid-cols-2 m-auto gap-2 w-1/2">
                 {relic.sub_affix.map((sub_affix) => (
                   <div key={sub_affix.id} className="flex flex-row">
-                    <Image 
+                    <img 
                       src={asset_url + sub_affix.icon}
                       alt="Sub Affix Icon"
-                      width={26}
-                      height={26}
+                      className="w-7 h-auto"
                     />
-                    {/* <span>{sub_affix.name}</span> */}
                     <span>{sub_affix.display}</span>
                   </div>
                   
