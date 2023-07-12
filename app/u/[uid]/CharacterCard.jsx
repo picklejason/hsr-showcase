@@ -127,9 +127,9 @@ const CharacterCard = ({ character }) => {
           <hr />
           <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
-                <div key={relic_set.id} className="flex flex-row justify-between w-3/4 text-center">
-                  <span>{relic_set.name}</span>
-                  <span className="black-blur px-1 rounded w-5">{relic_set.num}</span>
+                <div key={relic_set.id} className="flex flex-row justify-between w-3/4 text-left">
+                  <span className="text-base">{relic_set.name}</span>
+                  <div className=""><span className="black-blur py-0.5 px-1.5 rounded w-5 text-center">{relic_set.num}</span></div>
                 </div>
               ))}
           </div>
