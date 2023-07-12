@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Page() {
   return (
-    <div className="Blur-BG w-full h-full text-white font-sans">
+    <div className="Blur-BG w-full min-h-screen text-white font-sans">
       <Profile />
       <ToastContainer
         position="top-center"
