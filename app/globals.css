@@ -1,0 +1,38 @@
+@tailwind base;
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+
+:root, body, html {
+  height: 100%;
+}
+
+.BG {
+  background-image: url('/bg.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Blur-BG {
+  background-image: url('/blur-bg.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.black-blur {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+@font-face {
+  font-family: "DIN", sans-serif;
+  src: url("/DIN.ttf");
+}  
+
+

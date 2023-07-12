@@ -1,21 +1,31 @@
 {
-  "name": "starrail",
-  "version": "1.0.0",
-  "description": "",
+  "name": "hsr-showcase",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "tw-build": "npx tailwindcss -i ./api/static/src/input.css -o ./api/static/dist/css/output.css"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "eslint": "8.43.0",
+    "eslint-config-next": "13.4.7",
+    "file-saver": "^2.0.5",
+    "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
+    "next": "13.4.7",
+    "postcss": "8.4.24",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "swr": "^2.2.0",
+    "tailwindcss": "3.3.2"
   },
   "devDependencies": {
-    "tailwindcss": "^3.3.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/picklejason/starrail.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/picklejason/starrail/issues"
-  },
-  "homepage": "https://github.com/picklejason/starrail#readme"
+    "@types/node": "20.4.1",
+    "@types/react": "18.2.14"
+  }
 }
