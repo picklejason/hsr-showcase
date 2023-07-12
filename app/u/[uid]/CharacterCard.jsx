@@ -23,7 +23,7 @@ const CharacterCard = ({ character }) => {
         <div className="w-1/11 ml-2">
           <div className="flex flex-col">
             {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
-              <div className="flex relative my-2 rounded-full bg-neutral-600">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600">
                 <Image 
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
@@ -35,7 +35,7 @@ const CharacterCard = ({ character }) => {
           </div>
           <div className="flex flex-col">
             {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
-              <div className="flex relative my-2 rounded-full bg-neutral-600">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600">
               <Image 
                 src={asset_url + rank_icon}
                 alt="Rank Icon"
@@ -86,7 +86,7 @@ const CharacterCard = ({ character }) => {
             />
             <div className="flex flex-col text-center gap-2">
               <span className="text-lg">{character?.light_cone.name}</span>
-              <span class="text-lg text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
+              <span className="text-lg text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
               <div>
                 <span className="text-lg">Lv. {character?.light_cone.level} </span>
                 / 
@@ -95,7 +95,7 @@ const CharacterCard = ({ character }) => {
               
               <div className="flex flex-row justify-evenly">
               {character?.light_cone.attributes.map((attribute) => (
-                <div className="flex flex-col items-center black-blur p-1 rounded-lg w-1/5 ">
+                <div key={attribute.id} className="flex flex-col items-center black-blur p-1 rounded-lg w-1/5 ">
                   <Image
                     src={asset_url + attribute.icon}
                     alt="Attribute Icon"
@@ -110,8 +110,7 @@ const CharacterCard = ({ character }) => {
           </div>
           <div className="flex flex-row justify-evenly">
             {character?.skills.slice(0, 4).map((skill) => (
-              
-                <div className="flex flex-col items-center ">
+                <div key={skill.id} className="flex flex-col items-center ">
                   <Image
                     src={asset_url + skill.icon}
                     alt="Skill Icon"
@@ -127,7 +126,7 @@ const CharacterCard = ({ character }) => {
           <hr />
           <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
-                <div className="flex flex-row justify-between w-3/4 text-center">
+                <div key={relic_set.id} className="flex flex-row justify-between w-3/4 text-center">
                   <span>{relic_set.name}</span>
                   <span className="black-blur px-1 rounded w-5">{relic_set.num}</span>
                 </div>
@@ -137,7 +136,7 @@ const CharacterCard = ({ character }) => {
         <div className="w-1/3">
           <div className="flex flex-col gap-y-2.5 text-lg">
             {character?.property.map((stat) => (
-              <div className="flex flex-row justify-between">
+              <div key={stat.id} className="flex flex-row justify-between">
                 <div className="flex flex-row items-center">
                 <Image
                   src={asset_url + stat.icon}
@@ -155,7 +154,7 @@ const CharacterCard = ({ character }) => {
         <div className="w-1/3">
         <div className="flex flex-col justify-between gap-1 text-lg">
           {character?.relics.map((relic) => (
-            <div className="flex flex-row rounded-s-lg relative items-center space-x-4 p-2 black-blur">
+            <div key={relic.id} className="flex flex-row rounded-s-lg relative items-center space-x-4 p-2 black-blur">
               <div className="flex">
                 <Image
                   src={asset_url + relic.icon}
@@ -194,7 +193,7 @@ const CharacterCard = ({ character }) => {
               </div>
               <div className="grid grid-cols-2 m-auto gap-2 w-1/2">
                 {relic.sub_affix.map((sub_affix) => (
-                  <div className="flex flex-row">
+                  <div key={sub_affix.id} className="flex flex-row">
                     <Image 
                       src={asset_url + sub_affix.icon}
                       alt="Sub Affix Icon"

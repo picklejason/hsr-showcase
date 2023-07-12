@@ -126,6 +126,7 @@ const Profile = () => {
                   height={96}
                   className="rounded-full cursor-pointer"
                   onClick={() => setCharacter(data?.characters[index])}
+                  key={character.id}
                   />
               ))}
             </div>
