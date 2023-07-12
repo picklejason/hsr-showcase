@@ -45,7 +45,7 @@ const CharacterCard = ({ character }) => {
           </div>
         </div>
         <div className="w-1/3 h-full flex flex-col justify-evenly">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-0.5">
             <div className="flex flex-row justify-between items-center">
                 <span className="text-5xl">{character?.name}</span>
                 <img 
@@ -84,12 +84,12 @@ const CharacterCard = ({ character }) => {
                 className="w-32 h-auto"
               />
               <img 
-                src={asset_url + "icon/deco/Star" + character?.light_cone.rarity + ".png"}
+                src={asset_url + "icon/deco/Rarity" + character?.light_cone.rarity + ".png"}
                 alt="Light Cone Rarity Icon"
-                className="w-24 h-auto relative bottom-7"
+                className="w-36 h-auto relative bottom-8"
               />
             </div>
-            <div className="flex flex-col text-center gap-2">
+            <div className="flex flex-col text-center gap-2 w-1/2">
               <span className="text-xl">{character?.light_cone.name}</span>
               <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
               <div>
@@ -105,7 +105,7 @@ const CharacterCard = ({ character }) => {
                     alt="Attribute Icon"
                     className="w-6 h-auto"
                   />
-                  <span>{attribute.display}</span>
+                  <span className="text-sm">{attribute.display}</span>
                 </div>
               ))}
               </div>
@@ -119,8 +119,8 @@ const CharacterCard = ({ character }) => {
                     alt="Skill Icon"
                     className="w-12 h-auto"
                   />
-                  <span>Lv. {skill.level}</span>
-                  <span>{skill.type_text}</span>
+                  <span className="text-base">Lv. {skill.level}</span>
+                  <span className="text-sm">{skill.type_text}</span>
                 </div>
             ))}
           </div>
