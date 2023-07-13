@@ -72,7 +72,12 @@ const Profile = () => {
         <div className="flex overflow-auto">
           <div className="flex flex-col md:items-center my-5">
             <div className="flex flex-col text-white justify-center items-center w-[600px] h-auto gap-4">
-              <Image src={asset_url + data?.player.avatar.icon} width={120} height={120} alt="Avatar Icon" />
+              <Image 
+                src={asset_url + data?.player.avatar.icon} 
+                width={120} 
+                height={120} 
+                alt="Avatar Icon"
+                className="border-2 border-stone-300 rounded-full bg-stone-500" />
               <span className="text-3xl">{data?.player.nickname}</span>
               <div className="flex flex-row justify-evenly w-full text-center">
                 <div className="flex flex-col">
@@ -124,7 +129,6 @@ const Profile = () => {
                 <span> Change UID </span>
               </div>
             </div>
-          
             <div className="flex flex-row gap-6 p-6">
               {data?.characters.map((character, index) => (
                 <Image 
@@ -136,7 +140,7 @@ const Profile = () => {
                     rounded-full 
                     cursor-pointer 
                     hover:brightness-110 
-                    ${selected === index ? "ring-2 ring-neutral-300" : ""}
+                    ${selected === index ? "ring-2 ring-neutral-300 bg-stone-500" : ""}
                   `}
                   onClick={() => {
                     setCharacter(data?.characters[index]);
