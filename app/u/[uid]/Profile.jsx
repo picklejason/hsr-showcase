@@ -12,7 +12,7 @@ import Loading from "./loading";
 const Profile = () => {
   const ref = useRef(null)
 
-  const saveImage = useCallback(() => {
+  const saveImage = useCallback((name) => {
     if (ref.current === null) {
       return
     }
@@ -24,7 +24,7 @@ const Profile = () => {
       scale: 1.5,
     }).then((canvas) => {
       canvas.toBlob(function (blob) {
-        saveAs(blob, "showcase.png");
+        saveAs(blob, `${name}_Card_${uid}.png`);
       });
     });
 
@@ -196,7 +196,7 @@ const Profile = () => {
                             active:shadow-none
                             gap-2
                           "
-                          onClick={() => saveImage()}
+                          onClick={() => saveImage(character.name)}
                         >
                           <Image
                             src={asset_url + "icon/sign/SettingsImageIcon.png"}
