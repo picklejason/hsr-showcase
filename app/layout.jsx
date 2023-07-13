@@ -1,5 +1,6 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
+import Footer from './Footer';
 
 export const metadata = {
   title: 'HSR Showcase',
@@ -12,8 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="Blur-BG no-scrollbar bg-fixed font-sans font-semibold text-white">
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>
