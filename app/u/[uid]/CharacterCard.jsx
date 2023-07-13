@@ -154,9 +154,9 @@ const CharacterCard = ({ character, uid, showUID }) => {
           </div>
         </div>
         <div className="w-1/3">
-        <div className="flex flex-col justify-between gap-1 text-lg">
+        <div className="flex flex-col justify-between gap-1.5 text-lg">
           {character?.relics.map((relic) => (
-            <div key={relic.id} className="flex flex-row rounded-s-lg relative items-center space-x-4 p-2 black-blur">
+            <div key={relic.id} className="flex flex-row rounded-s-lg relative items-center p-2 black-blur">
               <div className="flex">
                 <img 
                   src={asset_url + relic.icon}
@@ -169,7 +169,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                   className="w-20 h-auto absolute bottom-2"
                 />
               </div>
-              <div className="flex flex-col justify-center items-center w-1/6">
+              <div className="flex flex-col justify-center items-center w-1/6 mx-1">
                 <img 
                   src={asset_url + relic.main_affix.icon}
                   alt="Main Affix Icon"
@@ -189,7 +189,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                 "
               >
               </div>
-              <div className="grid grid-cols-2 m-auto gap-2 w-1/2 pr-2">
+              <div className="grid grid-cols-2 m-auto gap-2 w-1/2">
                 {relic.sub_affix.map((sub_affix) => (
                   <div key={sub_affix.id} className="flex flex-row items-center">
                     <img 
