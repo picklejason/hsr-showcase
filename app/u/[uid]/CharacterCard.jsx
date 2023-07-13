@@ -139,14 +139,14 @@ const CharacterCard = ({ character, uid, showUID }) => {
         <div className="w-1/3">
           <div className="flex flex-col gap-y-2.5 text-lg">
             {character?.property.map((stat) => (
-              <div key={stat.id} className="flex flex-row justify-between">
+              <div key={stat.id} className="flex flex-row justify-between items-center">
                 <div className="flex flex-row items-center">
-                <img 
-                  src={asset_url + stat.icon}
-                  alt="Stat Icon"
-                  className="w-9 h-auto"
-                />
-                <span>{stat.name}</span>
+                  <img 
+                    src={asset_url + stat.icon}
+                    alt="Stat Icon"
+                    className="w-9 h-auto"
+                  />
+                  <span>{stat.name}</span>
                 </div>
                 <span>{stat.display}</span>
               </div>
@@ -191,13 +191,13 @@ const CharacterCard = ({ character, uid, showUID }) => {
               </div>
               <div className="grid grid-cols-2 m-auto gap-2 w-1/2">
                 {relic.sub_affix.map((sub_affix) => (
-                  <div key={sub_affix.id} className="flex flex-row">
+                  <div key={sub_affix.id} className="flex flex-row items-center">
                     <img 
                       src={asset_url + sub_affix.icon}
                       alt="Sub Affix Icon"
                       className="w-7 h-auto"
                     />
-                    <span>{sub_affix.display}</span>
+                    <span className="text-base">+{sub_affix.display}</span>
                   </div>
                   
                 ))}
