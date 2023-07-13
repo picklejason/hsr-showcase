@@ -19,7 +19,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
         <div className="w-1/11 ml-2">
           <div className="flex flex-col">
             {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
-              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 border-neutral-200 border-2">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-800 border-neutral-300 border-2">
                 <img
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
@@ -30,7 +30,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
           </div>
           <div className="flex flex-col">
             {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
-              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 border-neutral-400 border-2">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-800 border-neutral-500 border-2">
                 <img 
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
@@ -116,7 +116,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                   <img 
                     src={asset_url + skill.icon}
                     alt="Skill Icon"
-                    className="w-12 h-auto"
+                    className="w-12 h-auto rounded-full bg-neutral-800 border-neutral-500 border-2"
                   />
                   <span className="text-base">Lv. {skill.level}</span>
                   <span className="text-sm">{skill.type_text}</span>
