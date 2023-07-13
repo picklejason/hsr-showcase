@@ -34,7 +34,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                 <img 
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
-                  className="w-12 h-auto"
+                  className="w-12 h-auto scale-[0.9]"
                 />
                 <div className="flex justify-center items-center absolute rounded-full bg-neutral-800/70 w-full h-full">
                   <AiFillLock className="w-6 h-6"/>
