@@ -35,6 +35,7 @@ const Profile = () => {
   const [data, setData] = useState(null);
   const [character, setCharacter] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [showUID, setShowUID] = useState(true);
 
   const params = useParams();
   const uid = params.uid;
@@ -149,34 +150,62 @@ const Profile = () => {
               {
                 character && (
                   <> 
-                    <div className="showcase" ref={ref} >
-                      <CharacterCard character={character} uid={uid}/>  
+                    <div className="showcase mx-3" ref={ref} >
+                      <CharacterCard character={character} uid={uid} showUID={showUID}/>  
                     </div>
-                    <div className="
-                        flex
-                        flex-row
-                        justify-center
-                        cursor-pointer 
-                        rounded-full 
-                        bg-stone-800 
-                        px-3 
-                        py-1 
-                        my-2
-                        shadow-md 
-                        shadow-stone-900 
-                        hover:brightness-110 
-                        active:shadow-none
-                        gap-2
-                      "
-                      onClick={() => saveImage()}
-                    >
-                      <Image
-                        src={asset_url + "icon/sign/SettingsImageIcon.png"}
-                        alt="Change UID Icon"
-                        width={24}
-                        height={24}
-                      />
-                      <span>Save Image</span>
+                    <div className="flex flex-row gap-4 mx-3">
+                        <div className="
+                            flex
+                            flex-row
+                            justify-center
+                            cursor-pointer 
+                            rounded-full 
+                            bg-stone-800 
+                            px-3 
+                            py-1 
+                            my-2
+                            shadow-md 
+                            shadow-stone-900 
+                            hover:brightness-110 
+                            active:shadow-none
+                            gap-2
+                          "
+                          onClick={() => setShowUID(!showUID)}
+                        >
+                          <Image
+                            src={asset_url + "icon/sign/Detail.png"}
+                            alt="Toggle UID Icon"
+                            width={24}
+                            height={24}
+                          />
+                          <span>Toggle UID</span>
+                        </div>
+                        <div className="
+                            flex
+                            flex-row
+                            justify-center
+                            cursor-pointer 
+                            rounded-full 
+                            bg-stone-800 
+                            px-3 
+                            py-1 
+                            my-2
+                            shadow-md 
+                            shadow-stone-900 
+                            hover:brightness-110 
+                            active:shadow-none
+                            gap-2
+                          "
+                          onClick={() => saveImage()}
+                        >
+                          <Image
+                            src={asset_url + "icon/sign/SettingsImageIcon.png"}
+                            alt="Save Image Icon"
+                            width={24}
+                            height={24}
+                          />
+                        <span>Save Image</span>
+                      </div>
                     </div>
                   </>
                 )
