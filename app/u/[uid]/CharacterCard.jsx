@@ -111,7 +111,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
             </div>
           </div>
           <div className="flex flex-row justify-evenly">
-            {character?.skills.slice(0, 4).map((skill) => (
+            {character?.skill_trees.slice(0, 4).map((skill, index) => (
                 <div key={skill.id} className="flex flex-col items-center ">
                   <img 
                     src={asset_url + skill.icon}
@@ -119,7 +119,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                     className="w-12 h-auto rounded-full bg-neutral-800 border-neutral-500 border-2"
                   />
                   <span className="text-base">Lv. {skill.level}</span>
-                  <span className="text-sm">{skill.type_text}</span>
+                  <span className="text-sm">{character?.skills[index].type_text}</span>
                 </div>
             ))}
           </div>
