@@ -34,6 +34,7 @@ const Profile = () => {
   const asset_url = "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/"
   const [data, setData] = useState(null);
   const [character, setCharacter] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   const params = useParams();
   const uid = params.uid;
@@ -130,8 +131,16 @@ const Profile = () => {
                   alt="Character Preview"
                   width={96}
                   height={96}
-                  className="rounded-full cursor-pointer hover:brightness-110 active:ring-2 ring-neutral-400"
-                  onClick={() => setCharacter(data?.characters[index])}
+                  className={`
+                    rounded-full 
+                    cursor-pointer 
+                    hover:brightness-110 
+                    ${selected === index ? "ring-2 ring-neutral-300" : ""}
+                  `}
+                  onClick={() => {
+                    setCharacter(data?.characters[index]);
+                    setSelected(index);
+                  }}
                   key={character.id}
                   />
               ))}
