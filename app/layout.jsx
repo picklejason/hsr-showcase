@@ -1,11 +1,11 @@
-import "./globals.css";
+import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
-  title: "HSR Showcase",
-  description: "View and create a character showcase card for Honkai: Star Rail",
+  title: 'HSR Showcase',
+  description: 'View and create a character showcase card for Honkai: Star Rail',
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.ico',
   },
 };
 

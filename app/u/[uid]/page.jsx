@@ -1,10 +1,10 @@
-import Profile from "./Profile";
+import Profile from './Profile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Page() {
   return (
-    <div className="Blur-BG w-full min-h-screen text-white font-sans">
+    <div className="Blur-BG min-h-screen w-full font-sans text-white">
       <Profile />
       <ToastContainer
         position="top-center"
