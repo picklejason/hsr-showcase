@@ -19,7 +19,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
         <div className="w-1/11 ml-2">
           <div className="flex flex-col">
             {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
-              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 ring-1 ring-neutral-100 ring-offset-1">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 border-neutral-200 border-2">
                 <img
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
@@ -30,7 +30,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
           </div>
           <div className="flex flex-col">
             {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
-              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 ring-1 ring-neutral-400 ring-offset-1">
+              <div key={rank_icon.id} className="flex relative my-2 rounded-full bg-neutral-600 border-neutral-400 border-2">
                 <img 
                   src={asset_url + rank_icon}
                   alt="Rank Icon"
