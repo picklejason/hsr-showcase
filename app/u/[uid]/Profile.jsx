@@ -71,7 +71,7 @@ const Profile = () => {
       <div className="h-auto flex justify-center items-center min-h-screen">
         <div className="flex overflow-auto">
           <div className="flex flex-col md:items-center my-5">
-            <div className="flex flex-col text-white justify-center items-center w-[600px] h-auto gap-4">
+            <div className="flex flex-col text-white justify-center items-center w-[500px] h-auto gap-4">
               <Image 
                 src={asset_url + data?.player.avatar.icon} 
                 width={120} 
@@ -79,7 +79,7 @@ const Profile = () => {
                 alt="Avatar Icon"
                 className="border-2 border-stone-300 rounded-full bg-stone-500" />
               <span className="text-3xl">{data?.player.nickname}</span>
-              <div className="flex flex-row justify-evenly w-full text-center">
+              <div className="flex flex-row justify-between w-full text-center">
                 <div className="flex flex-col">
                     <span className="text-2xl text-neutral-400">Trailblaze Level</span>
                     <span className="text-xl">{data?.player.level}</span>
@@ -89,7 +89,7 @@ const Profile = () => {
                     <span className="text-xl">{data?.player.world_level}</span>
                 </div>
               </div>
-              <div className="flex flex-col w-3/4 gap-2">
+              <div className="flex flex-col w-full gap-2">
                 <span className="text-2xl text-neutral-400">Trailblaze Records</span>
                 <div className="flex flex-row justify-between">
                   <span className="text-xl">Characters Owned</span>
