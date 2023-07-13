@@ -21,7 +21,7 @@ const Profile = () => {
       useCORS: true,
       allowTaint: true,
       backgroundColor: null,
-      scale: 2,
+      scale: 1.5,
     }).then((canvas) => {
       canvas.toBlob(function (blob) {
         saveAs(blob, "showcase.png");
