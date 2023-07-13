@@ -71,7 +71,7 @@ const Profile = () => {
       <div className="h-auto flex justify-center items-center min-h-screen">
         <div className="flex overflow-auto">
           <div className="flex flex-col md:items-center my-5">
-            <div className="flex flex-col text-white justify-center items-center w-[500px] h-auto gap-4">
+            <div className="flex flex-col text-white justify-center items-center w-[500px] h-auto gap-4 mx-3">
               <Image 
                 src={asset_url + data?.player.avatar.icon} 
                 width={120} 
