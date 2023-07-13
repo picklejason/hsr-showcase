@@ -189,7 +189,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                 "
               >
               </div>
-              <div className="grid grid-cols-2 m-auto gap-2 w-1/2">
+              <div className="grid grid-cols-2 m-auto gap-2 w-1/2 pr-2">
                 {relic.sub_affix.map((sub_affix) => (
                   <div key={sub_affix.id} className="flex flex-row items-center">
                     <img 
