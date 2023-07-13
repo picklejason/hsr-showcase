@@ -6,12 +6,12 @@ const CharacterCard = ({ character, uid, showUID }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
     <div className="BG h-[600px] w-[1600px] overflow-hidden rounded-xl">
-      <div className="flex flex-row items-center text-white">
+      <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
           <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[2.2]" />
         </div>
 
-        <div className="Blur-BG relative z-10 flex h-[600px] w-[1200px] flex-row items-center gap-5 text-white">
+        <div className="Blur-BG relative z-10 flex h-[600px] w-[1200px] flex-row items-center gap-5">
           <div className="w-1/11 ml-2">
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (

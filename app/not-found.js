@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function NotFound() {
   return (
-    <div className="Blur-BG flex h-full w-full items-center justify-center text-center font-sans font-semibold text-white">
+    <div className="flex min-h-screen items-center justify-center text-center">
       <div className="flex flex-col gap-5">
         <Image src="/herta-kurukuru.gif" alt="Loading" width={256} height={256} />
         <div>
