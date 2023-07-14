@@ -115,7 +115,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
             </div>
           </div>
           <div className="w-1/3">
-            <div className="flex flex-col gap-y-2.5 text-lg">
+            <div className="flex flex-col gap-y-2 text-lg">
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center">
