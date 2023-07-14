@@ -122,6 +122,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
                     <img src={asset_url + stat.icon} alt="Stat Icon" className="h-auto w-9" />
                     <span>{stat.name}</span>
                   </div>
+                  <span className="m-5 flex-grow rounded border-[0.5px] border-white opacity-50"></span>
                   <span>{stat.display}</span>
                 </div>
               ))}
