@@ -1,8 +1,22 @@
+'use client';
+
 import { AiOutlineGithub } from 'react-icons/ai';
+import Script from 'next/script';
 
 const Footer = () => {
   return (
     <footer className="mx-auto max-w-3xl overflow-hidden px-4 text-neutral-100 sm:px-6 md:max-w-5xl">
+      <Script
+        src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"
+        onLoad={() =>
+          kofiWidgetOverlay.draw('picklejason', {
+            type: 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#292524',
+            'floating-chat.donateButton.text-color': '#fff',
+          })
+        }
+      />
       <hr className="mx-auto mt-8 h-0.5 w-full border-0 bg-neutral-200"></hr>
       <div className="mx-auto flex flex-row items-center gap-1 p-4 text-center md:flex-row md:justify-between">
         <span>© 2023 Jason</span>
