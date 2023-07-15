@@ -60,32 +60,40 @@ const CharacterCard = ({ character, uid, showUID }) => {
                 <span className="text-xl text-neutral-400"> {character?.promotion * 10 + 20}</span>
               </div>
             </div>
-            <div className="flex flex-row items-center justify-center">
-              <div className="flex flex-col items-center">
-                <img src={asset_url + character?.light_cone.preview} alt="Light Cone Preview" className="h-auto w-32" />
-                <img
-                  src={asset_url + 'icon/deco/Rarity' + character?.light_cone.rarity + '.png'}
-                  alt="Light Cone Rarity Icon"
-                  className="relative bottom-8 h-auto w-36"
-                />
-              </div>
-              <div className="flex w-1/2 flex-col gap-2 text-center">
-                <span className="text-xl">{character?.light_cone.name}</span>
-                <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone.rank}</span>
-                <div>
-                  <span className="text-lg">Lv. {character?.light_cone.level} </span>/
-                  <span className="text-neutral-400"> {character?.light_cone.promotion * 10 + 20}</span>
+            {character.lightcone ? (
+              <div className="flex flex-row items-center justify-center">
+                <div className="flex flex-col items-center">
+                  <img
+                    src={asset_url + character?.light_cone?.preview}
+                    alt="Light Cone Preview"
+                    className="h-auto w-32"
+                  />
+                  <img
+                    src={asset_url + 'icon/deco/Rarity' + character?.light_cone?.rarity + '.png'}
+                    alt="Light Cone Rarity Icon"
+                    className="relative bottom-8 h-auto w-36"
+                  />
                 </div>
-                <div className="flex flex-row justify-evenly">
-                  {character?.light_cone.attributes.map((attribute) => (
-                    <div key={attribute.id} className="black-blur flex w-1/5 flex-col items-center rounded-lg p-1">
-                      <img src={asset_url + attribute.icon} alt="Attribute Icon" className="h-auto w-6" />
-                      <span className="text-sm">{attribute.display}</span>
-                    </div>
-                  ))}
+                <div className="flex w-1/2 flex-col gap-2 text-center">
+                  <span className="text-xl">{character?.light_cone?.name}</span>
+                  <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone?.rank}</span>
+                  <div>
+                    <span className="text-lg">Lv. {character?.light_cone?.level} </span>/
+                    <span className="text-neutral-400"> {character?.light_cone?.promotion * 10 + 20}</span>
+                  </div>
+                  <div className="flex flex-row justify-evenly">
+                    {character?.light_cone?.attributes.map((attribute) => (
+                      <div key={attribute.id} className="black-blur flex w-1/5 flex-col items-center rounded-lg p-1">
+                        <img src={asset_url + attribute.icon} alt="Attribute Icon" className="h-auto w-6" />
+                        <span className="text-sm">{attribute.display}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <span className="flex justify-center">No Light Cone Equipped</span>
+            )}
             <div className="flex flex-row justify-evenly">
               {character?.skill_trees.slice(0, 4).map((skill, index) => (
                 <div key={skill.id} className="flex flex-col items-center ">
