@@ -8,7 +8,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
     <div className="BG h-[600px] w-[1600px] overflow-hidden rounded-xl">
       <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
-          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[2.2]" />
+          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.7]" />
         </div>
 
         <div className="Blur-BG relative z-10 flex h-[600px] w-[1200px] flex-row items-center gap-5">
