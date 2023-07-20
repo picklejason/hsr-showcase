@@ -56,8 +56,9 @@ const CharacterCard = ({ character, uid, showUID }) => {
                 />
               </div>
               <div>
-                <span className="text-2xl">Lv. {character?.level} </span>/
-                <span className="text-xl text-neutral-400"> {character?.promotion * 10 + 20}</span>
+                <span className="text-2xl">Lv. {character?.level}</span>
+                <span className="text-xl"> / </span>
+                <span className="text-xl text-neutral-400">{character?.promotion * 10 + 20}</span>
               </div>
             </div>
             {character?.light_cone ? (
@@ -78,8 +79,9 @@ const CharacterCard = ({ character, uid, showUID }) => {
                   <span className="text-xl">{character?.light_cone?.name}</span>
                   <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone?.rank}</span>
                   <div>
-                    <span className="text-lg">Lv. {character?.light_cone?.level} </span>/
-                    <span className="text-neutral-400"> {character?.light_cone?.promotion * 10 + 20}</span>
+                    <span className="text-lg">Lv. {character?.light_cone?.level}</span>
+                    <span> / </span>
+                    <span className="text-neutral-400">{character?.light_cone?.promotion * 10 + 20}</span>
                   </div>
                   <div className="flex flex-row justify-evenly">
                     {character?.light_cone?.attributes.map((attribute) => (
