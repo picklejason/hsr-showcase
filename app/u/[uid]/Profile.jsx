@@ -69,7 +69,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen font-sans font-semibold">
+    <div className="min-h-screen">
       <div className="flex h-auto min-h-screen items-center justify-center">
         <div className="flex overflow-auto">
           <div className="my-5 flex flex-col md:items-center">
@@ -156,7 +156,7 @@ const Profile = () => {
             </div>
             {character && (
               <>
-                <div className="showcase mx-3" ref={ref}>
+                <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
                   <CharacterCard character={character} uid={uid} showUID={showUID} />
                 </div>
                 <div className="mx-3 flex flex-row gap-4">

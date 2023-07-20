@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="Blur-BG no-scrollbar bg-fixed font-sans font-semibold text-white">
+      <body className="Blur-BG no-scrollbar bg-fixed font-semibold text-white">
         {children}
         <Footer />
         <Analytics />
