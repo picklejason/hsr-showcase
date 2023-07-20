@@ -114,7 +114,9 @@ const CharacterCard = ({ character, uid, showUID }) => {
               {character?.relic_sets.map((relic_set) => (
                 <div key={relic_set.id} className="flex w-3/4 flex-row justify-between text-left">
                   <span className="text-base">{relic_set.name}</span>
-                  <span className="black-blur w-5 rounded px-1.5 py-0.5 text-center">{relic_set.num}</span>
+                  <div>
+                    <span className="black-blur flex w-5 rounded px-1.5 py-0.5">{relic_set.num}</span>
+                  </div>
                 </div>
               ))}
             </div>
