@@ -41,7 +41,7 @@ const CharacterCard = ({ character, uid, showUID }) => {
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
-                <img src={asset_url + character?.element.icon} alt="Element Icon" className="h-auto w-12" />
+                <img src={asset_url + character?.element.icon} alt="Element Icon" className="h-auto w-14" />
               </div>
 
               <div className="flex flex-row items-center gap-2">
