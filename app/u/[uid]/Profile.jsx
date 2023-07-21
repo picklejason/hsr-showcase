@@ -106,21 +106,7 @@ const Profile = () => {
               <div className="flex flex-col gap-2">
                 <span className="text-2xl">UID {data?.player.uid}</span>
                 <div
-                  className="
-                  flex
-                  cursor-pointer
-                  flex-row
-                  justify-center 
-                  gap-2 
-                  rounded-full 
-                  bg-stone-800 
-                  px-3 
-                  py-1 
-                  shadow-md 
-                  shadow-stone-900 
-                  hover:brightness-110
-                  active:shadow-none
-                "
+                  className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                   onClick={() => router.push('/')}
                 >
                   <Image
@@ -129,7 +115,7 @@ const Profile = () => {
                     width={24}
                     height={24}
                   />
-                  <span> Change UID </span>
+                  <span>Change UID</span>
                 </div>
               </div>
               <div className="flex flex-row gap-6 p-6">
