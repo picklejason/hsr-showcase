@@ -129,7 +129,7 @@ const Profile = () => {
                       cursor-pointer 
                       rounded-full 
                       hover:brightness-110 
-                      ${selected === index ? 'bg-stone-500 ring-2 ring-neutral-300' : ''}
+                      ${selected === index && 'bg-white ring-2 ring-neutral-300'}
                     `}
                     onClick={() => {
                       setCharacter(data?.characters[index]);
