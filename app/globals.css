@@ -42,7 +42,7 @@
 
 
 @font-face {
-  font-family: "DIN";
+  font-family: "DIN", sans-serif;
   font-style: normal;
   font-weight: 400;
   src: url("/DIN.ttf");
