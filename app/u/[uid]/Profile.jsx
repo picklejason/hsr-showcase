@@ -72,8 +72,8 @@ const Profile = () => {
     <div className="min-h-screen">
       <div className="flex h-auto min-h-screen items-center justify-center">
         <div className="flex overflow-auto">
-          <div className="my-5 flex flex-col md:items-center">
-            <div className="mx-3 flex h-auto w-[500px] flex-col items-center justify-center gap-4">
+          <div className="my-5 flex flex-col lg:items-center">
+            <div className="mx-3 flex h-auto w-[95vw] flex-col items-center justify-center gap-4 lg:w-[500px]">
               <Image
                 src={asset_url + data?.player.avatar.icon}
                 width={120}
@@ -82,7 +82,7 @@ const Profile = () => {
                 className="rounded-full border-2 border-stone-300 bg-stone-500"
               />
               <span className="text-3xl">{data?.player.nickname}</span>
-              <div className="flex w-full flex-row justify-between text-center">
+              <div className="flex w-full flex-row items-center justify-evenly gap-2 text-center">
                 <div className="flex flex-col">
                   <span className="text-2xl text-neutral-400">Trailblaze Level</span>
                   <span className="text-xl">{data?.player.level}</span>
@@ -92,13 +92,13 @@ const Profile = () => {
                   <span className="text-xl">{data?.player.world_level}</span>
                 </div>
               </div>
-              <div className="flex w-full flex-col gap-2">
+              <div className="flex w-3/4 flex-col gap-2">
                 <span className="text-2xl text-neutral-400">Trailblaze Records</span>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row flex-wrap justify-between gap-x-4 ">
                   <span className="text-xl">Characters Owned</span>
                   <span className="text-xl">{data?.player.space_info.avatar_count}</span>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row flex-wrap justify-between gap-x-4">
                   <span className="text-xl">Achievements Unlocked: </span>
                   <span className="text-xl">{data?.player.space_info.achievement_count}</span>
                 </div>
@@ -118,7 +118,7 @@ const Profile = () => {
                   <span>Change UID</span>
                 </div>
               </div>
-              <div className="flex flex-row gap-6 p-6">
+              <div className="flex flex-row flex-wrap justify-center gap-6 p-6 md:flex-nowrap">
                 {data?.characters.map((character, index) => (
                   <Image
                     src={asset_url + character.icon}
@@ -126,11 +126,11 @@ const Profile = () => {
                     width={96}
                     height={96}
                     className={`
-                    cursor-pointer 
-                    rounded-full 
-                    hover:brightness-110 
-                    ${selected === index ? 'bg-stone-500 ring-2 ring-neutral-300' : ''}
-                  `}
+                      cursor-pointer 
+                      rounded-full 
+                      hover:brightness-110 
+                      ${selected === index ? 'bg-stone-500 ring-2 ring-neutral-300' : ''}
+                    `}
                     onClick={() => {
                       setCharacter(data?.characters[index]);
                       setSelected(index);
