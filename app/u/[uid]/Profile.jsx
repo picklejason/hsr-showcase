@@ -22,7 +22,7 @@ const Profile = () => {
         useCORS: true,
         allowTaint: true,
         backgroundColor: null,
-        scale: 1,
+        scale: 2,
       }).then((canvas) => {
         canvas.toBlob(function (blob) {
           saveAs(blob, `${name}_Card_${uid}.png`);
