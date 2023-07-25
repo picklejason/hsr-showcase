@@ -5,7 +5,7 @@ import Script from 'next/script';
 
 const Footer = () => {
   return (
-    <footer className="mx-auto max-w-3xl overflow-hidden px-4 text-neutral-100 sm:px-6 md:max-w-5xl">
+    <footer className="mx-auto max-w-3xl overflow-hidden px-4 sm:px-6 md:max-w-5xl">
       <Script
         src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"
         onLoad={() =>
@@ -17,7 +17,7 @@ const Footer = () => {
           })
         }
       />
-      <hr className="mx-auto mt-8 h-0.5 w-full border-0 bg-neutral-200"></hr>
+      <hr className="mx-auto mt-8 h-0.5 w-full border-0"></hr>
       <div className="mx-auto flex flex-row items-center gap-1 p-4 text-center md:flex-row md:justify-between">
         <span>© 2023 Jason</span>
         <span className="text-sm">
@@ -25,10 +25,7 @@ const Footer = () => {
           miHoYo.
         </span>
         <a href="https://github.com/picklejason/starrail" rel="noreferrer" target="_blank">
-          <AiOutlineGithub
-            className="cursor-pointer text-neutral-100 transition-transform hover:-translate-y-1"
-            size={30}
-          />
+          <AiOutlineGithub className="cursor-pointer transition-transform hover:-translate-y-1" size={30} />
         </a>
       </div>
     </footer>
