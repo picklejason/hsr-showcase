@@ -17,7 +17,7 @@ const Footer = () => {
           })
         }
       />
-      <hr className="mx-auto mt-8 h-0.5 w-full border-0"></hr>
+      <hr className="mx-auto mt-8 h-0.5 w-full border-0 bg-white"></hr>
       <div className="mx-auto flex flex-row items-center gap-1 p-4 text-center md:flex-row md:justify-between">
         <span>© 2023 Jason</span>
         <span className="text-sm">
