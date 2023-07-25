@@ -17,8 +17,14 @@ export const metadata = {
     images: [
       {
         url: 'https://github.com/Mar-7th/StarRailRes/blob/master/icon/logo/bg.png?raw=true',
-        width: 2400,
-        height: 900,
+        width: 1340,
+        height: 660,
+        alt: 'HSR Showcase',
+      },
+      {
+        url: 'https://github.com/Mar-7th/StarRailRes/blob/master/icon/sign/ShopTrainIcon.png?raw=true',
+        width: 128,
+        height: 128,
         alt: 'HSR Showcase',
       },
     ],
