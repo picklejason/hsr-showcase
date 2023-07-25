@@ -41,6 +41,7 @@ const Profile = () => {
 
   const params = useParams();
   const uid = params.uid;
+  const nickname = data?.player.nickname;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +82,7 @@ const Profile = () => {
                 alt="Avatar Icon"
                 className="rounded-full border-2 border-stone-300 bg-stone-500"
               />
-              <span className="text-3xl">{data?.player.nickname}</span>
+              <span className="text-3xl">{nickname}</span>
               <div className="flex w-full flex-row items-center justify-evenly gap-2 text-center">
                 <div className="flex flex-col">
                   <span className="text-2xl text-neutral-400">Trailblaze Level</span>
@@ -143,7 +144,7 @@ const Profile = () => {
             {character && (
               <>
                 <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
-                  <CharacterCard character={character} uid={uid} showUID={showUID} />
+                  <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} />
                 </div>
                 <div className="mx-3 flex flex-row gap-4">
                   <div
