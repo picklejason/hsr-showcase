@@ -24,7 +24,7 @@ const Footer = () => {
           This site is not affiliated with miHoYo &amp; All game content and assets are trademarks and copyrights of
           miHoYo.
         </span>
-        <a href="https://github.com/picklejason/starrail" rel="noreferrer" target="_blank">
+        <a href="https://github.com/picklejason/starrail" aria-label="GitHub" rel="noreferrer" target="_blank">
           <AiOutlineGithub className="cursor-pointer transition-transform hover:-translate-y-1" size={30} />
         </a>
       </div>
