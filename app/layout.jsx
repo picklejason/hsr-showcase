@@ -8,6 +8,22 @@ export const metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  keywords: ['Honkai Star Rail', 'HSR', 'HSR Showcase'],
+  openGraph: {
+    locale: 'en_US',
+    url: 'https://hsr-showcase.vercel.app/',
+    title: 'HSR Showcase',
+    description: 'View and create a character showcase card for Honkai: Star Rail',
+    images: [
+      {
+        url: '/hsr-showcase.png',
+        width: 2400,
+        height: 900,
+        alt: 'HSR Showcase',
+      },
+    ],
+    site_name: 'HSR Showcase',
+  },
 };
 
 export default function RootLayout({ children }) {
