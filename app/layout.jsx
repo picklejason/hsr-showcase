@@ -16,7 +16,7 @@ export const metadata = {
     description: 'View and create a character showcase card for Honkai: Star Rail',
     images: [
       {
-        url: '/hsr-showcase.png',
+        url: 'https://github.com/picklejason/starrail/blob/main/public/showcase.png?raw=true',
         width: 2400,
         height: 900,
         alt: 'HSR Showcase',
