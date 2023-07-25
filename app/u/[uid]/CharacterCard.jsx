@@ -1,5 +1,3 @@
-'use client';
-
 import { AiFillLock } from 'react-icons/ai';
 
 const CharacterCard = ({ character, uid, showUID }) => {
