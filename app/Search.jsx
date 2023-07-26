@@ -9,12 +9,6 @@ export default function Search() {
   const [savedUID, setSavedUID] = useState('');
 
   useEffect(() => {
-    if (UID.length === 9) {
-      localStorage.setItem('uid', UID);
-    }
-  }, [UID]);
-
-  useEffect(() => {
     setSavedUID(localStorage.getItem('uid'));
   }, []);
 

@@ -10,38 +10,21 @@ import { toast } from 'react-toastify';
 import Loading from './loading';
 
 const Profile = () => {
-  const ref = useRef(null);
-
-  const saveImage = useCallback(
-    (name) => {
-      if (ref.current === null) {
-        return;
-      }
-
-      html2canvas(ref.current, {
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: null,
-        scale: 2,
-      }).then((canvas) => {
-        canvas.toBlob(function (blob) {
-          saveAs(blob, `${name}_Card_${uid}.png`);
-        });
-      });
-    },
-    [ref]
-  );
-
   const router = useRouter();
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   const [data, setData] = useState(null);
   const [character, setCharacter] = useState(null);
   const [selected, setSelected] = useState(null);
   const [showUID, setShowUID] = useState(true);
+  const [savedUID, setSavedUID] = useState('');
 
   const params = useParams();
   const uid = params.uid;
   const nickname = data?.player.nickname;
+
+  useEffect(() => {
+    setSavedUID(localStorage.getItem('uid'));
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +47,35 @@ const Profile = () => {
     };
     fetchData();
   }, []);
+
+  const ref = useRef(null);
+  const saveImage = useCallback(
+    (name) => {
+      if (ref.current === null) {
+        return;
+      }
+
+      html2canvas(ref.current, {
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: null,
+        scale: 2,
+      }).then((canvas) => {
+        canvas.toBlob(function (blob) {
+          saveAs(blob, `${name}_Card_${uid}.png`);
+        });
+      });
+    },
+    [ref]
+  );
+
+  const linkUID = useCallback(() => {
+    localStorage.setItem('uid', uid);
+    setSavedUID(uid);
+    toast.success('UID linked!', {
+      toastId: 'success-uid-linked',
+    });
+  }, [uid]);
 
   if (!data) {
     return <Loading />;
@@ -104,21 +116,38 @@ const Profile = () => {
                   <span className="text-xl">{data?.player.space_info.achievement_count}</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col items-center gap-2">
                 <span className="text-2xl">UID {data?.player.uid}</span>
-                <div
-                  className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                  onClick={() => router.push('/')}
-                >
-                  <Image
-                    src={asset_url + 'icon/sign/ReplacementIcon.png'}
-                    alt="Change UID Icon"
-                    width={24}
-                    height={24}
-                  />
-                  <span>Change UID</span>
+                <div className="flex flex-row gap-4">
+                  <div
+                    className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    onClick={() => router.push('/')}
+                  >
+                    <Image
+                      src={asset_url + 'icon/sign/ReplacementIcon.png'}
+                      alt="Change UID Icon"
+                      width={24}
+                      height={24}
+                    />
+                    <span>Change UID</span>
+                  </div>
+                  {savedUID !== uid && (
+                    <div
+                      className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={linkUID}
+                    >
+                      <Image
+                        src="https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/sign/FriendAddIcon.png"
+                        alt="Example Icon"
+                        width={24}
+                        height={24}
+                      />
+                      <span>Link UID</span>
+                    </div>
+                  )}
                 </div>
               </div>
+
               <div className="flex flex-row flex-wrap justify-center gap-6 p-6 md:flex-nowrap">
                 {data?.characters.map((character, index) => (
                   <Image
