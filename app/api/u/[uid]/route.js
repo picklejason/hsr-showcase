@@ -13,6 +13,8 @@ export async function GET(req, { params }) {
         if (attr['name'] === add['name']) {
           const d = {};
           d['name'] = attr['name'];
+          d['base'] = attr['display'];
+          d['addition'] = add['display'];
 
           if (add['percent']) {
             d['display'] = `${
@@ -38,6 +40,7 @@ export async function GET(req, { params }) {
       if (!found) {
         const d = {};
         d['name'] = attr['name'];
+
         d['display'] = attr['display'];
         d['icon'] = attr['icon'];
         properties.push(d);
@@ -48,6 +51,7 @@ export async function GET(req, { params }) {
       if (!['ATK', 'HP', 'DEF', 'SPD', 'CRIT DMG', 'CRIT Rate'].includes(add['name'])) {
         const d = {};
         d['name'] = add['name'];
+
         d['display'] = add['display'];
         d['icon'] = add['icon'];
         properties.push(d);

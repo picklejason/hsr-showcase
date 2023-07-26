@@ -3,13 +3,13 @@ import { AiFillLock } from 'react-icons/ai';
 const CharacterCard = ({ character, uid, nickname, showUID }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
-    <div className="BG h-[600px] w-[1600px] overflow-hidden rounded-xl">
+    <div className="BG min-h-[600px] w-[1600px] overflow-hidden rounded-xl">
       <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
           <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.7]" />
         </div>
 
-        <div className="Blur-BG relative z-10 flex h-[600px] w-[1200px] flex-row items-center gap-5">
+        <div className="Blur-BG relative z-10 flex min-h-[600px] w-[1200px] flex-row items-center gap-5">
           <div className="w-1/11 ml-2">
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
@@ -35,7 +35,7 @@ const CharacterCard = ({ character, uid, nickname, showUID }) => {
               ))}
             </div>
           </div>
-          <div className="flex h-full w-1/3 flex-col justify-evenly">
+          <div className="flex w-1/3 flex-col gap-2">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
@@ -118,7 +118,7 @@ const CharacterCard = ({ character, uid, nickname, showUID }) => {
                 </div>
               ))}
             </div>
-            <div className="">
+            <div>
               <span className={`${showUID ? '' : 'hidden'}`}>
                 UID {uid} · {nickname}
               </span>
@@ -133,7 +133,17 @@ const CharacterCard = ({ character, uid, nickname, showUID }) => {
                     <span>{stat.name}</span>
                   </div>
                   <span className="m-5 flex-grow rounded border-[0.5px] border-white opacity-50"></span>
-                  <span>{stat.display}</span>
+                  <div className="flex flex-col text-right">
+                    <span>{stat.display}</span>
+                    <div className="flex flex-row">
+                      {stat.addition && (
+                        <span className="text-xs">
+                          {stat.base}
+                          <span className="text-blue-300"> +{stat.addition}</span>
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
