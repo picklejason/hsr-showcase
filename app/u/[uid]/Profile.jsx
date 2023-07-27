@@ -42,6 +42,7 @@ const Profile = () => {
     toast.success('Build saved!', {
       toastId: 'success-build-saved',
     });
+    setBuildName('');
   }, [character, buildName, savedBuilds]);
 
   const deleteBuild = useCallback(
@@ -192,56 +193,59 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex w-screen justify-center overflow-x-auto">
               {savedBuilds && showSavedBuilds ? (
-                <div className="flex w-[800px] gap-6 overflow-x-auto p-6">
+                <div className="flex w-[400px] gap-6 overflow-x-auto p-6 md:w-[600px]">
                   {savedBuilds.map((build, index) => (
                     <div
                       className={`
-                          flex 
+                          
+                          flex
                           w-[100px]
-                          cursor-pointer
-                          rounded-tr-2xl 
+                          cursor-pointer 
+                          rounded-tr-2xl
+                          shadow-md 
                           hover:brightness-110
-                          ${selected === index && 'ring-2 ring-neutral-300'}
+                          ${selected === index && 'ring-2 ring-neutral-300 '}
                         `}
+                      onClick={() => {
+                        setCharacter(savedBuilds[index].character);
+                        setSelected(index);
+                      }}
                     >
-                      <div className="flex w-[100px] flex-col">
-                        <Image
-                          src={asset_url + build.character.preview}
-                          alt="Character Preview"
-                          width={96}
-                          height={96}
-                          onClick={() => {
-                            setCharacter(savedBuilds[index].character);
-                            setSelected(index);
-                          }}
-                          key={build.character.id}
-                        />
-                        <span className="truncate p-1">{build.buildName}</span>
-                        <div
-                          className={`text-gray-400 hover:text-gray-500
-                                          ${selected === index && 'block'}`}
-                          onClick={() => deleteBuild(index)}
-                        >
-                          <span class="sr-only">Delete</span>
-                          <svg
-                            class="h-6 w-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
+                      <div className="relative flex w-[100px] flex-col">
+                        <div className="relative">
+                          <Image
+                            src={asset_url + build.character.preview}
+                            alt="Character Preview"
+                            width={96}
+                            height={96}
+                            key={build.character.id}
+                          />
+                          <span className="absolute bottom-0 left-0 w-full p-1">{build.buildName}</span>
                         </div>
+                        {selected === index && (
+                          <div
+                            className={'absolute left-0 top-0 text-gray-400 hover:text-gray-500'}
+                            onClick={() => deleteBuild(index)}
+                          >
+                            <span class="sr-only">Delete</span>
+                            <svg
+                              class="h-6 w-6"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -270,40 +274,41 @@ const Profile = () => {
                 </div>
               )}
             </div>
-
             {character && (
               <>
                 <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
                   <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} />
                 </div>
-                <div className="mx-3 flex flex-row gap-4">
-                  <div
-                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                    onClick={() => setShowUID(!showUID)}
-                  >
-                    <Image src={asset_url + 'icon/sign/Detail.png'} alt="Toggle UID Icon" width={24} height={24} />
-                    <span>Toggle UID</span>
+                <div className="flex w-screen flex-col items-center justify-center">
+                  <div className="mx-3 flex flex-row gap-4">
+                    <div
+                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={() => setShowUID(!showUID)}
+                    >
+                      <Image src={asset_url + 'icon/sign/Detail.png'} alt="Toggle UID Icon" width={24} height={24} />
+                      <span>Toggle UID</span>
+                    </div>
+                    <div
+                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={() => saveImage(character.name)}
+                    >
+                      <Image
+                        src={asset_url + 'icon/sign/SettingsImageIcon.png'}
+                        alt="Save Image Icon"
+                        width={24}
+                        height={24}
+                      />
+                      <span>Export Image</span>
+                    </div>
                   </div>
-                  <div
-                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                    onClick={() => saveImage(character.name)}
-                  >
-                    <Image
-                      src={asset_url + 'icon/sign/SettingsImageIcon.png'}
-                      alt="Save Image Icon"
-                      width={24}
-                      height={24}
-                    />
-                    <span>Export Image</span>
-                  </div>
-                  {savedUID && (
+                  {!showSavedBuilds && (
                     <>
-                      <div class="my-2 flex flex-wrap">
+                      <div class="my-2 flex">
                         <input
                           type="text"
                           name="buildName"
                           onChange={(e) => setBuildName(e.target.value)}
-                          class="relative m-0 -mr-0.5 block w-[120px] min-w-0 flex-auto rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none transition duration-200 ease-in-out focus:z-[3]"
+                          class="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
                           value={buildName}
                           placeholder="Build Name"
                           aria-label="Build Name"
