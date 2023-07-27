@@ -17,6 +17,44 @@ const Profile = () => {
   const [selected, setSelected] = useState(null);
   const [showUID, setShowUID] = useState(true);
   const [savedUID, setSavedUID] = useState('');
+  const [savedBuilds, setSavedBuilds] = useState([]);
+  const [buildName, setBuildName] = useState('');
+  const [showSavedBuilds, setShowSavedBuilds] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('savedBuilds')) {
+      localStorage.setItem('savedBuilds', JSON.stringify([]));
+    }
+    setSavedBuilds(JSON.parse(localStorage.getItem('savedBuilds')));
+  }, []);
+
+  const saveBuild = useCallback(() => {
+    const newBuild = {
+      uid: data?.player.uid,
+      nickname: data?.player.nickname,
+      buildName: buildName,
+      character: character,
+    };
+
+    const newBuilds = [...savedBuilds, newBuild];
+    localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
+    setSavedBuilds(newBuilds);
+    toast.success('Build saved!', {
+      toastId: 'success-build-saved',
+    });
+  }, [character, buildName, savedBuilds]);
+
+  const deleteBuild = useCallback(
+    (index) => {
+      const newBuilds = savedBuilds.filter((build, i) => i !== index);
+      localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
+      setSavedBuilds(newBuilds);
+      toast.success('Build deleted!', {
+        toastId: 'success-build-deleted',
+      });
+    },
+    [savedBuilds]
+  );
 
   const params = useParams();
   const uid = params.uid;
@@ -120,7 +158,7 @@ const Profile = () => {
                 <span className="text-2xl">UID {data?.player.uid}</span>
                 <div className="flex flex-row gap-4">
                   <div
-                    className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                     onClick={() => router.push('/')}
                   >
                     <Image
@@ -145,31 +183,94 @@ const Profile = () => {
                       <span>Link UID</span>
                     </div>
                   )}
+                  <div
+                    className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    onClick={() => setShowSavedBuilds(!showSavedBuilds)}
+                  >
+                    <Image src={asset_url + 'icon/sign/TeamIcon.png'} alt="Change UID Icon" width={24} height={24} />
+                    <span>{showSavedBuilds ? 'Profile' : 'Saved Builds'}</span>
+                  </div>
                 </div>
               </div>
-
-              <div className="flex flex-row flex-wrap justify-center gap-6 p-6 md:flex-nowrap">
-                {data?.characters.map((character, index) => (
-                  <Image
-                    src={asset_url + character.icon}
-                    alt="Character Preview"
-                    width={96}
-                    height={96}
-                    className={`
-                      cursor-pointer 
-                      rounded-full 
-                      hover:brightness-110 
-                      ${selected === index && 'bg-white ring-2 ring-neutral-300'}
-                    `}
-                    onClick={() => {
-                      setCharacter(data?.characters[index]);
-                      setSelected(index);
-                    }}
-                    key={character.id}
-                  />
-                ))}
-              </div>
             </div>
+            <div className="flex w-screen justify-center overflow-x-auto">
+              {savedBuilds && showSavedBuilds ? (
+                <div className="flex w-[800px] gap-6 overflow-x-auto p-6">
+                  {savedBuilds.map((build, index) => (
+                    <div
+                      className={`
+                          flex 
+                          w-[100px]
+                          cursor-pointer
+                          rounded-tr-2xl 
+                          hover:brightness-110
+                          ${selected === index && 'ring-2 ring-neutral-300'}
+                        `}
+                    >
+                      <div className="flex w-[100px] flex-col">
+                        <Image
+                          src={asset_url + build.character.preview}
+                          alt="Character Preview"
+                          width={96}
+                          height={96}
+                          onClick={() => {
+                            setCharacter(savedBuilds[index].character);
+                            setSelected(index);
+                          }}
+                          key={build.character.id}
+                        />
+                        <span className="truncate p-1">{build.buildName}</span>
+                        <div
+                          className={`text-gray-400 hover:text-gray-500
+                                          ${selected === index && 'block'}`}
+                          onClick={() => deleteBuild(index)}
+                        >
+                          <span class="sr-only">Delete</span>
+                          <svg
+                            class="h-6 w-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-row flex-wrap justify-center gap-6 p-6 md:flex-nowrap">
+                  {data?.characters.map((character, index) => (
+                    <Image
+                      src={asset_url + character.icon}
+                      alt="Character Preview"
+                      width={84}
+                      height={84}
+                      className={`
+                            cursor-pointer 
+                            rounded-full 
+                            hover:brightness-110 
+                            ${selected === index && 'bg-white ring-2 ring-neutral-300'}
+                          `}
+                      onClick={() => {
+                        setCharacter(data?.characters[index]);
+                        setSelected(index);
+                      }}
+                      key={character.id}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
             {character && (
               <>
                 <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
@@ -177,14 +278,14 @@ const Profile = () => {
                 </div>
                 <div className="mx-3 flex flex-row gap-4">
                   <div
-                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                     onClick={() => setShowUID(!showUID)}
                   >
                     <Image src={asset_url + 'icon/sign/Detail.png'} alt="Toggle UID Icon" width={24} height={24} />
                     <span>Toggle UID</span>
                   </div>
                   <div
-                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                     onClick={() => saveImage(character.name)}
                   >
                     <Image
@@ -193,8 +294,29 @@ const Profile = () => {
                       width={24}
                       height={24}
                     />
-                    <span>Save Image</span>
+                    <span>Export Image</span>
                   </div>
+                  {savedUID && (
+                    <>
+                      <div class="my-2 flex flex-wrap">
+                        <input
+                          type="text"
+                          name="buildName"
+                          onChange={(e) => setBuildName(e.target.value)}
+                          class="relative m-0 -mr-0.5 block w-[120px] min-w-0 flex-auto rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none transition duration-200 ease-in-out focus:z-[3]"
+                          value={buildName}
+                          placeholder="Build Name"
+                          aria-label="Build Name"
+                        />
+                        <div
+                          class="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                          onClick={saveBuild}
+                        >
+                          Save Build
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </>
             )}
