@@ -45,7 +45,7 @@ const Profile = () => {
     const newBuilds = [...savedBuilds, newBuild];
     localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
     setSavedBuilds(newBuilds);
-    toast.success('Build saved!', {
+    toast.success(`${buildName} saved!`, {
       toastId: `success-build-saved-${buildName}`,
     });
     setBuildName('');
