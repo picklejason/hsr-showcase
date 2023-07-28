@@ -29,7 +29,7 @@ export default function Search() {
         <Link href={`/u/${UID}`}>Search</Link>
       </div>
       {savedUID && (
-        <div className="flex cursor-pointer flex-row items-center space-x-1 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
+        <div className="flex cursor-pointer flex-row items-center space-x-1 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
           <a href={`/u/${savedUID}`} className="flex gap-2">
             <Image
               src="https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/sign/SettingsAccount.png"
