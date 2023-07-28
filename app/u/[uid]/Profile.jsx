@@ -193,7 +193,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              {savedBuilds && showSavedBuilds ? (
+              {showSavedBuilds ? (
                 <div className="flex w-[400px] gap-6 overflow-x-auto p-6 md:w-[600px]">
                   {savedBuilds.map((build, index) => (
                     <div
@@ -211,7 +211,7 @@ const Profile = () => {
                         setCharacter(savedBuilds[index].character);
                         setSelected(index);
                       }}
-                      key={build.character.id}
+                      key={index}
                     >
                       <div className="relative flex w-[100px] flex-col">
                         <div className="relative">
@@ -220,7 +220,6 @@ const Profile = () => {
                             alt="Character Preview"
                             width={96}
                             height={96}
-                            key={build.character.id}
                           />
                           <span className="absolute bottom-0 left-0 w-full p-1">{build.buildName}</span>
                         </div>
@@ -241,7 +240,7 @@ const Profile = () => {
                               <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeWidth="2"
                                 d="M6 18L18 6M6 6l12 12"
                               />
                             </svg>
@@ -269,7 +268,7 @@ const Profile = () => {
                         setCharacter(data?.characters[index]);
                         setSelected(index);
                       }}
-                      key={character.id}
+                      key={index}
                     />
                   ))}
                 </div>
