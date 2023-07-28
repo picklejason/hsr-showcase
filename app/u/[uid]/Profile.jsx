@@ -17,6 +17,51 @@ const Profile = () => {
   const [selected, setSelected] = useState(null);
   const [showUID, setShowUID] = useState(true);
   const [savedUID, setSavedUID] = useState('');
+  const [savedBuilds, setSavedBuilds] = useState([]);
+  const [buildName, setBuildName] = useState('');
+  const [showSavedBuilds, setShowSavedBuilds] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('savedBuilds')) {
+      localStorage.setItem('savedBuilds', JSON.stringify([]));
+    }
+    setSavedBuilds(JSON.parse(localStorage.getItem('savedBuilds')));
+  }, []);
+
+  const saveBuild = useCallback(() => {
+    if (!buildName) {
+      toast.error('Enter a build name!', {
+        toastId: 'error-build-name-empty',
+      });
+      return;
+    }
+    const newBuild = {
+      uid: data?.player.uid,
+      nickname: data?.player.nickname,
+      buildName: buildName,
+      character: character,
+    };
+
+    const newBuilds = [...savedBuilds, newBuild];
+    localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
+    setSavedBuilds(newBuilds);
+    toast.success(`${buildName} saved!`, {
+      toastId: `success-build-saved-${buildName}`,
+    });
+    setBuildName('');
+  }, [character, buildName, savedBuilds]);
+
+  const deleteBuild = useCallback(
+    (index) => {
+      const newBuilds = savedBuilds.filter((build, i) => i !== index);
+      localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
+      setSavedBuilds(newBuilds);
+      toast.success('Build deleted!', {
+        toastId: `success-build-deleted-${index}`,
+      });
+    },
+    [savedBuilds]
+  );
 
   const params = useParams();
   const uid = params.uid;
@@ -118,9 +163,9 @@ const Profile = () => {
               </div>
               <div className="flex flex-col items-center gap-2">
                 <span className="text-2xl">UID {data?.player.uid}</span>
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row flex-wrap justify-center gap-4">
                   <div
-                    className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                     onClick={() => router.push('/')}
                   >
                     <Image
@@ -133,7 +178,7 @@ const Profile = () => {
                   </div>
                   {savedUID !== uid && (
                     <div
-                      className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={linkUID}
                     >
                       <Image
@@ -145,56 +190,145 @@ const Profile = () => {
                       <span>Link UID</span>
                     </div>
                   )}
+                  <div
+                    className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    onClick={() => setShowSavedBuilds(!showSavedBuilds)}
+                  >
+                    <Image src={asset_url + 'icon/sign/TeamIcon.png'} alt="Change UID Icon" width={24} height={24} />
+                    <span>{showSavedBuilds ? 'Profile' : 'Saved Builds'}</span>
+                  </div>
                 </div>
               </div>
-
-              <div className="flex flex-row flex-wrap justify-center gap-6 p-6 md:flex-nowrap">
-                {data?.characters.map((character, index) => (
-                  <Image
-                    src={asset_url + character.icon}
-                    alt="Character Preview"
-                    width={96}
-                    height={96}
-                    className={`
-                      cursor-pointer 
-                      rounded-full 
-                      hover:brightness-110 
-                      ${selected === index && 'bg-white ring-2 ring-neutral-300'}
-                    `}
-                    onClick={() => {
-                      setCharacter(data?.characters[index]);
-                      setSelected(index);
-                    }}
-                    key={character.id}
-                  />
-                ))}
-              </div>
+              {showSavedBuilds ? (
+                <div className="flex w-[400px] gap-6 overflow-x-auto p-6 md:w-[600px]">
+                  {savedBuilds.map((build, index) => (
+                    <div
+                      className={`
+                          
+                          flex
+                          w-[100px]
+                          cursor-pointer 
+                          rounded-tr-2xl
+                          shadow-md 
+                          hover:brightness-110
+                          ${selected === index && 'ring-2 ring-neutral-300 '}
+                        `}
+                      onClick={() => {
+                        setCharacter(savedBuilds[index].character);
+                        setSelected(index);
+                      }}
+                      key={index}
+                    >
+                      <div className="relative flex w-[100px] flex-col">
+                        <div className="relative">
+                          <Image
+                            src={asset_url + build.character.preview}
+                            alt="Character Preview"
+                            width={96}
+                            height={96}
+                          />
+                          <span className="absolute bottom-0 left-0 w-full p-1">{build.buildName}</span>
+                        </div>
+                        {selected === index && (
+                          <div
+                            className={'absolute left-0 top-0 text-gray-400 hover:text-gray-500'}
+                            onClick={() => deleteBuild(index)}
+                          >
+                            <span className="sr-only">Delete</span>
+                            <svg
+                              className="h-6 w-6"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-row flex-wrap justify-center gap-6 p-6 md:flex-nowrap">
+                  {data?.characters.map((character, index) => (
+                    <Image
+                      src={asset_url + character.icon}
+                      alt="Character Preview"
+                      width={96}
+                      height={96}
+                      className={`
+                            cursor-pointer 
+                            rounded-full 
+                            hover:brightness-110 
+                            ${selected === index && 'bg-white ring-2 ring-neutral-300'}
+                          `}
+                      onClick={() => {
+                        setCharacter(data?.characters[index]);
+                        setSelected(index);
+                      }}
+                      key={index}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
             {character && (
               <>
                 <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
                   <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} />
                 </div>
-                <div className="mx-3 flex flex-row gap-4">
-                  <div
-                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                    onClick={() => setShowUID(!showUID)}
-                  >
-                    <Image src={asset_url + 'icon/sign/Detail.png'} alt="Toggle UID Icon" width={24} height={24} />
-                    <span>Toggle UID</span>
+                <div className="flex w-screen flex-col items-center justify-center">
+                  <div className="mx-3 flex flex-row gap-4">
+                    <div
+                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={() => setShowUID(!showUID)}
+                    >
+                      <Image src={asset_url + 'icon/sign/Detail.png'} alt="Toggle UID Icon" width={24} height={24} />
+                      <span>Toggle UID</span>
+                    </div>
+                    <div
+                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={() => saveImage(character.name)}
+                    >
+                      <Image
+                        src={asset_url + 'icon/sign/SettingsImageIcon.png'}
+                        alt="Save Image Icon"
+                        width={24}
+                        height={24}
+                      />
+                      <span>Export Image</span>
+                    </div>
                   </div>
-                  <div
-                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                    onClick={() => saveImage(character.name)}
-                  >
-                    <Image
-                      src={asset_url + 'icon/sign/SettingsImageIcon.png'}
-                      alt="Save Image Icon"
-                      width={24}
-                      height={24}
-                    />
-                    <span>Save Image</span>
-                  </div>
+                  {!showSavedBuilds && (
+                    <>
+                      <div className="my-2 flex">
+                        <input
+                          type="text"
+                          name="buildName"
+                          onChange={(e) => setBuildName(e.target.value)}
+                          className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
+                          value={buildName}
+                          placeholder="Build Name"
+                          aria-label="Build Name"
+                          maxLength={30}
+                        />
+                        <div
+                          className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                          onClick={saveBuild}
+                        >
+                          Save Build
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </>
             )}
