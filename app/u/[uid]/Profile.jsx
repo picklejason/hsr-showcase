@@ -29,6 +29,12 @@ const Profile = () => {
   }, []);
 
   const saveBuild = useCallback(() => {
+    if (!buildName) {
+      toast.error('Enter a build name!', {
+        toastId: 'error-build-name-empty',
+      });
+      return;
+    }
     const newBuild = {
       uid: data?.player.uid,
       nickname: data?.player.nickname,
@@ -40,7 +46,7 @@ const Profile = () => {
     localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
     setSavedBuilds(newBuilds);
     toast.success('Build saved!', {
-      toastId: 'success-build-saved',
+      toastId: `success-build-saved-${buildName}`,
     });
     setBuildName('');
   }, [character, buildName, savedBuilds]);
@@ -51,7 +57,7 @@ const Profile = () => {
       localStorage.setItem('savedBuilds', JSON.stringify(newBuilds));
       setSavedBuilds(newBuilds);
       toast.success('Build deleted!', {
-        toastId: 'success-build-deleted',
+        toastId: `success-build-deleted-${index}`,
       });
     },
     [savedBuilds]
@@ -238,8 +244,8 @@ const Profile = () => {
                               aria-hidden="true"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 strokeWidth="2"
                                 d="M6 18L18 6M6 6l12 12"
                               />
@@ -312,6 +318,7 @@ const Profile = () => {
                           value={buildName}
                           placeholder="Build Name"
                           aria-label="Build Name"
+                          maxLength={30}
                         />
                         <div
                           className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
