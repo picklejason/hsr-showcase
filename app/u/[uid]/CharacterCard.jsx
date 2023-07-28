@@ -3,13 +3,13 @@ import { AiFillLock } from 'react-icons/ai';
 const CharacterCard = ({ character, uid, nickname, showUID }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
-    <div className="BG min-h-[600px] w-[1600px] overflow-hidden rounded-xl">
+    <div className="BG min-h-[600px] w-[1420px] overflow-hidden rounded-3xl">
       <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
-          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.7]" />
+          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.9]" />
         </div>
 
-        <div className="Blur-BG relative z-10 flex min-h-[600px] w-[1200px] flex-row items-center gap-5">
+        <div className="Blur-BG relative z-10 flex min-h-[600px] w-3/4 flex-row items-center gap-3.5">
           <div className="w-1/11 ml-2">
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
@@ -35,7 +35,7 @@ const CharacterCard = ({ character, uid, nickname, showUID }) => {
               ))}
             </div>
           </div>
-          <div className="flex w-1/3 flex-col gap-2">
+          <div className="flex w-1/3 flex-col gap-2.5">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
