@@ -58,12 +58,16 @@ export async function GET(req, { params }) {
       }
     }
 
-    for (let i = character['relic_sets'].length - 1; i >= 1; i--) {
-      if (character['relic_sets'][i]['name'] === character['relic_sets'][i - 1]['name']) {
-        character['relic_sets'].splice(i, 1);
-        break;
+    const set_map = new Map();
+
+    for (const relic_set of character['relic_sets']) {
+      const { id, num } = relic_set;
+      if (!set_map.has(id) || num > set_map.get(id).num) {
+        set_map.set(id, relic_set);
       }
     }
+
+    character['relic_sets'] = Array.from(set_map.values());
 
     character.property = properties;
   }
