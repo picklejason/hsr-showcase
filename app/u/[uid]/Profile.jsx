@@ -157,7 +157,7 @@ const Profile = () => {
               </div>
               <div className="flex flex-col items-center gap-2">
                 <span className="text-2xl">UID {data?.player.uid}</span>
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row flex-wrap justify-center gap-4">
                   <div
                     className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                     onClick={() => router.push('/')}
@@ -172,7 +172,7 @@ const Profile = () => {
                   </div>
                   {savedUID !== uid && (
                     <div
-                      className="flex cursor-pointer flex-row justify-center gap-2 rounded-full bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className="flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={linkUID}
                     >
                       <Image
@@ -211,6 +211,7 @@ const Profile = () => {
                         setCharacter(savedBuilds[index].character);
                         setSelected(index);
                       }}
+                      key={build.character.id}
                     >
                       <div className="relative flex w-[100px] flex-col">
                         <div className="relative">
@@ -228,9 +229,9 @@ const Profile = () => {
                             className={'absolute left-0 top-0 text-gray-400 hover:text-gray-500'}
                             onClick={() => deleteBuild(index)}
                           >
-                            <span class="sr-only">Delete</span>
+                            <span className="sr-only">Delete</span>
                             <svg
-                              class="h-6 w-6"
+                              className="h-6 w-6"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
@@ -256,8 +257,8 @@ const Profile = () => {
                     <Image
                       src={asset_url + character.icon}
                       alt="Character Preview"
-                      width={84}
-                      height={84}
+                      width={96}
+                      height={96}
                       className={`
                             cursor-pointer 
                             rounded-full 
@@ -303,18 +304,18 @@ const Profile = () => {
                   </div>
                   {!showSavedBuilds && (
                     <>
-                      <div class="my-2 flex">
+                      <div className="my-2 flex">
                         <input
                           type="text"
                           name="buildName"
                           onChange={(e) => setBuildName(e.target.value)}
-                          class="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
+                          className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
                           value={buildName}
                           placeholder="Build Name"
                           aria-label="Build Name"
                         />
                         <div
-                          class="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                          className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                           onClick={saveBuild}
                         >
                           Save Build
