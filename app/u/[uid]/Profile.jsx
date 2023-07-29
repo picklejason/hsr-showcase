@@ -286,55 +286,57 @@ const Profile = () => {
                 <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
                   <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} blur={blur} />
                 </div>
+
                 <div className="flex w-screen flex-col items-center justify-center">
-                  <div className="mx-3 flex flex-row gap-4">
+                  <div
+                    className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                    onClick={() => saveImage(character.name)}
+                  >
+                    <Image
+                      src={asset_url + 'icon/sign/SettingsImageIcon.png'}
+                      alt="Save Image Icon"
+                      width={24}
+                      height={24}
+                    />
+                    <span className="text-xl">Download</span>
+                  </div>
+                  <div className="mx-3 flex flex-row flex-wrap items-center justify-center gap-4">
+                    <div
+                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={() => setShowUID(!showUID)}
+                    >
+                      <span>{!showUID ? 'Show' : 'Hide'} UID</span>
+                    </div>
                     <div
                       className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={() => setBlur(!blur)}
                     >
                       <span>Toggle Blur</span>
                     </div>
-                    <div
-                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                      onClick={() => setShowUID(!showUID)}
-                    >
-                      <span>Toggle UID</span>
-                    </div>
-                    <div
-                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                      onClick={() => saveImage(character.name)}
-                    >
-                      <Image
-                        src={asset_url + 'icon/sign/SettingsImageIcon.png'}
-                        alt="Save Image Icon"
-                        width={24}
-                        height={24}
-                      />
-                      <span>Export Image</span>
-                    </div>
-                  </div>
-                  {!showSavedBuilds && (
-                    <>
-                      <div className="my-2 flex">
-                        <input
-                          type="text"
-                          name="buildName"
-                          onChange={(e) => setBuildName(e.target.value)}
-                          className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
-                          value={buildName}
-                          placeholder="Build Name"
-                          aria-label="Build Name"
-                          maxLength={30}
-                        />
-                        <div
-                          className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                          onClick={saveBuild}
-                        >
-                          Save Build
+
+                    {!showSavedBuilds && (
+                      <>
+                        <div className="my-2 flex">
+                          <input
+                            type="text"
+                            name="buildName"
+                            onChange={(e) => setBuildName(e.target.value)}
+                            className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
+                            value={buildName}
+                            placeholder="Build Name"
+                            aria-label="Build Name"
+                            maxLength={30}
+                          />
+                          <div
+                            className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                            onClick={saveBuild}
+                          >
+                            Save Build
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  )}
+                      </>
+                    )}
+                  </div>
                 </div>
               </>
             )}
