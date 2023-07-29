@@ -1,15 +1,17 @@
 import { AiFillLock } from 'react-icons/ai';
 
-const CharacterCard = ({ character, uid, nickname, showUID }) => {
+const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
-    <div className="BG min-h-[600px] w-[1420px] overflow-hidden rounded-3xl">
+    <div className={`min-h-[600px] w-[1420px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'}`}>
       <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
           <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.9]" />
         </div>
 
-        <div className="Blur-BG relative z-10 flex min-h-[600px] w-3/4 flex-row items-center gap-3.5">
+        <div
+          className={`relative z-10 flex min-h-[600px] w-3/4 flex-row items-center gap-3.5 ${blur ? 'BG' : 'Blur-BG'}`}
+        >
           <div className="w-1/11 ml-2">
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (

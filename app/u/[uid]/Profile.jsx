@@ -16,6 +16,7 @@ const Profile = () => {
   const [character, setCharacter] = useState(null);
   const [selected, setSelected] = useState(null);
   const [showUID, setShowUID] = useState(true);
+  const [blur, setBlur] = useState(false);
   const [savedUID, setSavedUID] = useState('');
   const [savedBuilds, setSavedBuilds] = useState([]);
   const [buildName, setBuildName] = useState('');
@@ -283,15 +284,20 @@ const Profile = () => {
             {character && (
               <>
                 <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
-                  <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} />
+                  <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} blur={blur} />
                 </div>
                 <div className="flex w-screen flex-col items-center justify-center">
                   <div className="mx-3 flex flex-row gap-4">
                     <div
                       className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={() => setBlur(!blur)}
+                    >
+                      <span>Toggle Blur</span>
+                    </div>
+                    <div
+                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={() => setShowUID(!showUID)}
                     >
-                      <Image src={asset_url + 'icon/sign/Detail.png'} alt="Toggle UID Icon" width={24} height={24} />
                       <span>Toggle UID</span>
                     </div>
                     <div
