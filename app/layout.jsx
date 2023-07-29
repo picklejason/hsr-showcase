@@ -8,12 +8,12 @@ export const metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  keywords: ['Honkai Star Rail', 'HSR', 'HSR Showcase'],
+  keywords: ['Honkai Star Rail', 'HSR', 'HSR Showcase', 'HSR Build Card'],
   openGraph: {
     locale: 'en_US',
     url: 'https://hsr-showcase.vercel.app/',
     title: 'HSR Showcase',
-    description: 'View and create a character showcase card for Honkai: Star Rail',
+    description: 'Fetch data from your Trailblazer Profile and display a build card for Honkai: Star Rail',
     images: [
       {
         url: 'https://github.com/Mar-7th/StarRailRes/blob/master/icon/logo/bg.png?raw=true',
