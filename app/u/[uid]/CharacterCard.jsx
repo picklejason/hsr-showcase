@@ -3,7 +3,12 @@ import { AiFillLock } from 'react-icons/ai';
 const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
-    <div className={`min-h-[600px] w-[1420px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'}`}>
+    <div className={`relative min-h-[600px] w-[1420px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'}`}>
+      <div className="absolute bottom-2 left-4 z-10">
+        <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
+          {uid} · {nickname}
+        </span>
+      </div>
       <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
           <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[2]" />
@@ -39,7 +44,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
               </div>
             </div>
           </div>
-          <div className="flex w-1/3 flex-col gap-3">
+          <div className="flex w-1/3 flex-col gap-4">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
@@ -77,7 +82,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                     className="relative bottom-8 h-auto w-36"
                   />
                 </div>
-                <div className="flex w-1/2 flex-col gap-2 text-center">
+                <div className="flex w-3/5 flex-col gap-2 text-center">
                   <span className="text-xl">{character?.light_cone?.name}</span>
                   <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone?.rank}</span>
                   <div>
@@ -87,7 +92,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                   </div>
                   <div className="flex flex-row justify-evenly">
                     {character?.light_cone?.attributes.map((attribute) => (
-                      <div key={attribute.id} className="black-blur flex w-1/5 flex-col items-center rounded-lg p-1">
+                      <div key={attribute.id} className="black-blur flex flex-row items-center rounded pr-1">
                         <img src={asset_url + attribute.icon} alt="Attribute Icon" className="h-auto w-6" />
                         <span className="text-sm">{attribute.display}</span>
                       </div>
@@ -121,11 +126,6 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="mt-4">
-              <span className={`${showUID ? '' : 'hidden'}`}>
-                UID {uid} · {nickname}
-              </span>
             </div>
           </div>
           <div className="w-1/3">
