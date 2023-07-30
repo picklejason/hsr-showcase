@@ -13,7 +13,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
           className={`relative z-10 flex min-h-[600px] w-3/4 flex-row items-center gap-3.5 ${blur ? 'BG' : 'Blur-BG'}`}
         >
           <div className="w-1/11 ml-2 mr-[-20px]">
-            <div className="relative right-[32px] pb-[265px] before:absolute before:left-1/2 before:top-0 before:h-full before:w-[2px] before:bg-neutral-300">
+            <div className="relative right-[32px] pb-[250px] pt-[10px] before:absolute before:left-1/2 before:top-0 before:h-full before:w-[2px] before:bg-neutral-300">
               <div className="flex flex-col">
                 {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
                   <div
