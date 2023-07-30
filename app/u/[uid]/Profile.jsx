@@ -305,7 +305,7 @@ const Profile = () => {
                       className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={() => setShowUID(!showUID)}
                     >
-                      <span>{!showUID ? 'Show' : 'Hide'} UID</span>
+                      <span>{!showUID ? 'Show' : 'Hide'} UID / Name</span>
                     </div>
                     <div
                       className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
