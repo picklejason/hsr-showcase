@@ -298,7 +298,7 @@ const Profile = () => {
                       width={24}
                       height={24}
                     />
-                    <span className="text-xl">Download</span>
+                    <span className="text-2xl">Download</span>
                   </div>
                   <div className="mx-3 flex flex-row flex-wrap items-center justify-center gap-4">
                     <div
