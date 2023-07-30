@@ -6,38 +6,40 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
     <div className={`min-h-[600px] w-[1420px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'}`}>
       <div className="flex flex-row items-center">
         <div className="z-0 w-1/4 items-center">
-          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.9]" />
+          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[2]" />
         </div>
 
         <div
           className={`relative z-10 flex min-h-[600px] w-3/4 flex-row items-center gap-3.5 ${blur ? 'BG' : 'Blur-BG'}`}
         >
-          <div className="w-1/11 ml-2">
-            <div className="flex flex-col">
-              {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
-                <div
-                  key={rank_icon.id}
-                  className="relative my-2 flex rounded-full border-2 border-neutral-300 bg-neutral-800"
-                >
-                  <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-12" />
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col">
-              {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
-                <div
-                  key={rank_icon.id}
-                  className="relative my-2 flex rounded-full border-2 border-neutral-500 bg-neutral-800"
-                >
-                  <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-12 scale-[0.9]" />
-                  <div className="absolute flex h-full w-full items-center justify-center rounded-full bg-neutral-800/70">
-                    <AiFillLock className="h-6 w-6" />
+          <div className="w-1/11 ml-2 mr-[-20px]">
+            <div className="relative right-[32px] pb-[265px] before:absolute before:left-1/2 before:top-0 before:h-full before:w-[2px] before:bg-neutral-300">
+              <div className="flex flex-col">
+                {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
+                  <div
+                    key={rank_icon.id}
+                    className="relative my-2 flex rounded-full border-2 border-neutral-300 bg-neutral-800"
+                  >
+                    <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-12" />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div className="flex flex-col">
+                {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
+                  <div
+                    key={rank_icon.id}
+                    className="relative my-2 flex rounded-full border-2 border-neutral-500 bg-neutral-800"
+                  >
+                    <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-12 scale-[0.9]" />
+                    <div className="absolute flex h-full w-full items-center justify-center rounded-full bg-neutral-800/70">
+                      <AiFillLock className="h-6 w-6" />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="flex w-1/3 flex-col gap-2.5">
+          <div className="flex w-1/3 flex-col gap-3">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
@@ -120,7 +122,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                 </div>
               ))}
             </div>
-            <div>
+            <div className="mt-4">
               <span className={`${showUID ? '' : 'hidden'}`}>
                 UID {uid} · {nickname}
               </span>
@@ -134,7 +136,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                     <img src={asset_url + stat.icon} alt="Stat Icon" className="h-auto w-9" />
                     <span>{stat.name}</span>
                   </div>
-                  <span className="m-5 flex-grow rounded border-[0.5px] border-white opacity-50"></span>
+                  <span className="m-5 flex-grow rounded border-[1px] border-neutral-300"></span>
                   <div className="flex flex-col text-right">
                     <span>{stat.display}</span>
                     <div className="flex flex-row">
