@@ -10,39 +10,41 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
         </span>
       </div>
       <div className="flex flex-row items-center">
-        <div className="w-1/4 items-center">
-          <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[2]" />
-        </div>
-        <div
-          className={`relative z-10 flex min-h-[650px] w-3/4 flex-row items-center gap-3.5 ${blur ? 'Blur-BG' : 'BG'}`}
-        >
-          <div className="w-1/11 ml-2 mr-[-20px]">
-            <div className="relative right-[32px] min-h-[650px] before:absolute before:left-1/2 before:h-full before:w-[2px] before:bg-neutral-300">
-              <div className="flex flex-col pt-5">
-                {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
-                  <div
-                    key={rank_icon.id}
-                    className="relative my-2 flex rounded-full border-2 border-neutral-300 bg-neutral-800"
-                  >
-                    <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-12" />
+        <div className="relative min-h-[650px] w-[28%]">
+          <div className="flex min-h-[650px] items-center ">
+            <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
+          </div>
+          <div className="absolute right-0 top-0 pr-3 pt-1">
+            <div className="flex flex-col">
+              {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
+                <div
+                  key={rank_icon.id}
+                  className="relative my-1 flex rounded-full border-2 border-neutral-300 bg-neutral-800"
+                >
+                  <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-10" />
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col">
+              {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
+                <div
+                  key={rank_icon.id}
+                  className="relative my-1 flex rounded-full border-2 border-neutral-500 bg-neutral-800"
+                >
+                  <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-10 scale-[0.9]" />
+                  <div className="absolute flex h-full w-full items-center justify-center rounded-full bg-neutral-800/70">
+                    <AiFillLock className="h-5 w-5" />
                   </div>
-                ))}
-              </div>
-              <div className="flex flex-col">
-                {character?.rank_icons.slice(character?.rank, 6).map((rank_icon) => (
-                  <div
-                    key={rank_icon.id}
-                    className="relative my-2 flex rounded-full border-2 border-neutral-500 bg-neutral-800"
-                  >
-                    <img src={asset_url + rank_icon} alt="Rank Icon" className="h-auto w-12 scale-[0.9]" />
-                    <div className="absolute flex h-full w-full items-center justify-center rounded-full bg-neutral-800/70">
-                      <AiFillLock className="h-6 w-6" />
-                    </div>
-                  </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
+        <div
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 pl-7 ${
+            blur ? 'Blur-BG' : 'BG'
+          }`}
+        >
           <div className="flex min-h-[600px] w-1/3 flex-col justify-between">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
@@ -114,7 +116,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                 </div>
               ))}
             </div>
-            <hr />
+            <hr className="" />
             <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
                 <div key={relic_set.id} className="flex w-3/4 flex-row justify-between text-left">
