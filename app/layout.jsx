@@ -11,7 +11,7 @@ export const metadata = {
   keywords: ['Honkai Star Rail', 'HSR', 'HSR Showcase', 'HSR Build Card'],
   openGraph: {
     locale: 'en_US',
-    url: 'https://hsr-showcase.vercel.app/',
+    url: 'https://www.hsr-showcase.com/',
     title: 'HSR Showcase',
     description: 'Fetch data from your Trailblazer Profile and display a build card for Honkai: Star Rail',
     images: [
