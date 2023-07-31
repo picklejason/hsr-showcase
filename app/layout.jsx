@@ -1,6 +1,13 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Footer from './Footer';
+import { Nunito_Sans } from 'next/font/google';
+
+const nunito_sans = Nunito_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-nunito_sans',
+});
 
 export const metadata = {
   title: 'HSR Showcase',
@@ -34,7 +41,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={nunito_sans.variable}>
       <body className="Blur-BG no-scrollbar bg-fixed font-semibold text-white">
         {children}
         <Footer />
