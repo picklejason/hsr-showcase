@@ -131,12 +131,11 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
           <div className="w-1/3">
             <div className="flex w-full flex-col justify-center gap-y-1.5 text-lg">
               {character?.property.map((stat) => (
-                <div key={stat.id} className="flex flex-row items-center">
+                <div key={stat.id} className="flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center">
                     <img src={asset_url + stat.icon} alt="Stat Icon" className="h-auto w-10" />
                     <span>{stat.name}</span>
                   </div>
-                  <span className="m-5 flex-grow rounded border-[1px] border-neutral-300"></span>
                   <div className="flex flex-col text-right">
                     <span>{stat.display}</span>
                     <div className="flex flex-row">
