@@ -283,7 +283,7 @@ const Profile = () => {
             </div>
             {character && (
               <>
-                <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'DIN' }}>
+                <div className="showcase mx-3" ref={ref}>
                   <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} blur={blur} />
                 </div>
 
