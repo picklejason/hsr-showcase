@@ -321,7 +321,7 @@ const Profile = () => {
                             type="text"
                             name="buildName"
                             onChange={(e) => setBuildName(e.target.value)}
-                            className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-neutral-600 outline-none"
+                            className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 text-base leading-[1.6] text-neutral-600 outline-none"
                             value={buildName}
                             placeholder="Build Name"
                             aria-label="Build Name"

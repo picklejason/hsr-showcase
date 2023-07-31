@@ -133,7 +133,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center">
                   <div className="flex flex-row items-center">
-                    <img src={asset_url + stat.icon} alt="Stat Icon" className="h-auto w-9" />
+                    <img src={asset_url + stat.icon} alt="Stat Icon" className="h-auto w-10" />
                     <span>{stat.name}</span>
                   </div>
                   <span className="m-5 flex-grow rounded border-[1px] border-neutral-300"></span>
@@ -174,7 +174,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                     {relic.sub_affix.map((sub_affix) => (
                       <div key={sub_affix.id} className="flex flex-row items-center">
                         <img src={asset_url + sub_affix.icon} alt="Sub Affix Icon" className="h-auto w-7" />
-                        <span className="text-base">+{sub_affix.display}</span>
+                        <span className="text-sm">+{sub_affix.display}</span>
                       </div>
                     ))}
                   </div>
