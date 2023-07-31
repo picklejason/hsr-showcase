@@ -3,23 +3,22 @@ import { AiFillLock } from 'react-icons/ai';
 const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
-    <div className={`relative min-h-[600px] w-[1420px] overflow-hidden rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
+    <div className={`relative min-h-[650px] w-[1420px] overflow-hidden rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
         </span>
       </div>
       <div className="flex flex-row items-center">
-        <div className="z-0 w-1/4 items-center">
+        <div className="w-1/4 items-center">
           <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[2]" />
         </div>
-
         <div
-          className={`relative z-10 flex min-h-[600px] w-3/4 flex-row items-center gap-3.5 ${blur ? 'Blur-BG' : 'BG'}`}
+          className={`relative z-10 flex min-h-[650px] w-3/4 flex-row items-center gap-3.5 ${blur ? 'Blur-BG' : 'BG'}`}
         >
           <div className="w-1/11 ml-2 mr-[-20px]">
-            <div className="relative right-[32px] pb-[250px] pt-[10px] before:absolute before:left-1/2 before:top-0 before:h-full before:w-[2px] before:bg-neutral-300">
-              <div className="flex flex-col">
+            <div className="relative right-[32px] min-h-[650px] before:absolute before:left-1/2 before:h-full before:w-[2px] before:bg-neutral-300">
+              <div className="flex flex-col pt-5">
                 {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
                   <div
                     key={rank_icon.id}
@@ -44,13 +43,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
               </div>
             </div>
           </div>
-          <div className="flex w-1/3 flex-col gap-4">
+          <div className="flex min-h-[600px] w-1/3 flex-col justify-between">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
                 <img src={asset_url + character?.element.icon} alt="Element Icon" className="h-auto w-14" />
               </div>
-
               <div className="flex flex-row items-center gap-2">
                 <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-auto w-8" />
                 <span className="text-xl">{character?.path.name}</span>
@@ -122,13 +120,13 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                 <div key={relic_set.id} className="flex w-3/4 flex-row justify-between text-left">
                   <span className="text-base">{relic_set.name}</span>
                   <div>
-                    <span className="black-blur flex w-5 rounded px-1.5 py-0.5">{relic_set.num}</span>
+                    <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">{relic_set.num}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="w-1/3">
+          <div className="flex min-h-[600px] w-1/3">
             <div className="flex w-full flex-col justify-center gap-y-1.5 text-lg">
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
