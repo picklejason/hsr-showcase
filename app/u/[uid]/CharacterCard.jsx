@@ -3,7 +3,7 @@ import { AiFillLock } from 'react-icons/ai';
 const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   return (
-    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'BG' : 'Blur-BG'} `}>
+    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'} `}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
@@ -41,8 +41,8 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 pl-7 ${
-            blur ? 'Blur-BG' : 'BG'
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-l-3xl border-l-2 border-neutral-300 pl-7 ${
+            blur ? 'BG' : 'Blur-BG'
           }`}
         >
           <div className="flex min-h-[600px] w-1/3 flex-col justify-between">
