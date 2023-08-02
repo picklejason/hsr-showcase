@@ -1,12 +1,12 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Footer from './Footer';
-import { Nunito_Sans } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 
-const nunito_sans = Nunito_Sans({
+const nunito = Nunito({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-nunito_sans',
+  variable: '--font-nunito',
 });
 
 export const metadata = {
@@ -41,7 +41,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={nunito_sans.variable}>
+    <html lang="en" className={nunito.variable}>
       <body className="Blur-BG no-scrollbar bg-fixed font-semibold text-white">
         {children}
         <Footer />

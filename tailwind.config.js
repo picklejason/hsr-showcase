@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-nunito_sans)'],
+        sans: ['var(--font-nunito)'],
       },
     },
   },
