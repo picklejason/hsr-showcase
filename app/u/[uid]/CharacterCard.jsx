@@ -106,12 +106,24 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             <div className="flex flex-row justify-evenly">
               {character?.skill_trees.slice(0, 4).map((skill, index) => (
                 <div key={skill.id} className="flex flex-col items-center ">
-                  <img
-                    src={asset_url + skill.icon}
-                    alt="Skill Icon"
-                    className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
-                  />
-                  <span className="text-base">Lv. {skill.level}</span>
+                  <div className="relative h-auto w-12">
+                    <svg class="absolute scale-[1.32] opacity-20" focusable="false" viewBox="0 0 14 14">
+                      <g style={{ fill: '#FFFFFF' }}>
+                        <path
+                          d="M143.21 42.498v1.89a7.456 7.456 0 0 0-7.225 7.449 7.459 7.459 0 0 0 6.35 7.373c.07.46.423.829.874.924v.91h.46v-.91a1.12 1.12 0 0 0 .875-.924 7.454 7.454 0 0 0-.874-14.822v-1.89zm0 2.141v1.54a.873.873 0 0 0 0 1.682v10.087a1.12 1.12 0 0 0-.885 1.006 7.203 7.203 0 0 1-6.088-7.117 7.2 7.2 0 0 1 6.972-7.198zm.46 0a7.198 7.198 0 0 1 6.971 7.198 7.201 7.201 0 0 1-6.088 7.118 1.12 1.12 0 0 0-.884-1.007V47.86a.873.873 0 0 0 0-1.682zm-.246 1.76h.016a.62.62 0 0 1 .62.623c0 .344-.276.62-.62.62a.619.619 0 0 1-.622-.62.62.62 0 0 1 .605-.623zm-.007 11.775h.022c.48 0 .867.387.867.867s-.386.867-.867.867a.865.865 0 0 1-.867-.867c0-.473.375-.855.844-.867z"
+                          transform="translate(-68.277 -20.179) scale(.5248)"
+                        ></path>
+                      </g>
+                    </svg>
+                    <img
+                      src={asset_url + skill.icon}
+                      alt="Skill Icon"
+                      className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                    />
+                  </div>
+                  <span className="text-base">
+                    {skill.level} / {skill.max_level}
+                  </span>
                   <span className="text-sm">{character?.skills[index].type_text}</span>
                 </div>
               ))}
