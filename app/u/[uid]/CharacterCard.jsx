@@ -141,14 +141,14 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             </div>
           </div>
           <div className="flex min-h-[600px] w-1/3">
-            <div className="flex w-full flex-col justify-center gap-y-1.5 text-lg">
+            <div className="flex w-full flex-col justify-center gap-y-2 text-lg">
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center">
                     <img src={asset_url + stat.icon} alt="Stat Icon" className="h-auto w-10" />
                     <span>{stat.name}</span>
                   </div>
-                  <span className="m-5 flex-grow rounded border-[1px] border-neutral-300"></span>
+                  <span className="mx-3 flex-grow rounded border-[1px] border-neutral-300 opacity-50"></span>
                   <div className="flex flex-col text-right">
                     <span>{stat.display}</span>
                     <div className="flex flex-row">
@@ -178,7 +178,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                   </div>
                   <div className="mx-1 flex w-1/6 flex-col items-center justify-center">
                     <img src={asset_url + relic.main_affix.icon} alt="Main Affix Icon" className="h-auto w-9" />
-                    <span className="text-lg text-[#f1a23c]">{relic.main_affix.display}</span>
+                    <span className="text-base text-[#f1a23c]">{relic.main_affix.display}</span>
                     <span className="black-blur rounded px-1 text-xs">+{relic.level}</span>
                   </div>
                   <div className="inline-block h-[80px] min-h-[1em] w-0.5 self-stretch bg-neutral-300"></div>
