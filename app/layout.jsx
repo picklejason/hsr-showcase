@@ -16,6 +16,9 @@ export const metadata = {
     icon: '/favicon.ico',
   },
   keywords: ['Honkai Star Rail', 'HSR', 'HSR Showcase', 'HSR Build Card'],
+  alternates: {
+    canonical: 'https://www.hsr-showcase.com/',
+  },
   openGraph: {
     locale: 'en_US',
     url: 'https://www.hsr-showcase.com/',
