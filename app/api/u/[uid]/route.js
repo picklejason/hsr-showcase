@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
   const { uid } = params;
-  const res = await fetch(`https://api.mihomo.me/sr_info_parsed/${uid}?lang=en`, { next: { revalidate: 60 } });
+  const res = await fetch(`https://api.mihomo.me/sr_info_parsed/${uid}?lang=en`, { next: { revalidate: 180 } });
   const data = await res.json();
 
   for (const character of data['characters']) {

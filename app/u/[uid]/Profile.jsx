@@ -75,7 +75,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/u/${uid}`, { next: { revalidate: 180 } });
+        const res = await fetch(`/api/u/${uid}`);
         if (res.ok) {
           const data = await res.json();
           setData(data);
