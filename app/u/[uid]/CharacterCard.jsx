@@ -45,7 +45,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-l-3xl border-l-2 border-neutral-300 pl-7 ${
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 border-dashed border-neutral-300 border-opacity-75 pl-7 ${
             blur ? 'BG' : 'Blur-BG'
           }`}
         >
@@ -196,9 +196,14 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             </div>
           </div>
           <div className="w-1/3">
-            <div className="flex flex-col justify-between gap-1.5 text-lg">
+            <div className="flex flex-col justify-between gap-2.5 text-lg">
               {character?.relics.map((relic) => (
-                <div key={relic.id} className="black-blur relative flex flex-row items-center rounded-s-lg p-2">
+                <div
+                  key={relic.id}
+                  className={`black-blur relative flex flex-row items-center rounded-s-lg border-l-2 p-1 ${
+                    relic.rarity == 5 ? 'border-yellow-600' : 'border-purple-600'
+                  }`}
+                >
                   <div className="flex">
                     <img src={asset_url + relic.icon} alt="Relic Icon" className="h-auto w-20" />
                     <img
