@@ -1,7 +1,12 @@
 import { AiFillLock } from 'react-icons/ai';
+import Image from 'next/image';
 
 const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
+  const skill_types = new Map();
+  character.skills.forEach((skill) => {
+    skill_types.set(skill.id.slice(-1), skill.type_text);
+  });
   return (
     <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'} `}>
       <div className="absolute bottom-2 left-4 z-10">
@@ -11,7 +16,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
       </div>
       <div className="flex flex-row items-center">
         <div className="relative min-h-[650px] w-[28%]">
-          <div className="flex min-h-[650px] items-center ">
+          <div className="flex min-h-[650px] items-center">
             <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
           </div>
           <div className="absolute right-0 top-0 pr-3 pt-1">
@@ -45,7 +50,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             blur ? 'BG' : 'Blur-BG'
           }`}
         >
-          <div className="flex min-h-[600px] w-1/3 flex-col justify-between">
+          <div className="flex min-h-[600px] w-1/3 flex-col justify-between gap-2">
             <div className="flex flex-col gap-0.5">
               <div className="flex flex-row items-center justify-between">
                 <span className="text-5xl">{character?.name}</span>
@@ -68,9 +73,67 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                 <span className="text-xl text-neutral-400">{character?.promotion * 10 + 20}</span>
               </div>
             </div>
+            <div className="relative flex flex-row items-center justify-evenly">
+              <div className="absolute mb-5">
+                <Image
+                  src={asset_url + character?.path.icon}
+                  alt="Path Icon"
+                  width={128}
+                  height={128}
+                  className="h-40 w-40 opacity-20 "
+                />
+              </div>
+              <div className="flex flex-col gap-6">
+                {character?.skill_trees.slice(0, 2).map((skill) => (
+                  <div key={skill.id} className="flex flex-col items-center">
+                    <div className="relative flex flex-col items-center">
+                      <img
+                        src={asset_url + skill.icon}
+                        alt="Skill Icon"
+                        className="z-5 h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                      />
+                      <span className="black-blur absolute bottom-4 text-sm">
+                        {skill.level} / {skill.max_level}
+                      </span>
+                      <span className="mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center">
+                <div className="relative flex flex-col items-center">
+                  <img
+                    src={asset_url + character?.skill_trees[2].icon}
+                    alt="Skill Icon"
+                    className="z-5 h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                  />
+                  <span className="black-blur absolute bottom-4 text-sm">
+                    {character?.skill_trees[2].level} / {character?.skill_trees[2].max_level}
+                  </span>
+                  <span className="mt-1.5 text-sm">{skill_types.get(character?.skill_trees[2].id.slice(-1))}</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-6">
+                {character?.skill_trees.slice(3, 5).map((skill, index) => (
+                  <div key={skill.id} className="flex flex-col items-center">
+                    <div className="relative flex flex-col items-center">
+                      <img
+                        src={asset_url + skill.icon}
+                        alt="Skill Icon"
+                        className="z-5 h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                      />
+                      <span className="black-blur absolute bottom-4 text-sm">
+                        {skill.level} / {skill.max_level}
+                      </span>
+                      <span className="mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             {character?.light_cone ? (
               <div className="flex flex-row items-center justify-center">
-                <div className="flex flex-col items-center">
+                <div className="relative flex flex-col items-center">
                   <img
                     src={asset_url + character?.light_cone?.preview}
                     alt="Light Cone Preview"
@@ -79,10 +142,10 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                   <img
                     src={asset_url + 'icon/deco/Rarity' + character?.light_cone?.rarity + '.png'}
                     alt="Light Cone Rarity Icon"
-                    className="relative bottom-8 h-auto w-36"
+                    className="absolute bottom-1 h-auto w-36"
                   />
                 </div>
-                <div className="flex w-3/5 flex-col gap-2 text-center">
+                <div className="flex w-3/5 flex-col gap-1 text-center">
                   <span className="text-xl">{character?.light_cone?.name}</span>
                   <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone?.rank}</span>
                   <div>
@@ -103,21 +166,6 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             ) : (
               <span className="flex justify-center">No Light Cone Equipped</span>
             )}
-            <div className="flex flex-row justify-evenly">
-              {character?.skill_trees.slice(0, 4).map((skill, index) => (
-                <div key={skill.id} className="flex flex-col items-center ">
-                  <img
-                    src={asset_url + skill.icon}
-                    alt="Skill Icon"
-                    className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
-                  />
-                  <span className="text-base">
-                    {skill.level} / {skill.max_level}
-                  </span>
-                  <span className="text-sm">{character?.skills[index].type_text}</span>
-                </div>
-              ))}
-            </div>
             <hr className="" />
             <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
