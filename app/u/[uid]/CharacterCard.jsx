@@ -1,5 +1,4 @@
 import { AiFillLock } from 'react-icons/ai';
-import Image from 'next/image';
 
 const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
@@ -75,13 +74,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             </div>
             <div className="relative flex flex-row items-center justify-evenly">
               <div className="absolute mb-5">
-                <Image
-                  src={asset_url + character?.path.icon}
-                  alt="Path Icon"
-                  width={128}
-                  height={128}
-                  className="h-40 w-40 opacity-20 "
-                />
+                <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20 " />
               </div>
               <div className="flex flex-col gap-6">
                 {character?.skill_trees.slice(0, 2).map((skill) => (
