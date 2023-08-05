@@ -196,7 +196,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             </div>
           </div>
           <div className="w-1/3">
-            <div className="flex flex-col justify-between gap-2.5 text-lg">
+            <div className="flex flex-col justify-between gap-3 text-lg">
               {character?.relics.map((relic) => (
                 <div
                   key={relic.id}
@@ -217,7 +217,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                     <span className="text-base text-[#f1a23c]">{relic.main_affix.display}</span>
                     <span className="black-blur rounded px-1 text-xs">+{relic.level}</span>
                   </div>
-                  <div className="inline-block h-[80px] min-h-[1em] w-0.5 self-stretch bg-neutral-300"></div>
+                  <div className="h-[80px] border-l-2 border-dashed opacity-75"></div>
                   <div className="m-auto grid w-1/2 grid-cols-2 gap-2">
                     {relic.sub_affix.map((sub_affix) => (
                       <div key={sub_affix.id} className="flex flex-row items-center">
