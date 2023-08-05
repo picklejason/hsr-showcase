@@ -7,9 +7,14 @@ import Image from 'next/image';
 export default function Search() {
   const [UID, setUID] = useState('');
   const [savedUID, setSavedUID] = useState('');
+  const [lang, setLang] = useState('');
 
   useEffect(() => {
+    if (!localStorage.getItem('lang')) {
+      localStorage.setItem('lang', 'en');
+    }
     setSavedUID(localStorage.getItem('uid'));
+    setLang(localStorage.getItem('lang') || 'en');
   }, []);
 
   return (
@@ -17,17 +22,44 @@ export default function Search() {
       <label htmlFor="uid" className="sr-only">
         Enter UID
       </label>
-      <div className="flex flex-row gap-3">
-        <input
-          type="text"
-          name="uid"
-          onChange={(e) => setUID(e.target.value)}
-          value={UID}
-          placeholder="Enter UID"
-          className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-center leading-tight text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
-        />
-        <div className="focus:shadow-outline cursor-pointer rounded bg-purple-600 px-4 py-2 font-bold text-white shadow hover:bg-purple-500 focus:outline-none">
-          <Link href={`/u/${UID}`}>Search</Link>
+      <div className="flex flex-row flex-wrap justify-center gap-3">
+        <select
+          name="lang"
+          id="lang"
+          onChange={(e) => {
+            setLang(e.target.value);
+            localStorage.setItem('lang', e.target.value);
+          }}
+          value={lang}
+          className="w-24 rounded border-2 border-gray-200 py-2 text-center text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
+          defaultValue={localStorage.getItem('lang') || 'en'}
+        >
+          <option value="cn">简体中文</option>
+          <option value="cht">繁體中文</option>
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="jp">日本語</option>
+          <option value="kr">한국어</option>
+          <option value="pt">Português</option>
+          <option value="ru">Русский</option>
+          <option value="th">ภาษาไทย</option>
+          <option value="vi">Tiếng Việt</option>
+        </select>
+        <div className="flex gap-3">
+          <input
+            type="text"
+            name="uid"
+            onChange={(e) => setUID(e.target.value)}
+            value={UID}
+            placeholder="Enter UID"
+            className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-center leading-tight text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
+          />
+          <div className="focus:shadow-outline flex cursor-pointer items-center rounded bg-purple-600 px-4 py-2 font-bold text-white shadow hover:bg-purple-500 focus:outline-none">
+            <Link href={`/u/${UID}`}>Search</Link>
+          </div>
         </div>
       </div>
       {savedUID && (
