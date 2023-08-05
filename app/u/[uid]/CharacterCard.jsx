@@ -60,13 +60,6 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                 <span className="text-xl">{character?.path.name}</span>
               </div>
               <div>
-                <img
-                  src={asset_url + 'icon/deco/Star' + character?.rarity + '.png'}
-                  alt="Character Rarity Icon"
-                  className="h-auto w-24"
-                />
-              </div>
-              <div>
                 <span className="text-2xl">Lv. {character?.level}</span>
                 <span className="text-xl"> / </span>
                 <span className="text-xl text-neutral-400">{character?.promotion * 10 + 20}</span>
