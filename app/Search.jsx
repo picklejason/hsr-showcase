@@ -14,7 +14,7 @@ export default function Search() {
       localStorage.setItem('lang', 'en');
     }
     setSavedUID(localStorage.getItem('uid'));
-    setLang(localStorage.getItem('lang') || 'en');
+    setLang(localStorage.getItem('lang'));
   }, []);
 
   return (
@@ -30,9 +30,8 @@ export default function Search() {
             setLang(e.target.value);
             localStorage.setItem('lang', e.target.value);
           }}
+          className="w-28 rounded border-2 border-gray-200 text-center text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
           value={lang}
-          className="w-24 rounded border-2 border-gray-200 py-2 text-center text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
-          defaultValue={localStorage.getItem('lang') || 'en'}
         >
           <option value="cn">简体中文</option>
           <option value="cht">繁體中文</option>
