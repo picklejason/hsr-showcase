@@ -6,57 +6,47 @@ export async function GET(req, { params }) {
   const data = await res.json();
 
   for (const character of data['characters']) {
-    const properties = [];
+    const attributeMap = {};
+    character['attributes'].forEach((attribute) => {
+      attributeMap[attribute.field] = attribute;
+    });
 
-    for (const attr of character['attributes']) {
-      for (const add of character['additions']) {
-        if (attr['name'] === add['name']) {
-          const d = {};
-          d['name'] = attr['name'];
-          d['base'] = attr['display'];
-          d['addition'] = add['display'];
+    const additionMap = {};
+    character['additions'].forEach((addition) => {
+      additionMap[addition.field] = addition;
+    });
 
-          if (add['percent']) {
-            d['display'] = `${
-              parseFloat(attr['display'].replace('%', '')) + parseFloat(add['display'].replace('%', ''))
-            }%`;
-          } else {
-            d['display'] = parseInt(parseFloat(attr['display'])) + parseInt(parseFloat(add['display']));
-          }
+    const combinedAttributes = [];
 
-          d['icon'] = add['icon'];
-          properties.push(d);
-        }
+    // Iterate through attributes and process both attributes and corresponding additions
+    character['attributes'].forEach((attribute) => {
+      const addition = additionMap[attribute.field];
+      const totalValue = parseFloat(attribute.display || '0') + (addition ? parseFloat(addition.display || '0') : 0);
+
+      combinedAttributes.push({
+        name: attribute.name,
+        icon: attribute.icon,
+        base: attribute.display || 0,
+        addition: addition ? addition.display || 0 : 0,
+        display: totalValue.toFixed(attribute.percent ? 1 : 0) + (attribute.percent ? '%' : ''),
+      });
+
+      // Mark the addition as processed
+      if (addition) {
+        additionMap[attribute.field] = null;
       }
+    });
 
-      let found = false;
-      for (const d of properties) {
-        if (attr['name'] === d['name']) {
-          found = true;
-          break;
-        }
+    // Process remaining unprocessed additions
+    character['additions'].forEach((addition) => {
+      if (additionMap[addition.field] !== null) {
+        combinedAttributes.push({
+          name: addition.name,
+          icon: addition.icon,
+          display: addition.display,
+        });
       }
-
-      if (!found) {
-        const d = {};
-        d['name'] = attr['name'];
-
-        d['display'] = attr['display'];
-        d['icon'] = attr['icon'];
-        properties.push(d);
-      }
-    }
-
-    for (const add of character['additions']) {
-      if (!['ATK', 'HP', 'DEF', 'SPD', 'CRIT DMG', 'CRIT Rate'].includes(add['name'])) {
-        const d = {};
-        d['name'] = add['name'];
-
-        d['display'] = add['display'];
-        d['icon'] = add['icon'];
-        properties.push(d);
-      }
-    }
+    });
 
     const set_map = new Map();
 
@@ -69,7 +59,7 @@ export async function GET(req, { params }) {
 
     character['relic_sets'] = Array.from(set_map.values());
 
-    character.property = properties;
+    character.property = combinedAttributes;
   }
   return NextResponse.json(data);
 }
