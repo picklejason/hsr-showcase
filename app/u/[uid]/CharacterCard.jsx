@@ -57,122 +57,127 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
           }`}
         >
           <div className="flex min-h-[600px] w-1/3 flex-col justify-between gap-2">
-            <div className="flex flex-col gap-0.5">
-              <div className="flex flex-row items-center justify-between">
-                <span className="text-5xl">{character?.name}</span>
-                <img src={asset_url + character?.element.icon} alt="Element Icon" className="h-auto w-14" />
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-auto w-8" />
-                <span className="text-xl">{character?.path.name}</span>
-              </div>
-              <div>
-                <span className="text-2xl">Lv. {character?.level}</span>
-                <span className="text-xl"> / </span>
-                <span className="text-xl text-neutral-400">{character?.promotion * 10 + 20}</span>
-              </div>
-            </div>
-            <div className="relative flex flex-row items-center justify-evenly">
-              <div className="absolute mb-5">
-                <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20 " />
-              </div>
-              <div className="flex flex-col gap-6">
-                {character?.skill_trees.slice(0, 2).map((skill) => (
-                  <div key={skill.id} className="flex flex-col items-center">
-                    <div className="relative flex flex-col items-center">
-                      <img
-                        src={asset_url + skill.icon}
-                        alt="Skill Icon"
-                        className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
-                      />
-                      <span className="black-blur absolute bottom-4 text-sm">
-                        {skill.level} / {skill.max_level}
-                      </span>
-                      <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center">
-                <div className="relative flex flex-col items-center">
-                  <img
-                    src={asset_url + character?.skill_trees[2].icon}
-                    alt="Skill Icon"
-                    className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
-                  />
-                  <span className="black-blur absolute bottom-4 text-sm">
-                    {character?.skill_trees[2].level} / {character?.skill_trees[2].max_level}
-                  </span>
-                  <span className="z-10 mt-1.5 text-sm">{skill_types.get(character?.skill_trees[2].id.slice(-1))}</span>
+            <div>
+              <div className="flex flex-col gap-0.5">
+                <div className="flex flex-row items-center justify-between">
+                  <span className="text-5xl">{character?.name}</span>
+                  <img src={asset_url + character?.element.icon} alt="Element Icon" className="h-auto w-14" />
+                </div>
+                <div className="flex flex-row items-center gap-2">
+                  <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-auto w-8" />
+                  <span className="text-xl">{character?.path.name}</span>
+                </div>
+                <div>
+                  <span className="text-2xl">Lv. {character?.level}</span>
+                  <span className="text-xl"> / </span>
+                  <span className="text-xl text-neutral-400">{character?.promotion * 10 + 20}</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-6">
-                {character?.skill_trees.slice(3, 5).map((skill, index) => (
-                  <div key={skill.id} className="flex flex-col items-center">
-                    <div className="relative flex flex-col items-center">
-                      <img
-                        src={asset_url + skill.icon}
-                        alt="Skill Icon"
-                        className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
-                      />
-                      <span className="black-blur absolute bottom-4 text-sm">
-                        {skill.level} / {skill.max_level}
-                      </span>
-                      <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {character?.light_cone ? (
-              <div className="flex flex-row items-center justify-center">
-                <div className="relative flex flex-col items-center">
-                  <img
-                    src={asset_url + character?.light_cone?.preview}
-                    alt="Light Cone Preview"
-                    className="h-auto w-32"
-                  />
-                  <img
-                    src={asset_url + 'icon/deco/Rarity' + character?.light_cone?.rarity + '.png'}
-                    alt="Light Cone Rarity Icon"
-                    className="absolute bottom-1 h-auto w-36"
-                  />
+
+              <div className="relative flex h-[225px] w-auto flex-row items-center justify-evenly">
+                <div className="absolute mb-5">
+                  <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20 " />
                 </div>
-                <div className="flex w-3/5 flex-col items-center gap-2 text-center">
-                  <span className="text-xl">{character?.light_cone?.name}</span>
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`h-6 w-6 rounded-full font-normal ${
-                        character?.light_cone?.rank == 5 ? 'bg-[#f6ce71] text-black' : 'bg-neutral-800 text-[#dcc491]'
-                      }`}
-                      style={{ fontFamily: character?.light_cone?.rank != 1 && 'Times New Roman' }}
-                    >
-                      {roman_num[character?.light_cone?.rank]}
-                    </div>
-                    <div>
-                      <span className="text-lg">Lv. {character?.light_cone?.level}</span>
-                      <span> / </span>
-                      <span className="text-neutral-400">{character?.light_cone?.promotion * 10 + 20}</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-row gap-1.5">
-                    {character?.light_cone?.attributes.map((attribute) => (
-                      <div key={attribute.id} className="black-blur flex flex-row items-center rounded pr-1">
-                        <img src={asset_url + attribute.icon} alt="Attribute Icon" className="h-auto w-6" />
-                        <span className="text-sm">{attribute.display}</span>
+                <div className="flex h-full flex-col justify-center gap-8">
+                  {character?.skill_trees.slice(0, 2).map((skill) => (
+                    <div key={skill.id} className="flex flex-col items-center">
+                      <div className="relative flex flex-col items-center">
+                        <img
+                          src={asset_url + skill.icon}
+                          alt="Skill Icon"
+                          className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                        />
+                        <span className="black-blur absolute bottom-4 text-sm">
+                          {skill.level} / {skill.max_level}
+                        </span>
+                        <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
                       </div>
-                    ))}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center">
+                  <div className="relative flex flex-col items-center">
+                    <img
+                      src={asset_url + character?.skill_trees[2].icon}
+                      alt="Skill Icon"
+                      className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                    />
+                    <span className="black-blur absolute bottom-4 text-sm">
+                      {character?.skill_trees[2].level} / {character?.skill_trees[2].max_level}
+                    </span>
+                    <span className="z-10 mt-1.5 text-sm">
+                      {skill_types.get(character?.skill_trees[2].id.slice(-1))}
+                    </span>
                   </div>
                 </div>
+                <div className="flex h-full flex-col justify-center gap-8">
+                  {character?.skill_trees.slice(3, 5).map((skill, index) => (
+                    <div key={skill.id} className="flex flex-col items-center">
+                      <div className="relative flex flex-col items-center">
+                        <img
+                          src={asset_url + skill.icon}
+                          alt="Skill Icon"
+                          className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                        />
+                        <span className="black-blur absolute bottom-4 text-sm">
+                          {skill.level} / {skill.max_level}
+                        </span>
+                        <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ) : (
-              <span className="flex justify-center">No Light Cone Equipped</span>
-            )}
+              {character?.light_cone ? (
+                <div className="flex flex-row items-center justify-center">
+                  <div className="relative flex flex-col items-center">
+                    <img
+                      src={asset_url + character?.light_cone?.preview}
+                      alt="Light Cone Preview"
+                      className="h-auto w-32"
+                    />
+                    <img
+                      src={asset_url + 'icon/deco/Rarity' + character?.light_cone?.rarity + '.png'}
+                      alt="Light Cone Rarity Icon"
+                      className="absolute bottom-1 h-auto w-36"
+                    />
+                  </div>
+                  <div className="flex w-3/5 flex-col items-center gap-2 text-center">
+                    <span className="text-xl">{character?.light_cone?.name}</span>
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`h-6 w-6 rounded-full font-normal ${
+                          character?.light_cone?.rank == 5 ? 'bg-[#f6ce71] text-black' : 'bg-neutral-800 text-[#dcc491]'
+                        }`}
+                        style={{ fontFamily: character?.light_cone?.rank != 1 && 'Times New Roman' }}
+                      >
+                        {roman_num[character?.light_cone?.rank]}
+                      </div>
+                      <div>
+                        <span className="text-lg">Lv. {character?.light_cone?.level}</span>
+                        <span> / </span>
+                        <span className="text-neutral-400">{character?.light_cone?.promotion * 10 + 20}</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-1.5">
+                      {character?.light_cone?.attributes.map((attribute) => (
+                        <div key={attribute.id} className="black-blur flex flex-row items-center rounded pr-1">
+                          <img src={asset_url + attribute.icon} alt="Attribute Icon" className="h-auto w-6" />
+                          <span className="text-sm">{attribute.display}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <span className="flex justify-center">No Light Cone Equipped</span>
+              )}
+            </div>
             <hr />
             <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
                 <div key={relic_set.id} className="flex w-3/4 flex-row justify-between text-left">
-                  <span className="text-base">{relic_set.name}</span>
+                  <span className="truncate text-base">{relic_set.name}</span>
                   <div>
                     <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">{relic_set.num}</span>
                   </div>
