@@ -76,12 +76,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                       <img
                         src={asset_url + skill.icon}
                         alt="Skill Icon"
-                        className="z-5 h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                        className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
                       />
                       <span className="black-blur absolute bottom-4 text-sm">
                         {skill.level} / {skill.max_level}
                       </span>
-                      <span className="mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                      <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
                     </div>
                   </div>
                 ))}
@@ -91,12 +91,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                   <img
                     src={asset_url + character?.skill_trees[2].icon}
                     alt="Skill Icon"
-                    className="z-5 h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                    className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
                   />
                   <span className="black-blur absolute bottom-4 text-sm">
                     {character?.skill_trees[2].level} / {character?.skill_trees[2].max_level}
                   </span>
-                  <span className="mt-1.5 text-sm">{skill_types.get(character?.skill_trees[2].id.slice(-1))}</span>
+                  <span className="z-10 mt-1.5 text-sm">{skill_types.get(character?.skill_trees[2].id.slice(-1))}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-6">
@@ -106,12 +106,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                       <img
                         src={asset_url + skill.icon}
                         alt="Skill Icon"
-                        className="z-5 h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
+                        className="h-auto w-12 rounded-full border-2 border-neutral-500 bg-neutral-800"
                       />
                       <span className="black-blur absolute bottom-4 text-sm">
                         {skill.level} / {skill.max_level}
                       </span>
-                      <span className="mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                      <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
                     </div>
                   </div>
                 ))}
