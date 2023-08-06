@@ -31,7 +31,7 @@ export default function Search() {
             localStorage.setItem('lang', e.target.value);
           }}
           className="w-28 rounded border-2 border-gray-200 text-center text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
-          value={lang}
+          value={lang || 'en'}
         >
           <option value="cn">简体中文</option>
           <option value="cht">繁體中文</option>
