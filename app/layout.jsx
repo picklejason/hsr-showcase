@@ -40,6 +40,9 @@ export const metadata = {
     ],
     site_name: 'HSR Showcase',
   },
+  verification: {
+    google: process.env.GOOGLE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({ children }) {
