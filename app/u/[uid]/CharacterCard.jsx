@@ -2,6 +2,13 @@ import { AiFillLock } from 'react-icons/ai';
 
 const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
+  const roman_num = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+  };
   const skill_types = new Map();
   character.skills.forEach((skill) => {
     skill_types.set(skill.id.slice(-1), skill.type_text);
@@ -131,15 +138,24 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                     className="absolute bottom-1 h-auto w-36"
                   />
                 </div>
-                <div className="flex w-3/5 flex-col gap-1 text-center">
+                <div className="flex w-3/5 flex-col items-center gap-2 text-center">
                   <span className="text-xl">{character?.light_cone?.name}</span>
-                  <span className="text-base text-[#dcc491]">Superimposition {character?.light_cone?.rank}</span>
-                  <div>
-                    <span className="text-lg">Lv. {character?.light_cone?.level}</span>
-                    <span> / </span>
-                    <span className="text-neutral-400">{character?.light_cone?.promotion * 10 + 20}</span>
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`h-6 w-6 rounded-full font-normal ${
+                        character?.light_cone?.rank == 5 ? 'bg-[#f6ce71] text-black' : 'bg-neutral-800 text-[#dcc491]'
+                      }`}
+                      style={{ fontFamily: character?.light_cone?.rank != 1 && 'Times New Roman' }}
+                    >
+                      {roman_num[character?.light_cone?.rank]}
+                    </div>
+                    <div>
+                      <span className="text-lg">Lv. {character?.light_cone?.level}</span>
+                      <span> / </span>
+                      <span className="text-neutral-400">{character?.light_cone?.promotion * 10 + 20}</span>
+                    </div>
                   </div>
-                  <div className="flex flex-row justify-evenly">
+                  <div className="flex flex-row gap-1.5">
                     {character?.light_cone?.attributes.map((attribute) => (
                       <div key={attribute.id} className="black-blur flex flex-row items-center rounded pr-1">
                         <img src={asset_url + attribute.icon} alt="Attribute Icon" className="h-auto w-6" />
@@ -152,7 +168,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             ) : (
               <span className="flex justify-center">No Light Cone Equipped</span>
             )}
-            <hr className="" />
+            <hr />
             <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
                 <div key={relic_set.id} className="flex w-3/4 flex-row justify-between text-left">
