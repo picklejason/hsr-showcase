@@ -209,9 +209,11 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
               {character?.relics.map((relic) => (
                 <div
                   key={relic.id}
-                  className={`black-blur relative flex flex-row items-center rounded-s-lg border-l-2 p-1 ${
-                    relic.rarity == 5 ? 'border-yellow-600' : 'border-purple-600'
-                  }`}
+                  className={`black-blur relative flex flex-row items-center rounded-s-lg border-l-2 p-1
+                  ${relic.rarity == 5 && 'border-yellow-600'}
+                  ${relic.rarity == 4 && 'border-purple-600'}
+                  ${relic.rarity == 3 && 'border-blue-600'}
+                  `}
                 >
                   <div className="flex">
                     <img src={asset_url + relic.icon} alt="Relic Icon" className="h-auto w-20" />
