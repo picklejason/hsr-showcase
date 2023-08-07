@@ -176,8 +176,8 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
             <hr />
             <div className="flex flex-col items-center gap-1">
               {character?.relic_sets.map((relic_set) => (
-                <div key={relic_set.id} className="flex w-3/4 flex-row justify-between text-left">
-                  <span className="truncate text-base">{relic_set.name}</span>
+                <div key={relic_set.id} className="flex w-full flex-row justify-between text-left">
+                  <span className="text-base">{relic_set.name}</span>
                   <div>
                     <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">{relic_set.num}</span>
                   </div>
