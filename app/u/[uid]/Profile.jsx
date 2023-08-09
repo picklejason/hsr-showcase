@@ -286,8 +286,10 @@ const Profile = () => {
             </div>
             {character && (
               <>
-                <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'var(--font-nunito_sans)' }}>
-                  <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} blur={blur} />
+                <div className="w-screen overflow-x-auto">
+                  <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'var(--font-nunito_sans)' }}>
+                    <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} blur={blur} />
+                  </div>
                 </div>
 
                 <div className="flex w-screen flex-col items-center justify-center">
