@@ -197,7 +197,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
                   <div className="flex flex-col text-right">
                     <span>{stat.display}</span>
                     <div className="flex flex-row">
-                      {stat.addition && (
+                      {stat.addition > 0 && (
                         <span className="text-xs">
                           {stat.base}
                           <span className="text-blue-300"> +{stat.addition}</span>
