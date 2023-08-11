@@ -290,7 +290,7 @@ const Profile = () => {
             {character && (
               <>
                 <div className="flex w-screen overflow-x-auto 2xl:justify-center">
-                  <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'var(--font-nunito_sans)' }}>
+                  <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'var(--font-nunito)' }}>
                     <CharacterCard
                       character={character}
                       uid={uid}
