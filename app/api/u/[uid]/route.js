@@ -4,7 +4,7 @@ export async function GET(req, { params }) {
   const { uid } = params;
   const { searchParams } = new URL(req.url);
   const lang = searchParams.get('lang');
-  const res = await fetch(`https://api.mihomo.me/sr_info_parsed/${uid}?lang=${lang}`, { next: { revalidate: 180 } });
+  const res = await fetch(`https://api.mihomo.me/sr_info_parsed/${uid}?lang=${lang}`, { next: { revalidate: 60 } });
   const data = await res.json();
 
   for (const character of data['characters']) {
