@@ -21,6 +21,7 @@ const Profile = () => {
   const [savedBuilds, setSavedBuilds] = useState([]);
   const [buildName, setBuildName] = useState('');
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
+  const [customImage, setCustomImage] = useState(null);
 
   useEffect(() => {
     if (!localStorage.getItem('savedBuilds')) {
@@ -96,7 +97,7 @@ const Profile = () => {
 
   const ref = useRef(null);
   const saveImage = useCallback(
-    (name) => {
+    (name, scale) => {
       if (ref.current === null) {
         return;
       }
@@ -105,7 +106,7 @@ const Profile = () => {
         useCORS: true,
         allowTaint: true,
         backgroundColor: null,
-        scale: 2,
+        scale: scale,
       }).then((canvas) => {
         canvas.toBlob(function (blob) {
           saveAs(blob, `${name}_Card_${uid}.png`);
@@ -220,6 +221,7 @@ const Profile = () => {
                       onClick={() => {
                         setCharacter(savedBuilds[index].character);
                         setSelected(index);
+                        setCustomImage(null);
                       }}
                       key={index}
                     >
@@ -277,6 +279,7 @@ const Profile = () => {
                       onClick={() => {
                         setCharacter(data?.characters[index]);
                         setSelected(index);
+                        setCustomImage(null);
                       }}
                       key={index}
                     />
@@ -288,14 +291,21 @@ const Profile = () => {
               <>
                 <div className="flex w-screen overflow-x-auto 2xl:justify-center">
                   <div className="showcase mx-3" ref={ref} style={{ fontFamily: 'var(--font-nunito_sans)' }}>
-                    <CharacterCard character={character} uid={uid} nickname={nickname} showUID={showUID} blur={blur} />
+                    <CharacterCard
+                      character={character}
+                      uid={uid}
+                      nickname={nickname}
+                      showUID={showUID}
+                      blur={blur}
+                      customImage={customImage}
+                    />
                   </div>
                 </div>
 
                 <div className="flex w-screen flex-col items-center justify-center">
                   <div
                     className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                    onClick={() => saveImage(character.name)}
+                    onClick={() => saveImage(character.name, `${customImage ? 1 : 2}`)}
                   >
                     <Image
                       src={asset_url + 'icon/sign/SettingsImageIcon.png'}
@@ -306,6 +316,17 @@ const Profile = () => {
                     <span className="text-2xl">Download</span>
                   </div>
                   <div className="mx-3 flex flex-row flex-wrap items-center justify-center gap-4">
+                    <div>
+                      <label className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
+                        Custom Image
+                        <input
+                          type="file"
+                          onChange={(e) => setCustomImage(URL.createObjectURL(e.target.files[0]))}
+                          className="hidden"
+                          accept="image/*"
+                        />
+                      </label>
+                    </div>
                     <div
                       className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={() => setShowUID(!showUID)}
@@ -318,23 +339,23 @@ const Profile = () => {
                     >
                       <span>Toggle Blur</span>
                     </div>
-                    <div className="my-2 flex">
-                      <input
-                        type="text"
-                        name="buildName"
-                        onChange={(e) => setBuildName(e.target.value)}
-                        className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 text-base leading-[1.6] text-neutral-600 outline-none"
-                        value={buildName}
-                        placeholder="Build Name"
-                        aria-label="Build Name"
-                        maxLength={30}
-                      />
-                      <div
-                        className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                        onClick={saveBuild}
-                      >
-                        Save Build
-                      </div>
+                  </div>
+                  <div className="my-2 flex">
+                    <input
+                      type="text"
+                      name="buildName"
+                      onChange={(e) => setBuildName(e.target.value)}
+                      className="relative m-0 -mr-0.5 flex rounded-l border border-neutral-300 bg-clip-padding px-3 text-base leading-[1.6] text-neutral-600 outline-none"
+                      value={buildName}
+                      placeholder="Build Name"
+                      aria-label="Build Name"
+                      maxLength={30}
+                    />
+                    <div
+                      className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      onClick={saveBuild}
+                    >
+                      Save Build
                     </div>
                   </div>
                 </div>

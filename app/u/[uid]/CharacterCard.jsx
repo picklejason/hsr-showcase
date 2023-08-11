@@ -1,6 +1,6 @@
 import { AiFillLock } from 'react-icons/ai';
 
-const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
+const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage }) => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   const roman_num = {
     1: 'I',
@@ -14,7 +14,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
     skill_types.set(skill.id.slice(-1), skill.type_text);
   });
   return (
-    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'} `}>
+    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'}`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
@@ -22,8 +22,19 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur }) => {
       </div>
       <div className="flex flex-row items-center">
         <div className="relative min-h-[650px] w-[28%]">
-          <div className="flex min-h-[650px] items-center">
-            <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
+          <div className="flex h-[650px] items-center">
+            {customImage ? (
+              <div
+                className={`h-full w-full bg-cover bg-center bg-no-repeat`}
+                style={{ backgroundImage: `url(${customImage})` }}
+              ></div>
+            ) : (
+              <img
+                src={customImage ? customImage : asset_url + character?.portrait}
+                alt="Character Preview"
+                className={`${customImage ? 'h-full w-full object-cover' : 'scale-[1.8]'}`}
+              />
+            )}
           </div>
           <div className="absolute right-0 top-0 pr-3 pt-1">
             <div className="flex flex-col">
