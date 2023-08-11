@@ -145,12 +145,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <img
                       src={asset_url + character?.light_cone?.preview}
                       alt="Light Cone Preview"
-                      className="h-auto w-32"
+                      className="h-auto w-32 -rotate-[13deg]"
                     />
                     <img
                       src={asset_url + 'icon/deco/Rarity' + character?.light_cone?.rarity + '.png'}
                       alt="Light Cone Rarity Icon"
-                      className="absolute bottom-1 h-auto w-36"
+                      className="absolute bottom-0 h-auto w-36"
                     />
                   </div>
                   <div className="flex w-3/5 flex-col items-center gap-2 text-center">
