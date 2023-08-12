@@ -310,14 +310,14 @@ const Profile = () => {
                     <Image
                       src={asset_url + 'icon/sign/SettingsImageIcon.png'}
                       alt="Save Image Icon"
-                      width={24}
-                      height={24}
+                      width={32}
+                      height={32}
                     />
-                    <span className="text-2xl">Download</span>
+                    <span className="text-3xl">Download</span>
                   </div>
-                  <div className="mx-3 flex flex-row flex-wrap items-center justify-center gap-4">
+                  <div className="mx-3 my-2 flex flex-row flex-wrap items-center justify-center gap-x-4 gap-y-2">
                     <div>
-                      <label className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
+                      <label className="h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
                         Custom Image
                         <input
                           type="file"
@@ -328,13 +328,13 @@ const Profile = () => {
                       </label>
                     </div>
                     <div
-                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className="h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={() => setShowUID(!showUID)}
                     >
                       <span>{!showUID ? 'Show' : 'Hide'} UID / Name</span>
                     </div>
                     <div
-                      className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className="h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={() => setBlur(!blur)}
                     >
                       <span>Toggle Blur</span>
@@ -352,7 +352,7 @@ const Profile = () => {
                       maxLength={30}
                     />
                     <div
-                      className="cursor-pointer rounded-r bg-stone-800 px-3 py-1 leading-normal shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className="h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
                       onClick={saveBuild}
                     >
                       Save Build
