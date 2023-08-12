@@ -14,7 +14,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
     skill_types.set(skill.id.slice(-1), skill.type_text);
   });
   return (
-    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'Blur-BG' : 'BG'}`}>
+    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
@@ -64,7 +64,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
         </div>
         <div
           className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 border-dashed border-neutral-300 border-opacity-75 pl-7 ${
-            blur ? 'BG' : 'Blur-BG'
+            blur ? 'Blur-BG' : 'BG'
           }`}
         >
           <div className="flex min-h-[600px] w-1/3 flex-col justify-between gap-2">
