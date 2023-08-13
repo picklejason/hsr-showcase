@@ -236,7 +236,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <img
                       src={asset_url + 'icon/deco/Star' + relic.rarity + '.png'}
                       alt="Relic Rarity Icon"
-                      className="absolute bottom-2 h-auto w-20"
+                      className="absolute bottom-1 h-auto w-20"
                     />
                   </div>
                   <div className="mx-1 flex w-1/6 flex-col items-center justify-center">
