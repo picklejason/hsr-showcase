@@ -63,7 +63,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 border-dashed border-neutral-300 border-opacity-75 pl-7 ${
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 border-dashed border-opacity-75 pl-7 ${
             blur ? 'Blur-BG' : 'BG'
           }`}
         >
