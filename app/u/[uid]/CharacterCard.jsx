@@ -244,7 +244,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <span className="text-base text-[#f1a23c]">{relic.main_affix.display}</span>
                     <span className="black-blur rounded px-1 text-xs">+{relic.level}</span>
                   </div>
-                  <div className="h-[80px] border-l-2 border-dashed opacity-75"></div>
+                  <div className="h-[80px] border-l-2 border-dashed"></div>
                   <div className="m-auto grid w-1/2 grid-cols-2 gap-2">
                     {relic.sub_affix.map((sub_affix) => (
                       <div key={sub_affix.id} className="flex flex-row items-center">
