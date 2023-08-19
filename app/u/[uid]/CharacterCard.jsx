@@ -85,11 +85,11 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                 </div>
               </div>
 
-              <div className="relative flex h-[225px] w-auto flex-row items-center justify-evenly">
+              <div className="relative mx-4 flex h-[225px] w-auto flex-row items-center justify-evenly">
                 <div className="absolute mb-5">
                   <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20 " />
                 </div>
-                <div className="flex h-full flex-col justify-center gap-8">
+                <div className="flex h-full w-1/3 flex-col justify-center gap-8">
                   {character?.skill_trees.slice(0, 2).map((skill) => (
                     <div key={skill.id} className="flex flex-col items-center">
                       <div className="relative flex flex-col items-center">
@@ -101,12 +101,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                         <span className="black-blur absolute bottom-4 text-sm">
                           {skill.level} / {skill.max_level}
                         </span>
-                        <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                        <span className="z-10 mt-1.5 truncate text-sm">{skill_types.get(skill.id.slice(-1))}</span>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center">
+                <div className="flex w-1/3 justify-center">
                   <div className="relative flex flex-col items-center">
                     <img
                       src={asset_url + character?.skill_trees[2].icon}
@@ -116,12 +116,12 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <span className="black-blur absolute bottom-4 text-sm">
                       {character?.skill_trees[2].level} / {character?.skill_trees[2].max_level}
                     </span>
-                    <span className="z-10 mt-1.5 text-sm">
+                    <span className="z-10 mt-1.5 truncate text-sm">
                       {skill_types.get(character?.skill_trees[2].id.slice(-1))}
                     </span>
                   </div>
                 </div>
-                <div className="flex h-full flex-col justify-center gap-8">
+                <div className="flex h-full w-1/3 flex-col justify-center gap-8">
                   {character?.skill_trees.slice(3, 5).map((skill, index) => (
                     <div key={skill.id} className="flex flex-col items-center">
                       <div className="relative flex flex-col items-center">
@@ -133,7 +133,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                         <span className="black-blur absolute bottom-4 text-sm">
                           {skill.level} / {skill.max_level}
                         </span>
-                        <span className="z-10 mt-1.5 text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                        <span className="z-10 mt-1.5 truncate text-sm">{skill_types.get(skill.id.slice(-1))}</span>
                       </div>
                     </div>
                   ))}
