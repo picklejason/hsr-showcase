@@ -97,7 +97,7 @@ const Profile = () => {
 
   const ref = useRef(null);
   const saveImage = useCallback(
-    (name) => {
+    (name, scale) => {
       if (ref.current === null) {
         return;
       }
@@ -106,7 +106,7 @@ const Profile = () => {
         useCORS: true,
         allowTaint: true,
         backgroundColor: null,
-        scale: 1,
+        scale: scale,
       }).then((canvas) => {
         canvas.toBlob(function (blob) {
           saveAs(blob, `${name}_Card_${uid}.png`);
@@ -305,7 +305,7 @@ const Profile = () => {
                 <div className="flex w-screen flex-col items-center justify-center">
                   <div
                     className="my-2 flex cursor-pointer flex-row justify-center gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
-                    onClick={() => saveImage(character.name)}
+                    onClick={() => saveImage(character.name, `${customImage ? 1 : 1.5}`)}
                   >
                     <Image
                       src={asset_url + 'icon/sign/SettingsImageIcon.png'}
