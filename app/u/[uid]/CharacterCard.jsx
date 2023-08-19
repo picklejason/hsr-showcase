@@ -14,7 +14,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
     skill_types.set(skill.id.slice(-1), skill.type_text);
   });
   return (
-    <div className={`relative min-h-[650px] w-[1400px] overflow-hidden rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
+    <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
@@ -22,18 +22,14 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
       </div>
       <div className="flex flex-row items-center">
         <div className="relative min-h-[650px] w-[28%]">
-          <div className="flex h-[650px] items-center">
+          <div className="flex h-[650px] items-center overflow-hidden">
             {customImage ? (
               <div
                 className={`h-full w-full bg-cover bg-center bg-no-repeat`}
                 style={{ backgroundImage: `url(${customImage})` }}
               ></div>
             ) : (
-              <img
-                src={customImage ? customImage : asset_url + character?.portrait}
-                alt="Character Preview"
-                className={`${customImage ? 'h-full w-full object-cover' : 'scale-[1.8]'}`}
-              />
+              <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
             )}
           </div>
           <div className="absolute right-0 top-0 pr-3 pt-1">
@@ -63,7 +59,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 border-l-2 border-dashed border-opacity-75 pl-7 ${
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 overflow-hidden rounded-r-3xl border-l-2 border-dashed border-opacity-75 pl-7 ${
             blur ? 'Blur-BG' : 'BG'
           }`}
         >
