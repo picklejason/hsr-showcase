@@ -150,7 +150,9 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <img
                       src={asset_url + 'icon/deco/Rarity' + character?.light_cone?.rarity + '.png'}
                       alt="Light Cone Rarity Icon"
-                      className="absolute bottom-0 h-auto w-36"
+                      className={`absolute bottom-0 left-1 h-auto w-36 ${
+                        character?.light_cone?.rarity == 4 && 'left-2.5'
+                      }`}
                     />
                   </div>
                   <div className="flex w-3/5 flex-col items-center gap-2 text-center">
