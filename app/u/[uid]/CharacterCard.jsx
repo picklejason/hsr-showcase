@@ -11,7 +11,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
   };
   const skill_types = new Map();
   character.skills.forEach((skill) => {
-    skill_types.set(skill.id.slice(-1), skill.type_text);
+    skill_types.set(skill.id.slice(-2), skill.type_text);
   });
   return (
     <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
@@ -97,7 +97,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                         <span className="black-blur absolute bottom-4 text-sm">
                           {skill.level} / {skill.max_level}
                         </span>
-                        <span className="z-10 mt-1.5 truncate text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                        <span className="z-10 mt-1.5 truncate text-sm">{skill_types.get(skill.id.slice(-2))}</span>
                       </div>
                     </div>
                   ))}
@@ -113,7 +113,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                       {character?.skill_trees[2].level} / {character?.skill_trees[2].max_level}
                     </span>
                     <span className="z-10 mt-1.5 truncate text-sm">
-                      {skill_types.get(character?.skill_trees[2].id.slice(-1))}
+                      {skill_types.get(character?.skill_trees[2].id.slice(-2))}
                     </span>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                         <span className="black-blur absolute bottom-4 text-sm">
                           {skill.level} / {skill.max_level}
                         </span>
-                        <span className="z-10 mt-1.5 truncate text-sm">{skill_types.get(skill.id.slice(-1))}</span>
+                        <span className="z-10 mt-1.5 truncate text-sm">{skill_types.get(skill.id.slice(-2))}</span>
                       </div>
                     </div>
                   ))}
