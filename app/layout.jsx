@@ -48,7 +48,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={nunito.variable}>
-      <body className="Blur-BG no-scrollbar bg-fixed font-semibold text-white">
+      <body className="no-scrollbar bg-gradient-to-br from-[#0a0c22] via-[#11132a] to-[#2b3057] bg-fixed font-semibold text-white">
         {children}
         <Footer />
         <Analytics />
