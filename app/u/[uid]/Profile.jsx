@@ -81,9 +81,16 @@ const Profile = () => {
           const data = await res.json();
           setData(data);
         } else {
-          toast.error('UID not found!', {
-            toastId: 'error-uid-not-found',
-          });
+          toast.error(
+            <div>
+              Error fetching data!
+              <br />
+              Try again later or join our discord server for help.
+            </div>,
+            {
+              toastId: 'error-fetching-data',
+            }
+          );
           setTimeout(() => {
             router.push('/');
           }, 2000);
