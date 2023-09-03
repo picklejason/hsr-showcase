@@ -36,6 +36,18 @@
   background-repeat: no-repeat;
 }
 
+.Fade-BG {
+  background-image: url('/fade-bg.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.Fade-Blur-BG {
+  background-image: url('/fade-blur-bg.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .black-blur {
   background-color: rgba(0, 0, 0, 0.3);
 }

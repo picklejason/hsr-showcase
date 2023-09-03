@@ -14,7 +14,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
     skill_types.set(skill.id.slice(-2), skill.type_text);
   });
   return (
-    <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'BG' : 'Blur-BG'}`}>
+    <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'Blur-BG' : 'BG'} overflow-hidden`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
@@ -22,7 +22,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
       </div>
       <div className="flex flex-row items-center">
         <div className="relative min-h-[650px] w-[28%]">
-          <div className="flex h-[650px] items-center overflow-hidden">
+          <div className="flex h-[650px] items-center">
             {customImage ? (
               <div
                 className={`h-full w-full bg-cover bg-center bg-no-repeat`}
@@ -32,7 +32,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
               <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
             )}
           </div>
-          <div className="absolute right-0 top-0 pr-3 pt-1">
+          <div className={`absolute right-0 top-0 pt-1 ${customImage && 'pr-2'}`}>
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
                 <div
@@ -59,8 +59,8 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 overflow-hidden rounded-r-3xl border-l-2 border-dashed border-opacity-75 pl-7 ${
-            blur ? 'Blur-BG' : 'BG'
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-r-3xl pl-7 ${
+            blur ? 'Fade-Blur-BG' : 'Fade-BG'
           }`}
         >
           <div className="flex min-h-[600px] w-1/3 flex-col justify-between gap-2">
@@ -85,7 +85,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
 
               <div className="relative mx-4 flex h-[225px] w-auto flex-row items-center justify-evenly">
                 <div className="absolute mb-5">
-                  <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20 " />
+                  <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20" />
                 </div>
                 <div className="flex h-full w-1/3 flex-col justify-center gap-8">
                   {character?.skill_trees.slice(0, 2).map((skill) => (
@@ -244,7 +244,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <span className="text-base text-[#f1a23c]">{relic.main_affix.display}</span>
                     <span className="black-blur rounded px-1 text-xs">+{relic.level}</span>
                   </div>
-                  <div className="h-[80px] border-l-2 border-dashed"></div>
+                  <div className="h-[80px] border-l-2 opacity-50"></div>
                   <div className="m-auto grid w-1/2 grid-cols-2 gap-2">
                     {relic.sub_affix.map((sub_affix) => (
                       <div key={sub_affix.id} className="flex flex-row items-center">
