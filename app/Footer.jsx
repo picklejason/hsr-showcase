@@ -1,6 +1,7 @@
 'use client';
 
 import { AiOutlineGithub } from 'react-icons/ai';
+import { BsDiscord } from 'react-icons/bs';
 import Script from 'next/script';
 
 const Footer = () => {
@@ -25,6 +26,9 @@ const Footer = () => {
           This site is not affiliated with miHoYo &amp; All game content and assets are trademarks and copyrights of
           miHoYo.
         </span>
+        <a href="https://discord.gg/XZxuYuhDTa" aria-label="Discord" rel="noreferrer" target="_blank">
+          <BsDiscord className="cursor-pointer transition-transform hover:-translate-y-1" size={30} />
+        </a>
         <a href="https://github.com/picklejason/starrail" aria-label="GitHub" rel="noreferrer" target="_blank">
           <AiOutlineGithub className="cursor-pointer transition-transform hover:-translate-y-1" size={30} />
         </a>
