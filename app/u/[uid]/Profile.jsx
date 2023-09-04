@@ -14,7 +14,7 @@ const Profile = () => {
   const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
   const [data, setData] = useState(null);
   const [character, setCharacter] = useState(null);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(0);
   const [showUID, setShowUID] = useState(true);
   const [blur, setBlur] = useState(false);
   const [savedUID, setSavedUID] = useState('');
@@ -22,6 +22,56 @@ const Profile = () => {
   const [buildName, setBuildName] = useState('');
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [customImage, setCustomImage] = useState(null);
+  const params = useParams();
+  const uid = params.uid;
+  const nickname = data?.player.nickname;
+
+  useEffect(() => {
+    setSavedUID(localStorage.getItem('uid'));
+  }, []);
+
+  const linkUID = useCallback(() => {
+    localStorage.setItem('uid', uid);
+    setSavedUID(uid);
+    toast.success('UID linked!', {
+      toastId: 'success-uid-linked',
+    });
+  }, [uid]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`/api/u/${uid}?lang=${localStorage.getItem('lang')}`);
+        if (res.ok) {
+          const data = await res.json();
+          setData(data);
+        } else {
+          toast.error(
+            <div>
+              Error fetching data!
+              <br />
+              Try again later or join our discord server for help.
+            </div>,
+            {
+              toastId: 'error-fetching-data',
+            }
+          );
+          setTimeout(() => {
+            router.push('/');
+          }, 2000);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setCharacter(data?.characters[0]);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (!localStorage.getItem('savedBuilds')) {
@@ -65,43 +115,6 @@ const Profile = () => {
     [savedBuilds]
   );
 
-  const params = useParams();
-  const uid = params.uid;
-  const nickname = data?.player.nickname;
-
-  useEffect(() => {
-    setSavedUID(localStorage.getItem('uid'));
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`/api/u/${uid}?lang=${localStorage.getItem('lang')}`);
-        if (res.ok) {
-          const data = await res.json();
-          setData(data);
-        } else {
-          toast.error(
-            <div>
-              Error fetching data!
-              <br />
-              Try again later or join our discord server for help.
-            </div>,
-            {
-              toastId: 'error-fetching-data',
-            }
-          );
-          setTimeout(() => {
-            router.push('/');
-          }, 2000);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
   const ref = useRef(null);
   const saveImage = useCallback(
     (name, scale) => {
@@ -122,14 +135,6 @@ const Profile = () => {
     },
     [ref]
   );
-
-  const linkUID = useCallback(() => {
-    localStorage.setItem('uid', uid);
-    setSavedUID(uid);
-    toast.success('UID linked!', {
-      toastId: 'success-uid-linked',
-    });
-  }, [uid]);
 
   if (!data) {
     return <Loading />;
