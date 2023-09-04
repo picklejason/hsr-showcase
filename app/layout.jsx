@@ -10,6 +10,7 @@ const nunito = Nunito({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://www.hsr-showcase.com'),
   title: 'HSR Showcase',
   description: 'View and create a character showcase card for Honkai: Star Rail',
   icons: {
@@ -17,11 +18,11 @@ export const metadata = {
   },
   keywords: ['Honkai Star Rail', 'HSR', 'HSR Showcase', 'HSR Build Card'],
   alternates: {
-    canonical: 'https://www.hsr-showcase.com/',
+    canonical: '/',
   },
   openGraph: {
     locale: 'en_US',
-    url: 'https://www.hsr-showcase.com/',
+    url: '/',
     title: 'HSR Showcase',
     description: 'Fetch data from your Trailblazer Profile and display a build card for Honkai: Star Rail',
     images: [
