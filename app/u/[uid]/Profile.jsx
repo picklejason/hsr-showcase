@@ -196,7 +196,7 @@ const Profile = () => {
                       onClick={linkUID}
                     >
                       <Image
-                        src="https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/sign/FriendAddIcon.png"
+                        src={asset_url + 'icon/sign/FriendAddIcon.png'}
                         alt="Example Icon"
                         width={24}
                         height={24}
