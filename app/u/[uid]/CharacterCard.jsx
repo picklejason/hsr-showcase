@@ -1,7 +1,7 @@
 import { AiFillLock } from 'react-icons/ai';
 
 const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage }) => {
-  const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
+  const asset_url = 'https://cdn.jsdelivr.net/gh/Mar-7th/StarRailRes@master/';
   const roman_num = {
     1: 'I',
     2: 'II',

@@ -11,7 +11,7 @@ import Loading from './loading';
 
 const Profile = () => {
   const router = useRouter();
-  const asset_url = 'https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/';
+  const asset_url = 'https://cdn.jsdelivr.net/gh/Mar-7th/StarRailRes@master/';
   const [data, setData] = useState(null);
   const [character, setCharacter] = useState(null);
   const [selected, setSelected] = useState(0);

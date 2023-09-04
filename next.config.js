@@ -4,6 +4,6 @@ const nextConfig = {};
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["raw.githubusercontent.com"],
+    domains: ['cdn.jsdelivr.net'],
   },
 };
