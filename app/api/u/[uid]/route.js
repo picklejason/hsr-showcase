@@ -30,6 +30,7 @@ export async function GET(req, { params }) {
         icon: attribute.icon,
         base: attribute.display || 0,
         addition: addition ? addition.display || 0 : 0,
+        value: addition ? attribute.value + addition.value : attribute.value,
         display: totalValue.toFixed(attribute.percent ? 1 : 0) + (attribute.percent ? '%' : ''),
       });
 
@@ -45,6 +46,7 @@ export async function GET(req, { params }) {
         combinedAttributes.push({
           name: addition.name,
           icon: addition.icon,
+          value: addition.value,
           display: addition.display,
         });
       }

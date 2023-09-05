@@ -206,7 +206,15 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                   </div>
                   <span className="mx-3 flex-grow rounded border-[1px] border-neutral-300 opacity-50"></span>
                   <div className="flex flex-col text-right">
-                    <span>{stat.display}</span>
+                    <div
+                      data-te-toggle="tooltip"
+                      data-te-placement="top"
+                      data-te-ripple-init
+                      data-te-ripple-color="light"
+                      title={parseFloat(stat.value).toFixed(4)}
+                    >
+                      {stat.display}
+                    </div>
                     <div className="flex flex-row">
                       {stat.addition > 0 && (
                         <span className="text-xs">
