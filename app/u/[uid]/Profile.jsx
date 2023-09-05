@@ -355,7 +355,7 @@ const Profile = () => {
                       }`}
                       onClick={() => setBlur(!blur)}
                     >
-                      <span>Blur</span>
+                      <span>Background Blur</span>
                     </div>
                     <div
                       className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
