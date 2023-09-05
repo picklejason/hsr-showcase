@@ -23,6 +23,9 @@ export default function Search() {
         Enter UID
       </label>
       <div className="flex flex-row flex-wrap justify-center gap-3">
+        <label htmlFor="lang" className="sr-only">
+          Select Language
+        </label>
         <select
           name="lang"
           id="lang"
