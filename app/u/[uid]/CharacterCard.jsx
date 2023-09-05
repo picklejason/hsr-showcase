@@ -254,7 +254,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                         </div>
                         {substatDistribution && (
                           <div className="flex w-full flex-row justify-evenly">
-                            {sub_affix.dist.map((step, index) => (
+                            {sub_affix?.dist?.map((step, index) => (
                               <div key={index} className="-mt-3 text-sm text-blue-300">
                                 {step == 0 ? '.' : step == '1' ? '..' : '...'}
                               </div>
