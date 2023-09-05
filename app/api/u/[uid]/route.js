@@ -62,6 +62,23 @@ export async function GET(req, { params }) {
     character['relic_sets'] = Array.from(set_map.values());
 
     character.property = combinedAttributes;
+
+    for (const relic of character['relics']) {
+      for (const sub_affix of relic['sub_affix']) {
+        const dist = [];
+        const { count, step } = sub_affix;
+        for (let d = 0; d < count; d++) {
+          if (d < step - count) {
+            dist[d] = 2;
+          } else if (!step) {
+            dist[d] = 0;
+          } else {
+            dist[d] = 1;
+          }
+        }
+        sub_affix['dist'] = dist;
+      }
+    }
   }
   return NextResponse.json(data);
 }

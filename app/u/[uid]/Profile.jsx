@@ -22,6 +22,7 @@ const Profile = () => {
   const [buildName, setBuildName] = useState('');
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [customImage, setCustomImage] = useState(null);
+  const [substatDistribution, setSubstatDistribution] = useState(false);
   const params = useParams();
   const uid = params.uid;
   const nickname = data?.player.nickname;
@@ -310,6 +311,7 @@ const Profile = () => {
                       showUID={showUID}
                       blur={blur}
                       customImage={customImage}
+                      substatDistribution={substatDistribution}
                     />
                   </div>
                 </div>
@@ -340,16 +342,28 @@ const Profile = () => {
                       </label>
                     </div>
                     <div
-                      className="h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
+                        !showUID && 'border-[1px]'
+                      }`}
                       onClick={() => setShowUID(!showUID)}
                     >
-                      <span>{!showUID ? 'Show' : 'Hide'} UID / Name</span>
+                      <span>Hide UID / Name</span>
                     </div>
                     <div
-                      className="h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none"
+                      className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
+                        blur && 'border-[1px]'
+                      }`}
                       onClick={() => setBlur(!blur)}
                     >
-                      <span>Toggle Blur</span>
+                      <span>Blur</span>
+                    </div>
+                    <div
+                      className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
+                        substatDistribution && 'border-[1px]'
+                      }`}
+                      onClick={() => setSubstatDistribution(!substatDistribution)}
+                    >
+                      <span>Substat Distribution</span>
                     </div>
                   </div>
                   <div className="my-2 flex">

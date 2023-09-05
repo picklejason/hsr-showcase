@@ -1,6 +1,6 @@
 import { AiFillLock } from 'react-icons/ai';
 
-const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage }) => {
+const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, substatDistribution }) => {
   const asset_url = 'https://cdn.jsdelivr.net/gh/Mar-7th/StarRailRes@master/';
   const roman_num = {
     1: 'I',
@@ -245,11 +245,22 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage })
                     <span className="black-blur rounded px-1 text-xs">+{relic.level}</span>
                   </div>
                   <div className="h-[80px] border-l-[1px] opacity-50"></div>
-                  <div className="m-auto grid w-1/2 grid-cols-2 gap-2">
+                  <div className={`m-auto grid w-1/2 grid-cols-2 ${substatDistribution ? 'mt-1 gap-0.5' : 'gap-2'}`}>
                     {relic.sub_affix.map((sub_affix) => (
-                      <div key={sub_affix.id} className="flex flex-row items-center">
-                        <img src={asset_url + sub_affix.icon} alt="Sub Affix Icon" className="h-auto w-7" />
-                        <span className="text-sm">+{sub_affix.display}</span>
+                      <div className="flex flex-col items-center">
+                        <div key={sub_affix.id} className="flex flex-row items-center">
+                          <img src={asset_url + sub_affix.icon} alt="Sub Affix Icon" className="h-auto w-7" />
+                          <span className="text-sm">+{sub_affix.display}</span>
+                        </div>
+                        {substatDistribution && (
+                          <div className="flex w-full flex-row justify-evenly">
+                            {sub_affix.dist.map((step) => (
+                              <div className="-mt-3 text-sm text-blue-300">
+                                {step == 0 ? '.' : step == '1' ? '..' : '...'}
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
