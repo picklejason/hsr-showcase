@@ -28,6 +28,9 @@ const Profile = () => {
   const nickname = data?.player.nickname;
 
   useEffect(() => {
+    if (localStorage.getItem('substatDistribution')) {
+      setSubstatDistribution(localStorage.getItem('substatDistribution'));
+    }
     setSavedUID(localStorage.getItem('uid'));
   }, []);
 
@@ -361,7 +364,10 @@ const Profile = () => {
                       className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
                         substatDistribution && 'border-[1px]'
                       }`}
-                      onClick={() => setSubstatDistribution(!substatDistribution)}
+                      onClick={() => {
+                        setSubstatDistribution(!substatDistribution);
+                        localStorage.setItem('substatDistribution', !substatDistribution);
+                      }}
                     >
                       <span>Substat Distribution</span>
                     </div>
