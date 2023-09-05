@@ -120,7 +120,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                   </div>
                 </div>
                 <div className="flex h-full w-1/3 flex-col justify-center gap-8">
-                  {character?.skill_trees.slice(3, 5).map((skill, index) => (
+                  {character?.skill_trees.slice(3, 5).map((skill) => (
                     <div key={skill.id} className="flex flex-col items-center">
                       <div className="relative flex flex-col items-center">
                         <img
@@ -246,16 +246,16 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                   </div>
                   <div className="h-[80px] border-l-[1px] opacity-50"></div>
                   <div className={`m-auto grid w-1/2 grid-cols-2 ${substatDistribution ? 'mt-1 gap-0.5' : 'gap-2'}`}>
-                    {relic.sub_affix.map((sub_affix) => (
-                      <div className="flex flex-col items-center">
-                        <div key={sub_affix.id} className="flex flex-row items-center">
+                    {relic.sub_affix.map((sub_affix, index) => (
+                      <div key={index} className="flex flex-col items-center">
+                        <div className="flex flex-row items-center">
                           <img src={asset_url + sub_affix.icon} alt="Sub Affix Icon" className="h-auto w-7" />
                           <span className="text-sm">+{sub_affix.display}</span>
                         </div>
                         {substatDistribution && (
                           <div className="flex w-full flex-row justify-evenly">
-                            {sub_affix.dist.map((step) => (
-                              <div key={step.id} className="-mt-3 text-sm text-blue-300">
+                            {sub_affix.dist.map((step, index) => (
+                              <div key={index} className="-mt-3 text-sm text-blue-300">
                                 {step == 0 ? '.' : step == '1' ? '..' : '...'}
                               </div>
                             ))}
