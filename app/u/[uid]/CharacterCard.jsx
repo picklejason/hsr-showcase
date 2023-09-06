@@ -13,16 +13,80 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
   character.skills.forEach((skill) => {
     skill_types.set(skill.id.slice(-2), skill.type_text);
   });
+
+  const iconMap = character.skill_trees.reduce((map, icon) => {
+    if (icon.parent !== null) {
+      if (!map[icon.parent]) {
+        map[icon.parent] = [];
+      }
+      map[icon.parent].push(icon);
+    }
+    return map;
+  }, {});
+
+  const MinorTraces = () => {
+    const propertyIcons = character.skill_trees.filter(
+      (item) => item.icon.startsWith('icon/property/Icon') && !item.parent
+    );
+    return (
+      <div className="flex flex-col items-center justify-center gap-1">
+        {propertyIcons.map((propertyIcon) => (
+          <img
+            key={propertyIcon.id}
+            src={asset_url + propertyIcon.icon}
+            alt={`Property Icon ${propertyIcon.id}`}
+            className={`h-6 w-6 rounded-full bg-neutral-800 p-0.5 ${propertyIcon.level === 0 && 'opacity-30'}`}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const TraceTree = ({ iconData, iconMap, path }) => {
+    const icon = iconData;
+    const children = iconMap[icon.id];
+    const iconStyle = icon.icon.startsWith('icon/skill/') ? 'w-10 h-10 border-2 border-neutral-300' : 'w-6 h-6 p-0.5';
+    const iconState = icon.level === 0 && 'opacity-30';
+    const noParent =
+      path === 'The Hunt' || path === 'Preservation' ? !['Point09', 'Point12', 'Point15'].includes(icon.anchor) : true;
+
+    return (
+      noParent && (
+        <div
+          key={icon.id}
+          className={`flex flex-col items-center gap-1 ${
+            !(path === 'The Hunt' || path === 'Preservation') && icon.anchor === 'Point09' ? 'justify-center' : ''
+          }`}
+        >
+          <img
+            src={asset_url + icon.icon}
+            alt={`Icon ${icon.id}`}
+            className={`${iconStyle} ${iconState} rounded-full bg-neutral-800`}
+          />
+          {children &&
+            children.map((childIcon, index) => (
+              <>
+                <TraceTree key={childIcon.id} iconData={childIcon} iconMap={iconMap} index={index} />
+              </>
+            ))}
+        </div>
+      )
+    );
+  };
+  const majorTraces = character.skill_trees.filter(
+    (icon) => icon.parent === null && icon.max_level === 1 && icon.anchor !== 'Point05'
+  );
+
   return (
-    <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'Blur-BG' : 'BG'} overflow-hidden`}>
+    <div className={`relative min-h-[660px] w-[1400px] rounded-3xl ${blur ? 'Blur-BG' : 'BG'} overflow-hidden`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
         </span>
       </div>
       <div className="flex flex-row items-center">
-        <div className="relative min-h-[650px] w-[28%]">
-          <div className="flex h-[650px] items-center">
+        <div className="relative min-h-[660px] w-[28%]">
+          <div className="flex h-[660px] items-center">
             {customImage ? (
               <div
                 className={`h-full w-full bg-cover bg-center bg-no-repeat`}
@@ -59,7 +123,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-r-3xl pl-7 ${
+          className={`relative flex min-h-[660px] w-[72%] flex-row items-center gap-3.5 rounded-r-3xl pl-7 ${
             blur ? 'Fade-Blur-BG' : 'Fade-BG'
           }`}
         >
@@ -137,6 +201,22 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                   ))}
                 </div>
               </div>
+              <div className="flex items-center justify-center">
+                <div className="flex w-full justify-evenly">
+                  {majorTraces.map((icon, index) => (
+                    <TraceTree
+                      key={icon.id}
+                      iconData={icon}
+                      iconMap={iconMap}
+                      index={index}
+                      path={character.path.name}
+                    />
+                  ))}
+                  {(character?.path?.name === 'The Hunt' || character?.path?.name === 'Preservation') && (
+                    <MinorTraces />
+                  )}
+                </div>
+              </div>
               {character?.light_cone ? (
                 <div className="flex flex-row items-center justify-center">
                   <div className="relative flex flex-col items-center">
@@ -184,20 +264,13 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                 <span className="flex justify-center">No Light Cone Equipped</span>
               )}
             </div>
-            <hr />
-            <div className="flex flex-col items-center gap-1">
-              {character?.relic_sets.map((relic_set) => (
-                <div key={relic_set.id} className="flex w-full flex-row justify-between text-left">
-                  <span className="text-base">{relic_set.name}</span>
-                  <div>
-                    <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">{relic_set.num}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-          <div className="flex min-h-[600px] w-1/3">
-            <div className="flex w-full flex-col justify-center gap-y-2 text-lg">
+          <div className="flex min-h-[600px] w-1/3 flex-col justify-evenly">
+            <div
+              className={`flex w-full flex-col justify-center gap-y-2 ${
+                character?.property?.length <= 10 && 'text-lg'
+              }`}
+            >
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center">
@@ -227,9 +300,27 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                 </div>
               ))}
             </div>
+            <hr />
+            <div className="flex flex-col items-center gap-1">
+              {character?.relic_sets.map((relic_set) => (
+                <div
+                  key={relic_set.id}
+                  className={`flex w-full flex-row justify-between text-left ${
+                    character?.property?.length > 10 ? 'text-sm' : 'text-base'
+                  }
+                  
+                  ${character?.property?.length > 10 && character?.relic_sets.length > 2 && 'text-xs'}`}
+                >
+                  <span>{relic_set.name}</span>
+                  <div>
+                    <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">{relic_set.num}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="w-1/3">
-            <div className="flex flex-col justify-between gap-3 text-lg">
+            <div className="flex flex-col justify-between gap-4 text-lg">
               {character?.relics.map((relic) => (
                 <div
                   key={relic.id}
