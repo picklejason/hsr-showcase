@@ -47,15 +47,18 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
     const children = iconMap[icon.id];
     const iconStyle = icon.icon.startsWith('icon/skill/') ? 'w-10 h-10 border-2 border-neutral-300' : 'w-6 h-6 p-0.5';
     const iconState = icon.level === 0 && 'opacity-30';
-    const noParent =
-      path === 'The Hunt' || path === 'Preservation' ? !['Point09', 'Point12', 'Point15'].includes(icon.anchor) : true;
+    const noParent = ['The Hunt', 'Preservation', 'Abundance'].includes(path)
+      ? !['Point09', 'Point12', 'Point15', 'Point18'].includes(icon.anchor)
+      : true;
 
     return (
       noParent && (
         <div
           key={icon.id}
           className={`flex flex-col items-center gap-1 ${
-            !(path === 'The Hunt' || path === 'Preservation') && icon.anchor === 'Point09' ? 'justify-center' : ''
+            !['The Hunt', 'Preservation', 'Abundance'].includes(path) && icon.anchor === 'Point09'
+              ? 'justify-center'
+              : ''
           }`}
         >
           <img
@@ -212,9 +215,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                       path={character.path.name}
                     />
                   ))}
-                  {(character?.path?.name === 'The Hunt' || character?.path?.name === 'Preservation') && (
-                    <MinorTraces />
-                  )}
+                  {['The Hunt', 'Preservation', 'Abundance'].includes(character?.path?.name) && <MinorTraces />}
                 </div>
               </div>
               {character?.light_cone ? (
