@@ -23,6 +23,7 @@ const Profile = () => {
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [customImage, setCustomImage] = useState(null);
   const [substatDistribution, setSubstatDistribution] = useState(false);
+  const [allTraces, setAllTraces] = useState(false);
   const params = useParams();
   const uid = params.uid;
   const nickname = data?.player.nickname;
@@ -31,7 +32,12 @@ const Profile = () => {
     if (localStorage.getItem('substatDistribution')) {
       setSubstatDistribution(localStorage.getItem('substatDistribution'));
     }
+    if (localStorage.getItem('allTraces')) {
+      setAllTraces(localStorage.getItem('allTraces'));
+    }
+
     setSavedUID(localStorage.getItem('uid'));
+    setAllTraces(localStorage.getItem('allTraces'));
   }, []);
 
   const linkUID = useCallback(() => {
@@ -315,6 +321,7 @@ const Profile = () => {
                       blur={blur}
                       customImage={customImage}
                       substatDistribution={substatDistribution}
+                      allTraces={allTraces}
                     />
                   </div>
                 </div>
@@ -370,6 +377,17 @@ const Profile = () => {
                       }}
                     >
                       <span>Substat Distribution</span>
+                    </div>
+                    <div
+                      className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
+                        allTraces && 'border-[1px]'
+                      }`}
+                      onClick={() => {
+                        setAllTraces(!allTraces);
+                        localStorage.setItem('allTraces', !allTraces);
+                      }}
+                    >
+                      <span>Show All Traces</span>
                     </div>
                   </div>
                   <div className="my-2 flex">
