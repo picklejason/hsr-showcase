@@ -93,7 +93,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
           <div className="flex h-[650px] items-center">
             {customImage ? (
               <div
-                className={`h-full w-full bg-cover bg-center bg-no-repeat`}
+                className={`h-full w-full scale-[1.15] bg-cover bg-center bg-no-repeat`}
                 style={{ backgroundImage: `url(${customImage})` }}
               ></div>
             ) : (
@@ -127,7 +127,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
           </div>
         </div>
         <div
-          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-r-3xl pl-7 ${
+          className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-r-3xl pl-10 ${
             blur ? 'Fade-Blur-BG' : 'Fade-BG'
           }`}
         >
