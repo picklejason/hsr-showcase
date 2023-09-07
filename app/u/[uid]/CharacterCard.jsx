@@ -57,10 +57,8 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
       show && (
         <div
           key={icon.id}
-          className={`flex items-center gap-1 
+          className={`flex items-center justify-center gap-1
           ${!['Rogue', 'Priest', 'Warrior', 'Warlock', 'Shaman', 'Mage'].includes(path) ? 'flex-row' : 'flex-col'}
-          ${!['Rogue', 'Priest', 'Mage'].includes(path) && icon.anchor === 'Point09' ? 'justify-center' : ''}
-
           ${path === 'Knight' && icon.anchor === 'Point08' ? 'flex-col items-center justify-center' : ''}
           ${path === 'Knight' && icon.anchor === 'Point09' ? 'flex-col' : ''}`}
         >
