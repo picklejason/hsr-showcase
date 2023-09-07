@@ -100,7 +100,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
               <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
             )}
           </div>
-          <div className={`absolute right-0 top-0 pt-1 ${customImage && 'pr-2'}`}>
+          <div className={`absolute right-0 top-0 mr-[-15px] pt-1`}>
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
                 <div
