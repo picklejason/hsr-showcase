@@ -50,7 +50,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
     const iconStyle = icon.icon.startsWith('icon/skill/') ? 'w-10 h-10 border-2 border-neutral-300' : 'w-6 h-6 p-0.5';
     const iconState = icon.level === 0 && 'opacity-30';
     let show = true;
-    if (['The Hunt', 'Abundance', 'Erudition'].includes(path)) {
+    if (['Rogue', 'Priest', 'Mage'].includes(path)) {
       show = !['Point09', 'Point12', 'Point15', 'Point18'].includes(icon.anchor);
     }
     return (
@@ -58,15 +58,11 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
         <div
           key={icon.id}
           className={`flex items-center gap-1 
-          ${
-            !['The Hunt', 'Abundance', 'Destruction', 'Nihility', 'Harmony', 'Erudition'].includes(path)
-              ? 'flex-row'
-              : 'flex-col'
-          }
-          ${!['The Hunt', 'Abundance'].includes(path) && icon.anchor === 'Point09' ? 'justify-center' : ''}
+          ${!['Rogue', 'Priest', 'Warrior', 'Warlock', 'Shaman', 'Mage'].includes(path) ? 'flex-row' : 'flex-col'}
+          ${!['Rogue', 'Priest', 'Mage'].includes(path) && icon.anchor === 'Point09' ? 'justify-center' : ''}
 
-          ${path === 'Preservation' && icon.anchor === 'Point08' ? 'flex-col items-center justify-center' : ''}
-          ${path === 'Preservation' && icon.anchor === 'Point09' ? 'flex-col' : ''}`}
+          ${path === 'Knight' && icon.anchor === 'Point08' ? 'flex-col items-center justify-center' : ''}
+          ${path === 'Knight' && icon.anchor === 'Point09' ? 'flex-col' : ''}`}
         >
           <img
             src={asset_url + icon.icon}
@@ -220,10 +216,10 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
                         iconData={icon}
                         iconMap={iconMap}
                         index={index}
-                        path={character.path.name}
+                        path={character.path.id}
                       />
                     ))}
-                    {['The Hunt', 'Abundance', 'Erudition'].includes(character?.path?.name) && <MinorTraces />}
+                    {['Rogue', 'Priest', 'Mage'].includes(character?.path?.id) && <MinorTraces />}
                   </div>
                 </div>
               )}
