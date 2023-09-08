@@ -33,7 +33,7 @@ const Profile = () => {
     setBlur(JSON.parse(localStorage.getItem('backgroundBlur')));
     setSubstatDistribution(JSON.parse(localStorage.getItem('substatDistribution')));
     setAllTraces(JSON.parse(localStorage.getItem('allTraces')));
-    setSavedUID(JSON.parse(localStorage.getItem('uid')));
+    setSavedUID(localStorage.getItem('uid'));
   }, []);
 
   const linkUID = useCallback(() => {
