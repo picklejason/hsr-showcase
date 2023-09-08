@@ -29,11 +29,11 @@ const Profile = () => {
   const nickname = data?.player.nickname;
 
   useEffect(() => {
-    setHideUID(localStorage.getItem('hideUID'));
-    setBlur(localStorage.getItem('backgroundBlur'));
-    setSubstatDistribution(localStorage.getItem('substatDistribution'));
-    setAllTraces(localStorage.getItem('allTraces'));
-    setSavedUID(localStorage.getItem('uid'));
+    setHideUID(JSON.parse(localStorage.getItem('hideUID')));
+    setBlur(JSON.parse(localStorage.getItem('backgroundBlur')));
+    setSubstatDistribution(JSON.parse(localStorage.getItem('substatDistribution')));
+    setAllTraces(JSON.parse(localStorage.getItem('allTraces')));
+    setSavedUID(JSON.parse(localStorage.getItem('uid')));
   }, []);
 
   const linkUID = useCallback(() => {
