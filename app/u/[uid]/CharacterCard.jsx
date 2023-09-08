@@ -24,8 +24,6 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
     return map;
   }, {});
 
-  console.log(iconMap);
-
   const MinorTraces = () => {
     const propertyIcons = character.skill_trees.filter(
       (item) => item.icon.startsWith('icon/property/Icon') && !item.parent
