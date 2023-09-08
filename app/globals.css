@@ -23,27 +23,27 @@
 }
 
 .BG {
-  background-image: url('/bg.jpg'); 
+  background-image: url('https://cdn.jsdelivr.net/gh/picklejason/hsr-showcase@main/public/bg.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .Blur-BG {
-  background-image: url('/blur-bg.png'); 
+  background-image: url('https://cdn.jsdelivr.net/gh/picklejason/hsr-showcase@main/public/blur-bg.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .Fade-BG {
-  background-image: url('/fade-bg.png'); 
+  background-image: url('https://cdn.jsdelivr.net/gh/picklejason/hsr-showcase@main/public/fade-bg.png'); 
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .Fade-Blur-BG {
-  background-image: url('/fade-blur-bg.png'); 
+  background-image: url('https://cdn.jsdelivr.net/gh/picklejason/hsr-showcase@main/public/fade-blur-bg.png'); 
   background-size: cover;
   background-repeat: no-repeat;
 }
