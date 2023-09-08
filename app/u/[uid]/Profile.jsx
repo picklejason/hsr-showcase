@@ -47,7 +47,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/u/${uid}?lang=${localStorage.getItem('lang')}`);
+        const res = await fetch(`/api/u/${uid}?lang=${localStorage.getItem('lang')}`, { next: { revalidate: 60 } });
         if (res.ok) {
           const data = await res.json();
           setData(data);
