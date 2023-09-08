@@ -15,7 +15,7 @@ const Profile = () => {
   const [data, setData] = useState(null);
   const [character, setCharacter] = useState(null);
   const [selected, setSelected] = useState(0);
-  const [showUID, setShowUID] = useState(true);
+  const [hideUID, setHideUID] = useState(false);
   const [blur, setBlur] = useState(false);
   const [savedUID, setSavedUID] = useState('');
   const [savedBuilds, setSavedBuilds] = useState([]);
@@ -29,15 +29,11 @@ const Profile = () => {
   const nickname = data?.player.nickname;
 
   useEffect(() => {
-    if (localStorage.getItem('substatDistribution')) {
-      setSubstatDistribution(localStorage.getItem('substatDistribution'));
-    }
-    if (localStorage.getItem('allTraces')) {
-      setAllTraces(localStorage.getItem('allTraces'));
-    }
-
-    setSavedUID(localStorage.getItem('uid'));
+    setHideUID(localStorage.getItem('hideUID'));
+    setBlur(localStorage.getItem('backgroundBlur'));
+    setSubstatDistribution(localStorage.getItem('substatDistribution'));
     setAllTraces(localStorage.getItem('allTraces'));
+    setSavedUID(localStorage.getItem('uid'));
   }, []);
 
   const linkUID = useCallback(() => {
@@ -317,7 +313,7 @@ const Profile = () => {
                       character={character}
                       uid={uid}
                       nickname={nickname}
-                      showUID={showUID}
+                      hideUID={hideUID}
                       blur={blur}
                       customImage={customImage}
                       substatDistribution={substatDistribution}
@@ -353,9 +349,12 @@ const Profile = () => {
                     </div>
                     <div
                       className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
-                        !showUID && 'border-[1px]'
+                        hideUID && 'border-[1px]'
                       }`}
-                      onClick={() => setShowUID(!showUID)}
+                      onClick={() => {
+                        setHideUID(!hideUID);
+                        localStorage.setItem('hideUID', !hideUID);
+                      }}
                     >
                       <span>Hide UID / Name</span>
                     </div>
@@ -363,7 +362,10 @@ const Profile = () => {
                       className={`h-[30px] cursor-pointer gap-2 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none ${
                         blur && 'border-[1px]'
                       }`}
-                      onClick={() => setBlur(!blur)}
+                      onClick={() => {
+                        setBlur(!blur);
+                        localStorage.setItem('backgroundBlur', !blur);
+                      }}
                     >
                       <span>Background Blur</span>
                     </div>

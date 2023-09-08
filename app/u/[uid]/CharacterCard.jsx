@@ -1,6 +1,6 @@
 import { AiFillLock } from 'react-icons/ai';
 
-const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, substatDistribution, allTraces }) => {
+const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, substatDistribution, allTraces }) => {
   const asset_url = 'https://cdn.jsdelivr.net/gh/Mar-7th/StarRailRes@master/';
   const roman_num = {
     1: 'I',
@@ -82,7 +82,7 @@ const CharacterCard = ({ character, uid, nickname, showUID, blur, customImage, s
   return (
     <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'Blur-BG' : 'BG'} overflow-hidden`}>
       <div className="absolute bottom-2 left-4 z-10">
-        <span className={`${showUID ? '' : 'hidden'} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
+        <span className={`${hideUID ? 'hidden' : ''} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
         </span>
       </div>
