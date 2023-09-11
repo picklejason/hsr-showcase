@@ -79,7 +79,7 @@ export default function Search() {
           </a>
         </div>
       )}
-      <div className="flex gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         <div className="flex cursor-pointer flex-row items-center space-x-1 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
           <a href="https://discord.gg/XZxuYuhDTa" aria-label="Discord" rel="noreferrer" target="_blank">
             <div className="flex gap-2">
