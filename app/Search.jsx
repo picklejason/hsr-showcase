@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { BsDiscord } from 'react-icons/bs';
+import { SiKofi } from 'react-icons/si';
 
 export default function Search() {
   const [UID, setUID] = useState('');
@@ -77,6 +79,24 @@ export default function Search() {
           </a>
         </div>
       )}
+      <div className="flex gap-4">
+        <div className="flex cursor-pointer flex-row items-center space-x-1 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
+          <a href="https://discord.gg/XZxuYuhDTa" aria-label="Discord" rel="noreferrer" target="_blank">
+            <div className="flex gap-2">
+              <BsDiscord size={24} />
+              Join our Discord Server!
+            </div>
+          </a>
+        </div>
+        <div className="flex cursor-pointer flex-row items-center space-x-1 rounded bg-stone-800 px-3 py-1 shadow-md shadow-stone-900 hover:brightness-110 active:shadow-none">
+          <a href="https://ko-fi.com/picklejason" aria-label="Kofi" rel="noreferrer" target="_blank">
+            <div className="flex gap-2">
+              <SiKofi size={24} />
+              Support Me!
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
