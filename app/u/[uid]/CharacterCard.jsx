@@ -319,6 +319,24 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                   </div>
                 </div>
               ))}
+              {!character?.property.some((item) => item.icon === 'icon/property/IconEnergyRecovery.png') && (
+                <div className="flex flex-row items-center justify-between">
+                  <div className="flex flex-row items-center">
+                    <img
+                      src={asset_url + 'icon/property/IconEnergyRecovery.png'}
+                      alt="Stat Icon"
+                      className="h-auto w-10"
+                    />
+                    <span>Energy Regeneration Rate</span>
+                  </div>
+                  <span className="mx-3 flex-grow rounded border-[1px] border-neutral-300 opacity-50"></span>
+                  <div className="flex flex-col text-right">
+                    <div className="flex flex-row">
+                      <span>100%</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             {allTraces && (
               <>
