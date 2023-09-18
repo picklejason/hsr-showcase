@@ -98,7 +98,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
               <img src={asset_url + character?.portrait} alt="Character Preview" className="scale-[1.8]" />
             )}
           </div>
-          <div className={`absolute right-0 top-0 mr-[-15px] pt-1`}>
+          <div className={`absolute right-0 top-0 mr-[-15px] pt-3`}>
             <div className="flex flex-col">
               {character?.rank_icons.slice(0, character?.rank).map((rank_icon) => (
                 <div
@@ -129,7 +129,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
             blur ? 'Fade-Blur-BG' : 'Fade-BG'
           }`}
         >
-          <div className="flex min-h-[650px] w-1/3 flex-col justify-evenly">
+          <div className="flex min-h-[650px] w-1/3 flex-col justify-between py-3">
             <div>
               <div className="flex flex-col gap-0.5">
                 <div className="flex flex-row items-center justify-between">
@@ -285,7 +285,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
             )}
           </div>
 
-          <div className="flex min-h-[650px] w-1/3 flex-col justify-evenly">
+          <div className="flex min-h-[650px] w-1/3 flex-col justify-center py-3">
             <div
               className={`flex w-full flex-col justify-center gap-y-2 ${
                 allTraces && character?.property?.length >= 10 ? 'text-base' : 'text-lg'
@@ -346,7 +346,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
             )}
           </div>
           <div className="w-1/3">
-            <div className="flex flex-col justify-between gap-3.5 text-lg">
+            <div className="flex flex-col justify-between gap-4 py-3 text-lg">
               {character?.relics.map((relic) => (
                 <div
                   key={relic.id}
