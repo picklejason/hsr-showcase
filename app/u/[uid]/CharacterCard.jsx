@@ -306,7 +306,9 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                       data-te-ripple-color="light"
                       title={parseFloat(stat.value).toFixed(2)}
                     >
-                      {stat.display}
+                      {stat.icon === 'icon/property/IconEnergyRecovery.png'
+                        ? parseFloat(stat.display) + 100 + '%'
+                        : stat.display}
                     </div>
                     <div className="flex flex-row">
                       {stat.addition > 0 && (
@@ -332,7 +334,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                   <span className="mx-3 flex-grow rounded border-[1px] border-neutral-300 opacity-50"></span>
                   <div className="flex flex-col text-right">
                     <div className="flex flex-row">
-                      <span>100%</span>
+                      <span>100.0%</span>
                     </div>
                   </div>
                 </div>
