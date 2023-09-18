@@ -129,9 +129,9 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
             blur ? 'Fade-Blur-BG' : 'Fade-BG'
           }`}
         >
-          <div className="flex min-h-[650px] w-1/3 flex-col justify-between py-3">
-            <div>
-              <div className="flex flex-col gap-0.5">
+          <div className="flex h-[650px] w-1/3 flex-col justify-between py-3">
+            <div className="flex h-full flex-col justify-between">
+              <div className="">
                 <div className="flex flex-row items-center justify-between">
                   <span className={`${(character?.name).length > 12 ? 'text-4xl' : 'text-5xl'}`}>
                     {character?.name}
@@ -148,7 +148,6 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                   <span className="text-xl text-neutral-400">{character?.promotion * 10 + 20}</span>
                 </div>
               </div>
-
               <div className="relative mx-4 flex h-[225px] w-auto flex-row items-center justify-evenly">
                 <div className="absolute mb-5">
                   <img src={asset_url + character?.path.icon} alt="Path Icon" className="h-40 w-40 opacity-20" />
@@ -265,31 +264,32 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
               ) : (
                 <span className="flex justify-center">No Light Cone Equipped</span>
               )}
-            </div>
-            {!allTraces && (
-              <>
-                <hr />
-                <div className="flex flex-col items-center gap-1">
-                  {character?.relic_sets.map((relic_set) => (
-                    <div key={relic_set.id} className="flex w-full flex-row justify-between text-left">
-                      <span className="text-base">{relic_set.name}</span>
-                      <div>
-                        <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">
-                          {relic_set.num}
-                        </span>
+              {!allTraces && (
+                <>
+                  <hr />
+                  <div className="flex flex-col items-center gap-1">
+                    {character?.relic_sets.map((relic_set) => (
+                      <div key={relic_set.id} className="flex w-full flex-row justify-between text-left">
+                        <span className="text-base">{relic_set.name}</span>
+                        <div>
+                          <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">
+                            {relic_set.num}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
 
-          <div className="flex min-h-[650px] w-1/3 flex-col justify-center py-3">
+          <div className="flex h-[650px] w-1/3 flex-col justify-between py-3">
             <div
-              className={`flex w-full flex-col justify-center gap-y-2 ${
+              className={`flex w-full flex-col justify-between ${
                 allTraces && character?.property?.length >= 10 ? 'text-base' : 'text-lg'
-              }`}
+              }
+              ${allTraces ? 'h-[500px]' : 'h-[600px]'}`}
             >
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
@@ -304,7 +304,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                       data-te-placement="top"
                       data-te-ripple-init
                       data-te-ripple-color="light"
-                      title={parseFloat(stat.value).toFixed(4)}
+                      title={parseFloat(stat.value).toFixed(2)}
                     >
                       {stat.display}
                     </div>
@@ -346,7 +346,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
             )}
           </div>
           <div className="w-1/3">
-            <div className="flex flex-col justify-between gap-4 py-3 text-lg">
+            <div className="flex h-[650px] flex-col justify-between py-3 text-lg">
               {character?.relics.map((relic) => (
                 <div
                   key={relic.id}
@@ -372,7 +372,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                   <div className="h-[80px] border-l-[1px] opacity-50"></div>
                   <div className={`m-auto grid w-1/2 grid-cols-2 ${substatDistribution ? 'mt-1 gap-0.5' : 'gap-2'}`}>
                     {relic.sub_affix.map((sub_affix, index) => (
-                      <div key={index} className="flex flex-col items-center">
+                      <div key={index} className="flex flex-col">
                         <div className="flex flex-row items-center">
                           <img src={asset_url + sub_affix.icon} alt="Sub Affix Icon" className="h-auto w-7" />
                           <span className="text-sm">+{sub_affix.display}</span>
