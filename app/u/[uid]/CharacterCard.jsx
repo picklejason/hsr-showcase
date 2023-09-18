@@ -289,7 +289,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
               className={`flex w-full flex-col justify-between ${
                 allTraces && character?.property?.length >= 10 ? 'text-base' : 'text-lg'
               }
-              ${allTraces ? 'h-[500px]' : 'h-[600px]'}`}
+              ${allTraces ? 'h-[500px]' : 'h-[650px]'}`}
             >
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
@@ -325,14 +325,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                 <hr />
                 <div className="flex flex-col items-center gap-1">
                   {character?.relic_sets.map((relic_set) => (
-                    <div
-                      key={relic_set.id}
-                      className={`flex w-full flex-row justify-between text-left ${
-                        character?.property?.length >= 10 ? 'text-sm' : 'text-base'
-                      }
-                  
-                  ${allTraces && character?.property?.length > 10 && character?.relic_sets.length > 2 && 'text-xs'}`}
-                    >
+                    <div key={relic_set.id} className="flex w-full flex-row justify-between text-left">
                       <span>{relic_set.name}</span>
                       <div>
                         <span className="black-blur flex w-5 justify-center rounded px-1.5 py-0.5">
