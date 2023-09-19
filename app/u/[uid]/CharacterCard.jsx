@@ -298,18 +298,22 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                     <span>{stat.name}</span>
                   </div>
                   <span className="mx-3 flex-grow rounded border-[1px] border-neutral-300 opacity-50"></span>
-                  <div className="flex flex-col text-right">
-                    <div
-                      data-te-toggle="tooltip"
-                      data-te-placement="top"
-                      data-te-ripple-init
-                      data-te-ripple-color="light"
-                      title={parseFloat(stat.value).toFixed(2)}
-                    >
-                      {stat.icon === 'icon/property/IconEnergyRecovery.png'
-                        ? parseFloat(stat.display) + 100 + '%'
-                        : stat.display}
-                    </div>
+                  <div className="flex cursor-default flex-col text-right">
+                    {stat.icon === 'icon/property/IconSpeed.png' ? (
+                      <div
+                        data-te-toggle="tooltip"
+                        data-te-placement="top"
+                        data-te-ripple-init
+                        data-te-ripple-color="light"
+                        title={parseFloat(stat.value).toFixed(2)}
+                      >
+                        {stat.display}
+                      </div>
+                    ) : stat.icon === 'icon/property/IconEnergyRecovery.png' ? (
+                      parseFloat(stat.display) + 100 + '%'
+                    ) : (
+                      stat.display
+                    )}
                     <div className="flex flex-row">
                       {stat.addition > 0 && (
                         <span className="text-xs">
