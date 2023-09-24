@@ -80,7 +80,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
   );
 
   return (
-    <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'Blur-BG' : 'BG'} overflow-hidden`}>
+    <div className={`relative min-h-[650px] w-[1400px] rounded-3xl ${blur ? 'BG' : 'Blur-BG'} overflow-hidden`}>
       <div className="absolute bottom-2 left-4 z-10">
         <span className={`${hideUID ? 'hidden' : ''} shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]`}>
           {uid} · {nickname}
@@ -126,7 +126,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
         </div>
         <div
           className={`relative flex min-h-[650px] w-[72%] flex-row items-center gap-3.5 rounded-r-3xl pl-10 ${
-            blur ? 'Fade-Blur-BG' : 'Fade-BG'
+            blur ? 'Fade-BG' : 'Fade-Blur-BG'
           }`}
         >
           <div className="flex h-[650px] w-1/3 flex-col justify-between py-3">
