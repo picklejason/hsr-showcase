@@ -202,7 +202,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                   ))}
                 </div>
               </div>
-              {allTraces && (
+              {!allTraces && (
                 <div className="flex items-center justify-center">
                   <div className={`flex w-full flex-row justify-evenly`}>
                     {majorTraces.map((icon, index) => (
@@ -264,7 +264,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
               ) : (
                 <span className="flex justify-center">No Light Cone Equipped</span>
               )}
-              {!allTraces && (
+              {allTraces && (
                 <>
                   <hr />
                   <div className="flex flex-col items-center gap-1">
@@ -286,10 +286,10 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
 
           <div className="flex h-[650px] w-1/3 flex-col justify-between py-3">
             <div
-              className={`flex w-full flex-col justify-between ${
-                allTraces && character?.property?.length >= 10 ? 'text-base' : 'text-lg'
+              className={`flex w-full flex-col justify-between gap-y-0.5 ${
+                !allTraces && character?.property?.length >= 10 ? 'text-base' : 'text-lg'
               }
-              ${allTraces ? 'h-[500px]' : 'h-[650px]'}`}
+              ${!allTraces ? 'h-[500px]' : 'h-[650px]'}`}
             >
               {character?.property.map((stat) => (
                 <div key={stat.id} className="flex flex-row items-center justify-between">
@@ -344,7 +344,7 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                 </div>
               )}
             </div>
-            {allTraces && (
+            {!allTraces && (
               <>
                 <hr />
                 <div className="flex flex-col items-center gap-1">

@@ -389,7 +389,7 @@ const Profile = () => {
                         localStorage.setItem('allTraces', !allTraces);
                       }}
                     >
-                      <span>Show All Traces</span>
+                      <span>Hide Minor Traces</span>
                     </div>
                   </div>
                   <div className="my-2 flex">
