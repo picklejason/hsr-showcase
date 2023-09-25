@@ -300,25 +300,29 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                   <span className="mx-3 flex-grow rounded border-[1px] border-neutral-300 opacity-50"></span>
                   <div className="flex cursor-default flex-col text-right">
                     {stat.icon === 'icon/property/IconSpeed.png' ? (
-                      <div
-                        data-te-toggle="tooltip"
-                        data-te-placement="top"
-                        data-te-ripple-init
-                        data-te-ripple-color="light"
-                        title={parseFloat(stat.value).toFixed(2)}
-                      >
-                        {stat.display}
-                      </div>
+                      <span>{(stat.value - 0.005).toFixed(1)}</span>
                     ) : stat.icon === 'icon/property/IconEnergyRecovery.png' ? (
-                      parseFloat(stat.display) + 100 + '%'
+                      <span>{parseFloat(stat.display) + 100 + '%'}</span>
                     ) : (
-                      stat.display
+                      <span>{stat.display}</span>
                     )}
                     <div className="flex flex-row">
                       {stat.addition > 0 && (
                         <span className="text-xs">
-                          {stat.base}
-                          <span className="text-blue-300"> +{stat.addition}</span>
+                          {stat.icon === 'icon/property/IconSpeed.png' ? (
+                            <>
+                              <span>{parseFloat(stat.base).toFixed(1)}</span>
+                              <span className="text-blue-300"> +{(stat.addition - 0.005).toFixed(1)}</span>
+                            </>
+                          ) : stat.icon === 'icon/property/IconCriticalChance.png' ||
+                            stat.icon === 'icon/property/IconCriticalDamage.png' ? (
+                            <></>
+                          ) : (
+                            <>
+                              <span>{stat.base}</span>
+                              <span className="text-blue-300"> +{Math.trunc(stat.addition)}</span>
+                            </>
+                          )}
                         </span>
                       )}
                     </div>
@@ -392,7 +396,11 @@ const CharacterCard = ({ character, uid, nickname, hideUID, blur, customImage, s
                       <div key={index} className="flex flex-col">
                         <div className="flex flex-row items-center">
                           <img src={asset_url + sub_affix.icon} alt="Sub Affix Icon" className="h-auto w-7" />
-                          <span className="text-sm">+{sub_affix.display}</span>
+                          {sub_affix.field === 'spd' ? (
+                            <span className="text-sm">+{(sub_affix.value - 0.005).toFixed(1)}</span>
+                          ) : (
+                            <span className="text-sm">+{sub_affix.display}</span>
+                          )}
                         </div>
                         {substatDistribution && (
                           <div className="flex w-full flex-row justify-evenly">

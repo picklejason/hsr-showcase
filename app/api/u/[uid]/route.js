@@ -29,7 +29,7 @@ export async function GET(req, { params }) {
         name: attribute.name,
         icon: attribute.icon,
         base: attribute.display || 0,
-        addition: addition ? addition.display || 0 : 0,
+        addition: addition ? addition.value || 0 : 0,
         value: addition ? attribute.value + addition.value : attribute.value,
         display: totalValue.toFixed(attribute.percent ? 1 : 0) + (attribute.percent ? '%' : ''),
       });
